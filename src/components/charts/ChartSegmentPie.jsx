@@ -3,20 +3,21 @@ import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recha
 import { segmentPieData } from '../../data/chartData'
 
 const item = { hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }
-const COLORS = ['#059669', '#0d9488', '#0f766e', '#14b8a6', '#2dd4bf', '#5eead4']
+// Distinct colors so each segment is easy to tell apart (readable on dark bg)
+const COLORS = ['#059669', '#0891b2', '#2563eb', '#7c3aed', '#ca8a04', '#dc2626']
 
 export function ChartSegmentPie() {
   return (
-    <motion.div variants={item} className="w-full max-w-md mx-auto mt-8 p-4 rounded-xl bg-white/10">
+    <motion.div variants={item} className="w-full max-w-lg mx-auto mt-8 p-5 rounded-xl bg-white/10 overflow-visible min-h-[340px]">
       <p className="text-sm font-medium text-slate-400 mb-2">Segment distribution</p>
-      <ResponsiveContainer width="100%" height={320}>
-        <PieChart margin={{ top: 8, right: 8, bottom: 8, left: 8 }}>
+      <ResponsiveContainer width="100%" height={320} style={{ overflow: 'visible' }}>
+        <PieChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
           <Pie
             data={segmentPieData}
-            cx="40%"
+            cx="38%"
             cy="50%"
-            innerRadius={56}
-            outerRadius={88}
+            innerRadius={52}
+            outerRadius={80}
             paddingAngle={2}
             dataKey="value"
             nameKey="name"

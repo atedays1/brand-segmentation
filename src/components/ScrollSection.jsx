@@ -25,7 +25,7 @@ export function ScrollSection({
     <Component
       id={id}
       ref={ref}
-      className={`min-h-screen w-full flex flex-col justify-center px-6 py-16 md:px-12 md:py-24 ${className}`}
+      className={`min-h-screen w-full flex flex-col justify-center px-6 py-16 md:px-12 md:py-24 scroll-mt-6 ${className}`}
     >
       <motion.div
         className="max-w-4xl mx-auto w-full"

@@ -1,0 +1,4 @@
+# Don't upload source docs; deploy only the app
+docs/
+# Keep node_modules local; Vercel installs from package.json
+node_modules
