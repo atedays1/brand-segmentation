@@ -1,0 +1,368 @@
+{
+  "segments": [
+    {
+      "id": "goal-oriented-planners",
+      "name": "Goal-Oriented Planners",
+      "share": "21%",
+      "narrative": "Take a disciplined, common sense approach to health and wellness. Set specific goals and create plans to achieve them with fewer barriers to maintaining good health.",
+      "bullets": [
+        "Health & wellness is very important, prioritized most of the time",
+        "Put significant effort into their H&W routine with disciplined approach",
+        "Pay attention to findings and adjust accordingly",
+        "Prioritize diet and exercise over other health behaviors",
+        "Look for scientific evidence and set specific goals",
+        "Experience fewer barriers to maintaining H&W"
+      ]
+    },
+    {
+      "id": "practical-minimalists",
+      "name": "Practical Minimalists",
+      "share": "20%",
+      "narrative": "Take an 'everything in moderation' approach to health and wellness. Want H&W to be easy and stick to what works with fewer goals and behaviors than average.",
+      "bullets": [
+        "Health & wellness important but take moderated approach",
+        "Less trust in experts, more focus on how they look vs. feel",
+        "More focused on immediate needs/goals vs. long-term",
+        "Approach is spontaneous and journey is personal",
+        "Find it difficult to stay motivated",
+        "Experience many barriers to maintaining good H&W"
+      ]
+    },
+    {
+      "id": "impact-seekers",
+      "name": "Impact Seekers",
+      "share": "19%",
+      "narrative": "Health & wellness is essential or very important. More focus on how they look versus how they feel, with more immediate needs and goals rather than long-term planning.",
+      "bullets": [
+        "Like to experiment with new approaches",
+        "Share their journey with a community",
+        "Seek immediate solutions and experiment with new FN products",
+        "Try new products based on hype",
+        "Price sensitive but spend more than average on supplements",
+        "Go with the flow, live for today, enjoy the moment"
+      ]
+    },
+    {
+      "id": "set-it-and-forget-it",
+      "name": "Set it and Forget it",
+      "share": "16%",
+      "narrative": "Health is holistic and they want H&W to be easy. Take common sense approaches and stick to what works with a personal journey approach.",
+      "bullets": [
+        "Buy out of habit and stick to tried and true",
+        "Seek immediate solutions but don't care about sourcing",
+        "Price sensitive and spend less than average on supplements",
+        "Prefer routine and status quo, avoid risks",
+        "Follow others' lead and feel balanced/relaxed",
+        "Set small, achievable goals"
+      ]
+    },
+    {
+      "id": "wellness-optimizers",
+      "name": "Wellness Optimizers",
+      "share": "13%",
+      "narrative": "Health & wellness is essential to how they live their lives. Focused on a wide variety of health needs and engaged in many H&W behaviors including health tech.",
+      "bullets": [
+        "Put significant effort into H&W routine with disciplined approach",
+        "Share journey with community and others seek their advice",
+        "Less trust in experts, seek more personalized solutions",
+        "Pay more for quality and care about sourcing",
+        "Spend more than average on dietary supplements",
+        "Express individuality and seek excitement/adventure"
+      ]
+    },
+    {
+      "id": "conflicted-experimenters",
+      "name": "Conflicted Experimenters",
+      "share": "12%",
+      "narrative": "Health & wellness is very important but they're focused on wide variety of health needs. Experiment with new approaches but find it difficult to stay motivated.",
+      "bullets": [
+        "More focus on how they look vs. how they feel",
+        "Experiment with new approaches and find it difficult to stay motivated",
+        "Experience many barriers to maintaining good H&W",
+        "Actively evaluate options and experiment with new FN products",
+        "Seek fortification and values alignment",
+        "Stressed/stretched too thin but express individuality"
+      ]
+    }
+  ],
+  "personas": [
+    {
+      "segmentId": "goal-oriented-planners",
+      "name": "Sarah Chen",
+      "age": 42,
+      "role": "Marketing Director & Fitness Enthusiast",
+      "household": "Married with 2 teens, suburban home",
+      "detail": "Sarah meticulously plans her health routine like her marketing campaigns. She researches supplements thoroughly, sets specific wellness goals, and tracks progress. Values scientific evidence and professional recommendations."
+    },
+    {
+      "segmentId": "practical-minimalists",
+      "name": "Mike Rodriguez",
+      "age": 38,
+      "role": "Construction Manager",
+      "household": "Married, 1 young child",
+      "detail": "Mike keeps wellness simple and practical. He takes basic multivitamins and sticks to what works without overthinking it. Prefers straightforward solutions that fit easily into his busy routine."
+    },
+    {
+      "segmentId": "impact-seekers",
+      "name": "Ashley Kim",
+      "age": 28,
+      "role": "Social Media Content Creator",
+      "household": "Single, urban apartment",
+      "detail": "Ashley loves trying the latest wellness trends and sharing her experiences online. She's drawn to products with visible results and enjoys being part of wellness communities. Always looking for the next breakthrough."
+    },
+    {
+      "segmentId": "set-it-and-forget-it",
+      "name": "Tom Johnson",
+      "age": 55,
+      "role": "Accountant",
+      "household": "Married, empty nester",
+      "detail": "Tom has found a routine that works and sticks with it. He takes the same supplements daily without much thought, preferring consistency over experimentation. Values reliability and simplicity."
+    },
+    {
+      "segmentId": "wellness-optimizers",
+      "name": "Dr. Maria Santos",
+      "age": 34,
+      "role": "Pediatrician & Wellness Advocate",
+      "household": "Single mom with 1 child",
+      "detail": "Maria approaches wellness with scientific rigor and personal passion. She uses health tech, tracks biomarkers, and invests in high-quality supplements. Friends often seek her health advice."
+    },
+    {
+      "segmentId": "conflicted-experimenters",
+      "name": "Jennifer Taylor",
+      "age": 31,
+      "role": "Marketing Coordinator",
+      "household": "Recently married, no children yet",
+      "detail": "Jennifer wants to optimize her health but feels overwhelmed by choices and conflicting information. She tries new supplements frequently but struggles with consistency and motivation."
+    }
+  ],
+  "productStrategy": {
+    "title": "Fast-Acting Functional Nutrition",
+    "subtitle": "Convenient formats that deliver tangible impact when you need it most",
+    "bundles": [
+      {
+        "name": "Energy & Focus Bundle",
+        "description": "Fast-acting solutions for physical energy, mental clarity, and cognitive performance - ideal for performance-driven consumers"
+      },
+      {
+        "name": "Sleep & Recovery Bundle",
+        "description": "Targeted support for sleep quality, stress management, and next-day recovery - addressing immediate wellness needs"
+      },
+      {
+        "name": "Gut Health & Wellness Bundle",
+        "description": "Digestive support and overall wellness solutions that provide noticeable benefits and support the gut-brain connection"
+      }
+    ],
+    "stat": {
+      "value": "64%",
+      "label": "of supplement users look for physical changes as proof products are working"
+    },
+    "ltvBullets": [
+      "Target 'in-the-moment' need states where fast-acting benefits provide clear value",
+      "Focus on conditions with tangible, noticeable impact like energy, sleep, and gut health",
+      "Leverage the blurring lines between supplements, functional foods, and beverages",
+      "Prioritize science-backed claims and third-party testing to build trust"
+    ]
+  },
+  "marketplace": {
+    "title": "The Evolving Supplement Landscape",
+    "subtitle": "Category blurring creates opportunity for innovative formats",
+    "crashing": {
+      "headline": "Functional Nutrition Convergence",
+      "body": "The lines between supplements, functional foods, and functional beverages are blurring as consumers use all three to meet similar wellness needs. 73% of supplement users also use alternative products like protein drinks, probiotic foods, and fortified beverages for similar benefits. This convergence creates opportunity for innovative formats that combine the best of all categories."
+    },
+    "touchpoints": {
+      "headline": "Multi-Category Competition",
+      "ruleOf8": "Consumers evaluate 8+ product options across supplements, functional foods, and beverages before choosing",
+      "nuance": "Choice depends on occasion, convenience, taste preference, and perceived efficacy rather than traditional category boundaries"
+    }
+  },
+  "omniChannel": {
+    "title": "Channel Strategy & Growth",
+    "subtitle": "E-commerce momentum with strategic retail presence",
+    "channels": [
+      {
+        "name": "E-commerce",
+        "pct": "23.2%",
+        "examples": "Amazon, DTC websites, subscription models - fastest growing at 10.1%"
+      },
+      {
+        "name": "Mass Market",
+        "pct": "27.0%",
+        "examples": "Walmart, Target, CVS - largest channel, steady 5.6% growth"
+      },
+      {
+        "name": "Natural/Specialty",
+        "pct": "26.0%",
+        "examples": "GNC, Vitamin Shoppe, health stores - declining share but still important for discovery"
+      },
+      {
+        "name": "Practitioner",
+        "pct": "9.2%",
+        "examples": "Doctor offices, clinics - second fastest growing at 7.8%"
+      }
+    ],
+    "note": "E-commerce projected to become largest channel by 2028, while practitioner channel offers credibility for science-backed products"
+  },
+  "nbjStats": [
+    {
+      "label": "Total Supplement Market Size",
+      "value": "$69.3B",
+      "source": "NBJ Supplement Business Report 2025"
+    },
+    {
+      "label": "Market Growth Rate 2024",
+      "value": "5.2%",
+      "source": "NBJ Supplement Business Report 2025"
+    },
+    {
+      "label": "Fitness & Energy Category Growth",
+      "value": "7.1%",
+      "source": "NBJ Condition Specific Report 2025"
+    },
+    {
+      "label": "Gummy Format Market Share",
+      "value": "24.6%",
+      "source": "NBJ Supplement Business Report 2025"
+    },
+    {
+      "label": "Ashwagandha Growth Rate",
+      "value": "14.9%",
+      "source": "NBJ Herbs & Botanicals Report 2025"
+    }
+  ],
+  "suggestedCharts": {
+    "segmentPie": [
+      {
+        "name": "Goal-Oriented Planners",
+        "value": 21
+      },
+      {
+        "name": "Practical Minimalists",
+        "value": 20
+      },
+      {
+        "name": "Impact Seekers",
+        "value": 19
+      },
+      {
+        "name": "Set it and Forget it",
+        "value": 16
+      },
+      {
+        "name": "Wellness Optimizers",
+        "value": 13
+      },
+      {
+        "name": "Conflicted Experimenters",
+        "value": 12
+      }
+    ],
+    "topGoals": [
+      {
+        "goal": "Improving overall/general health",
+        "pct": 69
+      },
+      {
+        "goal": "Healthy aging/longevity",
+        "pct": 60
+      },
+      {
+        "goal": "Improving overall fitness level",
+        "pct": 58
+      },
+      {
+        "goal": "Reducing stress/anxiety",
+        "pct": 56
+      },
+      {
+        "goal": "Managing weight",
+        "pct": 54
+      },
+      {
+        "goal": "Improving physical energy levels",
+        "pct": 54
+      }
+    ],
+    "channels": [
+      {
+        "name": "Mass Market",
+        "pct": 27
+      },
+      {
+        "name": "Natural/Specialty",
+        "pct": 26
+      },
+      {
+        "name": "E-commerce",
+        "pct": 23.2
+      },
+      {
+        "name": "MLM/Network",
+        "pct": 12
+      },
+      {
+        "name": "Practitioner",
+        "pct": 9.2
+      }
+    ]
+  },
+  "sources": [
+    {
+      "file": "2025 NBJ Condition Specific Report Data File.xlsx",
+      "description": "Market/context"
+    },
+    {
+      "file": "2025 NBJ Condition Specific Report.pdf",
+      "description": "Market/context"
+    },
+    {
+      "file": "2025 NBJ Herbs and Botanicals Report Data File_Final[8].xlsx",
+      "description": "Market/context"
+    },
+    {
+      "file": "2025 NBJ Herbs and Botanicals Report.pdf",
+      "description": "Market/context"
+    },
+    {
+      "file": "2025 NBJ Supplement Business Report Data File.xlsx",
+      "description": "Market/context"
+    },
+    {
+      "file": "2025 NBJ Supplement Business Report PowerPoint.pptx",
+      "description": "Market/context"
+    },
+    {
+      "file": "Ate Days Consumer Segmentation Report_First Work Session_3_6_2026.pptx",
+      "description": "Ate Days segmentation"
+    },
+    {
+      "file": "Ate Days Wellness Segmentation Full Tabs_3.6.26.xlsx",
+      "description": "Ate Days segmentation"
+    },
+    {
+      "file": "Market and Consumer Exploratory_FINAL REPORT_Updated 1_8_26.pdf",
+      "description": "Market/context"
+    },
+    {
+      "file": "Market and Consumer Exploratory_FINAL REPORT_Updated 1_8_26.pptx",
+      "description": "Market/context"
+    },
+    {
+      "file": "NBJ Supplement Market Update and Economic Outlook 2025 Data File.xlsx",
+      "description": "Market/context"
+    },
+    {
+      "file": "NBJ Supplement Market Update and Economic Outlook 2025 PowerPoint.pptx",
+      "description": "Market/context"
+    },
+    {
+      "file": "NBJ Supplement Market Update and Economic Outlook 2025.pdf",
+      "description": "Market/context"
+    },
+    {
+      "file": "ncn-2024-year-end-report-february-2025-r4.pdf",
+      "description": "Market/context"
+    }
+  ],
+  "generatedAt": "2026-03-10T20:11:08.878Z"
+}
