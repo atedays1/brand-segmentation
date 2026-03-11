@@ -12,6 +12,7 @@ export function useMarketReality() {
 export function MarketRealityProvider({ children, sectionRefs }) {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [revealStep, setRevealStep] = useState(0)
+  const [contentUnlocked, setContentUnlocked] = useState(false)
   const lastScrollWasKeyboard = useRef(true) // true on load so we don't override to "show all" before first interaction
 
   const maxStep = MAX_STEPS_PER_SLIDE[currentSlide] ?? 0
@@ -20,6 +21,7 @@ export function MarketRealityProvider({ children, sectionRefs }) {
     (index) => {
       const i = Math.max(0, Math.min(3, index))
       lastScrollWasKeyboard.current = true
+      setContentUnlocked(true)
       setCurrentSlide(i)
       setRevealStep(0)
       const el = sectionRefs[i]?.current
@@ -33,6 +35,7 @@ export function MarketRealityProvider({ children, sectionRefs }) {
   )
 
   const nextStep = useCallback(() => {
+    setContentUnlocked(true)
     setRevealStep((s) => Math.min(maxStep, s + 1))
   }, [maxStep])
 
@@ -75,6 +78,7 @@ export function MarketRealityProvider({ children, sectionRefs }) {
     setCurrentSlide,
     revealStep,
     setRevealStep,
+    contentUnlocked,
     goToSlide,
     nextStep,
     prevStep,
