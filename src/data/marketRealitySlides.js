@@ -65,6 +65,13 @@ export const marketRealitySlides = {
   slide3: {
     title: 'The DTC & Shopify Opportunity',
     note: 'While our research shows strong online purchasing behavior, the specific 2025/2026 DTC growth percentages below are drawn from external industry context to frame your narrative and should be independently verified.',
+    stats: [
+      { value: '51%', label: 'buy supplements online from retailers' },
+      { value: '18%', label: 'buy direct from manufacturer' },
+      { value: '48%', label: 'find category complex or overwhelming' },
+      { value: '35%', label: 'of negative reviews cite lack of effect' },
+      { value: 'Double-digit', label: 'DTC growth annually into 2026' },
+    ],
     blocks: [
       {
         label: 'A Growing, Digital-First Market',

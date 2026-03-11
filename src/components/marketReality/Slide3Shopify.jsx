@@ -11,6 +11,7 @@ export function Slide3Shopify() {
   const prefersReducedMotion = useReducedMotion()
   const s3 = marketRealitySlides.slide3
   const heroSrc = marketRealityImages?.slide3?.hero
+  const stats = s3.stats || []
 
   return (
     <div
@@ -32,12 +33,12 @@ export function Slide3Shopify() {
         </>
       )}
       <motion.div
-        className="max-w-3xl mx-auto w-full relative z-10"
+        className="max-w-4xl mx-auto w-full relative z-10"
         initial={prefersReducedMotion ? 'visible' : 'hidden'}
         animate={prefersReducedMotion || isInView ? 'visible' : 'hidden'}
-        variants={{ visible: { transition: { staggerChildren: 0.08 } } }}
+        variants={{ visible: { transition: { staggerChildren: 0.06 } } }}
       >
-        <motion.h2 variants={item} className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+        <motion.h2 variants={item} className="text-3xl md:text-4xl font-bold text-slate-900 mb-2">
           {s3.title}
         </motion.h2>
         {s3.note && (
@@ -45,6 +46,29 @@ export function Slide3Shopify() {
             {s3.note}
           </motion.p>
         )}
+
+        {stats.length > 0 && (
+          <motion.div
+            variants={item}
+            className="grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-4 mb-10"
+            aria-label="Key statistics"
+          >
+            {stats.map((stat, i) => (
+              <div
+                key={i}
+                className="bg-slate-900 text-white rounded-xl p-4 md:p-5 text-center border border-slate-700/50 shadow-lg"
+              >
+                <p className="text-2xl md:text-3xl font-bold tracking-tight text-white">
+                  {stat.value}
+                </p>
+                <p className="text-xs md:text-sm text-slate-300 mt-1 leading-tight">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
+          </motion.div>
+        )}
+
         <div className="space-y-8">
           {s3.blocks.map((block, i) => (
             <motion.div key={i} variants={item}>
