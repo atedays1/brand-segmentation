@@ -11,9 +11,10 @@ export function Slide3Shopify({ positionIndex = 2 }) {
   const heroSrc = marketRealityImages?.slide3?.hero
   const stats = s3.stats || []
 
-  const unlocked = ctx && ctx.contentUnlocked
+  const presentMode = ctx?.presentMode ?? false
+  const unlocked = presentMode ? (ctx && ctx.contentUnlocked) : true
   const isActive = ctx?.currentSlide === positionIndex
-  const visibleUpToStep = unlocked ? (isActive ? ctx.revealStep : 0) : 0
+  const visibleUpToStep = presentMode ? (unlocked ? (isActive ? ctx.revealStep : 0) : 0) : 999
 
   return (
     <div

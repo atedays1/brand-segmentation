@@ -10,9 +10,10 @@ export function Slide1MarketReality({ positionIndex = 0 }) {
   const s1 = marketRealitySlides.slide1
   const heroSrc = marketRealityImages?.slide1?.hero
 
-  const unlocked = ctx && ctx.contentUnlocked
+  const presentMode = ctx?.presentMode ?? false
+  const unlocked = presentMode ? (ctx && ctx.contentUnlocked) : true
   const isActive = ctx?.currentSlide === positionIndex
-  const visibleUpToStep = unlocked ? (isActive ? ctx.revealStep : 0) : 0
+  const visibleUpToStep = presentMode ? (unlocked ? (isActive ? ctx.revealStep : 0) : 0) : 999
   const storySentences = (s1.story || '').split(/(?<=[.!?])\s+/).filter(Boolean)
 
   return (

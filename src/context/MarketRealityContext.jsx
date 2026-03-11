@@ -17,7 +17,8 @@ export function MarketRealityProvider({ children, sectionRefs, maxStepsPerSlideO
   const [currentSlide, setCurrentSlide] = useState(0)
   const [revealStep, setRevealStep] = useState(0)
   const [contentUnlocked, setContentUnlocked] = useState(false)
-  const lastScrollWasKeyboard = useRef(true) // true on load so we don't override to "show all" before first interaction
+  const [presentMode, setPresentMode] = useState(false) // false = all slides fully populated; true = blank, right arrow reveals
+  const lastScrollWasKeyboard = useRef(true)
   const stateRef = useRef({ currentSlide: 0, revealStep: 0, maxStep: steps[0] })
   stateRef.current = { currentSlide, revealStep, maxStep: steps[currentSlide] ?? 0 }
 
@@ -27,9 +28,14 @@ export function MarketRealityProvider({ children, sectionRefs, maxStepsPerSlideO
     (index) => {
       const i = Math.max(0, Math.min(3, index))
       lastScrollWasKeyboard.current = true
-      setContentUnlocked(true)
       setCurrentSlide(i)
-      setRevealStep(0)
+      if (presentMode) {
+        setContentUnlocked(true)
+        setRevealStep(0)
+      } else {
+        setContentUnlocked(true)
+        setRevealStep(steps[i] ?? 0)
+      }
       const el = sectionRefs[i]?.current
       if (el) {
         const navOffset = 56
@@ -37,8 +43,21 @@ export function MarketRealityProvider({ children, sectionRefs, maxStepsPerSlideO
         window.scrollTo({ top, behavior: 'smooth' })
       }
     },
-    [sectionRefs]
+    [sectionRefs, presentMode, steps]
   )
+
+  const togglePresentMode = useCallback(() => {
+    setPresentMode((on) => {
+      if (!on) {
+        setContentUnlocked(false)
+        setRevealStep(0)
+        return true
+      }
+      setContentUnlocked(true)
+      setRevealStep(steps[currentSlide] ?? 0)
+      return false
+    })
+  }, [currentSlide, steps])
 
   const nextStep = useCallback(() => {
     setContentUnlocked(true)
@@ -92,6 +111,8 @@ export function MarketRealityProvider({ children, sectionRefs, maxStepsPerSlideO
     revealStep,
     setRevealStep,
     contentUnlocked,
+    presentMode,
+    togglePresentMode,
     goToSlide,
     nextStep,
     prevStep,

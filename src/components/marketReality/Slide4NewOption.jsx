@@ -15,9 +15,10 @@ export function Slide4NewOption({ positionIndex = 3 }) {
   const thorneFlowSrc = marketRealityImages?.slide4?.thorneFlow
   const flows = grunsThorneFlows || {}
 
-  const unlocked = ctx && ctx.contentUnlocked
+  const presentMode = ctx?.presentMode ?? false
+  const unlocked = presentMode ? (ctx && ctx.contentUnlocked) : true
   const isActive = ctx?.currentSlide === positionIndex
-  const visibleUpToStep = unlocked ? (isActive ? ctx.revealStep : 0) : 0
+  const visibleUpToStep = presentMode ? (unlocked ? (isActive ? ctx.revealStep : 0) : 0) : 999
 
   return (
     <div

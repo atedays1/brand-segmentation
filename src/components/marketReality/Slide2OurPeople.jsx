@@ -71,9 +71,10 @@ export function Slide2OurPeople({ positionIndex = 1 }) {
   const s2 = marketRealitySlides.slide2
   const heroSrc = marketRealityImages?.slide2?.hero
 
-  const unlocked = ctx && ctx.contentUnlocked
+  const presentMode = ctx?.presentMode ?? false
+  const unlocked = presentMode ? (ctx && ctx.contentUnlocked) : true
   const isActive = ctx?.currentSlide === positionIndex
-  const visibleUpToStep = unlocked ? (isActive ? ctx.revealStep : 0) : 0
+  const visibleUpToStep = presentMode ? (unlocked ? (isActive ? ctx.revealStep : 0) : 0) : 999
 
   const showMikeCard = visibleUpToStep > 2
   const showMariaCard = visibleUpToStep > 6

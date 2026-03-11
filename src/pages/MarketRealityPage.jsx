@@ -145,7 +145,7 @@ function DeckProgressBar() {
 function KeyboardHint() {
   const ctx = useMarketReality()
   if (!ctx) return null
-  const { currentSlide, revealStep, maxStepsPerSlide, resetReveal } = ctx
+  const { currentSlide, revealStep, maxStepsPerSlide, resetReveal, presentMode, togglePresentMode } = ctx
   const maxStep = maxStepsPerSlide[currentSlide] ?? 0
 
   return (
@@ -155,12 +155,25 @@ function KeyboardHint() {
     >
       <button
         type="button"
-        onClick={resetReveal}
-        className="px-3 py-1.5 rounded-lg bg-slate-700 hover:bg-slate-600 text-white font-medium text-xs uppercase tracking-wide transition-colors"
+        onClick={togglePresentMode}
+        className={`px-3 py-1.5 rounded-lg font-medium text-xs uppercase tracking-wide transition-colors ${
+          presentMode ? 'bg-emerald-600 hover:bg-emerald-500 text-white' : 'bg-slate-700 hover:bg-slate-600 text-white'
+        }`}
       >
-        Reset
+        {presentMode ? 'Exit present' : 'Present mode'}
       </button>
-      <span className="text-slate-600">|</span>
+      {presentMode && (
+        <>
+          <button
+            type="button"
+            onClick={resetReveal}
+            className="px-3 py-1.5 rounded-lg bg-slate-700 hover:bg-slate-600 text-white font-medium text-xs uppercase tracking-wide transition-colors"
+          >
+            Reset
+          </button>
+          <span className="text-slate-600">|</span>
+        </>
+      )}
       <span className="hidden sm:inline">Space</span>
       <kbd className="hidden sm:inline px-1.5 py-0.5 rounded bg-slate-700 text-slate-200 font-mono text-xs">
         space
@@ -172,7 +185,7 @@ function KeyboardHint() {
       <span className="hidden sm:inline">Prev</span>
       <kbd className="px-1.5 py-0.5 rounded bg-slate-700 text-slate-200 font-mono text-xs">←</kbd>
       <span className="text-slate-500 ml-1">Slide {currentSlide + 1}/4</span>
-      {maxStep > 0 && (
+      {presentMode && maxStep > 0 && (
         <span className="text-slate-500">
           · Step {revealStep + 1}/{maxStep}
         </span>
