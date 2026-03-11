@@ -62,7 +62,7 @@ function MarketRealityContent() {
           if (index !== -1) {
             ctx.setCurrentSlide(index)
             if (!ctx.lastScrollWasKeyboard?.current) {
-              ctx.setRevealStep(MAX_STEPS_PER_SLIDE[index])
+              ctx.setRevealStep(0)
             }
           }
         })

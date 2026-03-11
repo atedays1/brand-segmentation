@@ -18,7 +18,7 @@ const popIn = {
 
 export function RevealBlock({ stepIndex, visibleUpToStep, children, className = '' }) {
   const prefersReducedMotion = useReducedMotion()
-  const show = visibleUpToStep >= stepIndex
+  const show = visibleUpToStep > stepIndex
 
   if (prefersReducedMotion) {
     return show ? <div className={className}>{children}</div> : null
