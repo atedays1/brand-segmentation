@@ -16,9 +16,10 @@ export function Slide1MarketReality() {
   const heroSrc = marketRealityImages?.slide1?.hero
 
   const isActive = ctx?.currentSlide === 0
-  const visibleUpToStep = isActive ? ctx.revealStep : 4
-
+  const visibleUpToStep = isActive ? ctx.revealStep : 9
   const useReveal = isActive && ctx != null
+  // Split story into sentences for line-by-line reveal
+  const storySentences = (s1.story || '').split(/(?<=[.!?])\s+/).filter(Boolean)
 
   return (
     <div
@@ -45,26 +46,30 @@ export function Slide1MarketReality() {
             <RevealBlock stepIndex={0} visibleUpToStep={visibleUpToStep}>
               <h1 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">{s1.title}</h1>
             </RevealBlock>
-            <RevealBlock stepIndex={1} visibleUpToStep={visibleUpToStep}>
-              <p className="text-lg md:text-xl text-slate-300 mb-8 leading-relaxed">{s1.story}</p>
+            {storySentences.map((line, i) => (
+              <RevealBlock key={i} stepIndex={1 + i} visibleUpToStep={visibleUpToStep}>
+                <p className="text-lg md:text-xl text-slate-300 mb-4 leading-relaxed">{line}</p>
+              </RevealBlock>
+            ))}
+            <RevealBlock stepIndex={1 + storySentences.length} visibleUpToStep={visibleUpToStep}>
+              <h2 className="text-sm font-semibold uppercase tracking-wider text-emerald-400 mb-3">
+                {s1.friction.label}
+              </h2>
             </RevealBlock>
-            <RevealBlock stepIndex={2} visibleUpToStep={visibleUpToStep}>
-              <div className="mb-6">
-                <h2 className="text-sm font-semibold uppercase tracking-wider text-emerald-400 mb-3">
-                  {s1.friction.label}
-                </h2>
-                <ul className="space-y-2 text-slate-300">
-                  {s1.friction.bullets.map((bullet, i) => (
-                    <li key={i} className="flex gap-2">
-                      <span className="text-emerald-500 mt-1">•</span>
-                      <span>{bullet}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </RevealBlock>
-            <RevealBlock stepIndex={3} visibleUpToStep={visibleUpToStep}>
-              <div>
+            {(s1.friction.bullets || []).map((bullet, i) => (
+              <RevealBlock
+                key={i}
+                stepIndex={2 + storySentences.length + i}
+                visibleUpToStep={visibleUpToStep}
+              >
+                <div className="flex gap-2 text-slate-300 mb-2">
+                  <span className="text-emerald-500 mt-1">•</span>
+                  <span>{bullet}</span>
+                </div>
+              </RevealBlock>
+            ))}
+            <RevealBlock stepIndex={2 + storySentences.length + (s1.friction.bullets?.length ?? 0)} visibleUpToStep={visibleUpToStep}>
+              <div className="mt-6">
                 <h2 className="text-sm font-semibold uppercase tracking-wider text-emerald-400 mb-3">
                   {s1.solution.label}
                 </h2>

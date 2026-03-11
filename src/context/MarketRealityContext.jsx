@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useRef, useCallback, useEffect } from 'react'
 
-export const MAX_STEPS_PER_SLIDE = [4, 3, 6, 3] // Slide 1–4: number of reveal steps each
+export const MAX_STEPS_PER_SLIDE = [9, 3, 6, 3] // S1: title, story×2, friction label, 4 bullets, solution; S2–4 unchanged
 
 const MarketRealityContext = createContext(null)
 
@@ -22,7 +22,12 @@ export function MarketRealityProvider({ children, sectionRefs }) {
       lastScrollWasKeyboard.current = true
       setCurrentSlide(i)
       setRevealStep(0)
-      sectionRefs[i]?.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      const el = sectionRefs[i]?.current
+      if (el) {
+        const navOffset = 56
+        const top = el.getBoundingClientRect().top + window.scrollY - navOffset
+        window.scrollTo({ top, behavior: 'smooth' })
+      }
     },
     [sectionRefs]
   )
