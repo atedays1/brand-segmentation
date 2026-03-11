@@ -1,9 +1,9 @@
 import { createContext, useContext, useState, useRef, useCallback, useEffect } from 'react'
 
-export const MAX_STEPS_PER_SLIDE = [9, 12, 6, 3] // S1: 9; S2: 12; S3: 6; S4: 3
+export const MAX_STEPS_PER_SLIDE = [9, 12, 6, 4] // S1: 9; S2: 12; S3: 6; S4: 4 (title, intro, flow images, cards)
 
 // Exploration order (marketplace → segments → behavior → personas): slide 1, 3, 4, 2
-export const MAX_STEPS_EXPLORATION = [9, 6, 3, 12]
+export const MAX_STEPS_EXPLORATION = [9, 6, 4, 12]
 
 const MarketRealityContext = createContext(null)
 

@@ -7,5 +7,10 @@ export const marketRealityImages = {
   slide1: { hero: '/images/marketReality/slide1-hero.jpg', inline: null },
   slide2: { hero: '/images/marketReality/slide2-hero.png', inline: null },
   slide3: { hero: '/images/marketReality/slide3-hero.png', inline: null },
-  slide4: { hero: '/images/marketReality/background4.png', inline: null },
+  slide4: {
+    hero: '/images/marketReality/background4.png',
+    inline: null,
+    grunsFlow: '/images/marketReality/flows/gruns-flow.png',
+    thorneFlow: '/images/marketReality/flows/thorne-flow.png',
+  },
 }

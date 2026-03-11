@@ -10,7 +10,10 @@
     "analyze-docs": "node scripts/analyze-docs.mjs",
     "merge-analysis": "node scripts/merge-analysis.mjs",
     "generate-story": "node scripts/generate-story.mjs",
-    "generate-market-reality-images": "node scripts/generate-market-reality-images.mjs"
+    "generate-market-reality-images": "node scripts/generate-market-reality-images.mjs",
+    "generate-hero-images": "node scripts/generate-hero-images-imagen.mjs",
+    "extract-pdf-flows": "node scripts/extract-pdf-flows.mjs",
+    "synthesize-gruns-thorne-flows": "node scripts/synthesize-gruns-thorne-flows.mjs"
   },
   "dependencies": {
     "framer-motion": "^11.11.17",
@@ -27,6 +30,7 @@
     "dotenv": "^16.4.5",
     "fast-xml-parser": "^4.3.6",
     "jszip": "^3.10.1",
+    "pdf-to-img": "^5.0.0",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.15",
     "vite": "^5.4.10",

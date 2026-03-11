@@ -1,0 +1,27 @@
+{
+  "gruns": {
+    "flowSummary": "Grüns drives discovery through social media content and influencer partnerships, leading users to their direct-to-consumer website. The flow emphasizes product variety, subscription options, and performance metrics tracking to build a daily habit loop.",
+    "steps": [
+      "Social Discovery",
+      "Brand Website",
+      "Product Selection",
+      "Subscription Setup",
+      "Performance Tracking"
+    ],
+    "headline": "Social-First, Habit-Driven",
+    "caption": "Grüns converts social buzz into sticky subscription habits through seamless DTC experience."
+  },
+  "thorne": {
+    "flowSummary": "Thorne establishes credibility through detailed product information and scientific backing before guiding users through comprehensive assessment tools. The flow prioritizes education, personalization, and clinical validation to build trust with health-conscious consumers.",
+    "steps": [
+      "Educational Content",
+      "Product Deep-Dive",
+      "Health Assessment",
+      "Personalized Recommendations",
+      "Clinical Validation"
+    ],
+    "headline": "Science-Led, Trust-Built",
+    "caption": "Thorne converts expertise into loyalty through education-first, personalized wellness journeys."
+  },
+  "mergeNotes": "The comparison reveals two distinct acquisition models: Grüns leverages format innovation and social proof for viral growth, while Thorne builds authority through scientific rigor and personalized experiences."
+}
