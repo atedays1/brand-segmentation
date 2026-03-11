@@ -14,6 +14,8 @@ export function MarketRealityProvider({ children, sectionRefs }) {
   const [revealStep, setRevealStep] = useState(0)
   const [contentUnlocked, setContentUnlocked] = useState(false)
   const lastScrollWasKeyboard = useRef(true) // true on load so we don't override to "show all" before first interaction
+  const stateRef = useRef({ currentSlide: 0, revealStep: 0, maxStep: MAX_STEPS_PER_SLIDE[0] })
+  stateRef.current = { currentSlide, revealStep, maxStep: MAX_STEPS_PER_SLIDE[currentSlide] ?? 0 }
 
   const maxStep = MAX_STEPS_PER_SLIDE[currentSlide] ?? 0
 
@@ -53,9 +55,11 @@ export function MarketRealityProvider({ children, sectionRefs }) {
   }, [currentSlide, goToSlide])
 
   // Keyboard: Space = next slide, Right = next step, Left = prev step
+  // Use refs so handler always sees latest state (no stale closure) and use capture so we run before focus
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.defaultPrevented) return
+      const { currentSlide: cur, revealStep: step, maxStep: max } = stateRef.current
       if (e.key === ' ') {
         e.preventDefault()
         nextSlide()
@@ -63,20 +67,20 @@ export function MarketRealityProvider({ children, sectionRefs }) {
       }
       if (e.key === 'ArrowRight') {
         e.preventDefault()
-        if (revealStep < maxStep) nextStep()
-        else if (currentSlide < 3) goToSlide(currentSlide + 1)
+        if (step < max) nextStep()
+        else if (cur < 3) goToSlide(cur + 1)
         return
       }
       if (e.key === 'ArrowLeft') {
         e.preventDefault()
-        if (revealStep > 0) prevStep()
-        else if (currentSlide > 0) goToSlide(currentSlide - 1)
+        if (step > 0) prevStep()
+        else if (cur > 0) goToSlide(cur - 1)
         return
       }
     }
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [revealStep, maxStep, currentSlide, nextSlide, nextStep, prevStep, goToSlide])
+    window.addEventListener('keydown', handleKeyDown, true)
+    return () => window.removeEventListener('keydown', handleKeyDown, true)
+  }, [nextSlide, nextStep, prevStep, goToSlide])
 
   const value = {
     currentSlide,

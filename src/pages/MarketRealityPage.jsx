@@ -51,18 +51,25 @@ function MarketRealityContent() {
     }
   }, [ctx?.lastScrollWasKeyboard])
 
+  // Keep a ref to context setters so the observer doesn't need to depend on ctx
+  // (depending on ctx re-created the observer every keystroke and reset revealStep)
+  const ctxRef = useRef(ctx)
+  ctxRef.current = ctx
+
   // Sync currentSlide + revealStep when user scrolls manually (so all content shows)
   useEffect(() => {
-    if (!sectionRefs?.length || !ctx?.setCurrentSlide || !ctx?.setRevealStep) return
+    if (!sectionRefs?.length) return
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return
-          const index = sectionRefs.findIndex((r) => r?.current === entry.target)
+          const refs = ctxRef.current?.sectionRefs || sectionRefs
+          const index = refs.findIndex((r) => r?.current === entry.target)
           if (index !== -1) {
-            ctx.setCurrentSlide(index)
-            if (!ctx.lastScrollWasKeyboard?.current) {
-              ctx.setRevealStep(0)
+            const c = ctxRef.current
+            if (c?.setCurrentSlide) c.setCurrentSlide(index)
+            if (!c?.lastScrollWasKeyboard?.current && c?.setRevealStep) {
+              c.setRevealStep(0)
             }
           }
         })
@@ -71,7 +78,7 @@ function MarketRealityContent() {
     )
     sectionRefs.forEach((r) => r?.current && observer.observe(r.current))
     return () => observer.disconnect()
-  }, [sectionRefs, ctx])
+  }, [sectionRefs])
 
   return (
     <div ref={containerRef} className="pt-14 font-sans">
