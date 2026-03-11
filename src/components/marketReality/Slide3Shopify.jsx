@@ -11,8 +11,9 @@ export function Slide3Shopify() {
   const heroSrc = marketRealityImages?.slide3?.hero
   const stats = s3.stats || []
 
+  const unlocked = ctx && ctx.contentUnlocked
   const isActive = ctx?.currentSlide === 2
-  const visibleUpToStep = (ctx && ctx.contentUnlocked) ? (isActive ? ctx.revealStep : 0) : 0
+  const visibleUpToStep = unlocked ? (isActive ? ctx.revealStep : 0) : 0
 
   return (
     <div
@@ -33,6 +34,7 @@ export function Slide3Shopify() {
           <div className="absolute inset-0 bg-white/85" aria-hidden />
         </>
       )}
+      {!unlocked ? null : (
       <div className="max-w-4xl mx-auto w-full relative z-10">
         <RevealBlock stepIndex={0} visibleUpToStep={visibleUpToStep}>
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-2">{s3.title}</h2>
@@ -80,6 +82,7 @@ export function Slide3Shopify() {
           </RevealBlock>
         ))}
       </div>
+      )}
     </div>
   )
 }

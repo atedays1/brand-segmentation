@@ -11,8 +11,9 @@ export function Slide4NewOption() {
   const s4 = marketRealitySlides.slide4
   const heroSrc = marketRealityImages?.slide4?.hero
 
+  const unlocked = ctx && ctx.contentUnlocked
   const isActive = ctx?.currentSlide === 3
-  const visibleUpToStep = (ctx && ctx.contentUnlocked) ? (isActive ? ctx.revealStep : 0) : 0
+  const visibleUpToStep = unlocked ? (isActive ? ctx.revealStep : 0) : 0
 
   return (
     <div
@@ -33,6 +34,7 @@ export function Slide4NewOption() {
           <div className="absolute inset-0 bg-slate-900/75" aria-hidden />
         </>
       )}
+      {!unlocked ? null : (
       <div className="max-w-4xl mx-auto w-full relative z-10">
         <RevealBlock stepIndex={0} visibleUpToStep={visibleUpToStep}>
           <h2 className="text-3xl md:text-4xl font-bold mb-6">{s4.title}</h2>
@@ -63,6 +65,7 @@ export function Slide4NewOption() {
           </div>
         </RevealBlock>
       </div>
+      )}
     </div>
   )
 }

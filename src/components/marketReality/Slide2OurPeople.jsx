@@ -72,8 +72,9 @@ export function Slide2OurPeople() {
   const s2 = marketRealitySlides.slide2
   const heroSrc = marketRealityImages?.slide2?.hero
 
+  const unlocked = ctx && ctx.contentUnlocked
   const isActive = ctx?.currentSlide === 1
-  const visibleUpToStep = (ctx && ctx.contentUnlocked) ? (isActive ? ctx.revealStep : 0) : 0
+  const visibleUpToStep = unlocked ? (isActive ? ctx.revealStep : 0) : 0
 
   return (
     <div
@@ -94,6 +95,7 @@ export function Slide2OurPeople() {
           <div className="absolute inset-0 bg-slate-100/80" aria-hidden />
         </>
       )}
+      {!unlocked ? null : (
       <div className="max-w-6xl mx-auto w-full relative z-10">
         <RevealBlock stepIndex={0} visibleUpToStep={visibleUpToStep}>
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-2">{s2.title}</h2>
@@ -130,6 +132,7 @@ export function Slide2OurPeople() {
           </div>
         </RevealBlock>
       </div>
+      )}
     </div>
   )
 }

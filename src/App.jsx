@@ -8,7 +8,8 @@ function App() {
     <>
       <AppNav />
       <Routes>
-        <Route path="/" element={<SegmentationDeck />} />
+        <Route path="/" element={<MarketRealityPage />} />
+        <Route path="/segmentation" element={<SegmentationDeck />} />
         <Route path="/market-reality" element={<MarketRealityPage />} />
       </Routes>
     </>

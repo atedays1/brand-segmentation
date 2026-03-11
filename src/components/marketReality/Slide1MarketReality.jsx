@@ -10,8 +10,9 @@ export function Slide1MarketReality() {
   const s1 = marketRealitySlides.slide1
   const heroSrc = marketRealityImages?.slide1?.hero
 
+  const unlocked = ctx && ctx.contentUnlocked
   const isActive = ctx?.currentSlide === 0
-  const visibleUpToStep = (ctx && ctx.contentUnlocked) ? (isActive ? ctx.revealStep : 0) : 0
+  const visibleUpToStep = unlocked ? (isActive ? ctx.revealStep : 0) : 0
   const storySentences = (s1.story || '').split(/(?<=[.!?])\s+/).filter(Boolean)
 
   return (
@@ -33,6 +34,7 @@ export function Slide1MarketReality() {
           <div className="absolute inset-0 bg-slate-900/70" aria-hidden />
         </>
       )}
+      {!unlocked ? null : (
       <div className="max-w-3xl mx-auto w-full relative z-10">
         <RevealBlock stepIndex={0} visibleUpToStep={visibleUpToStep}>
           <h1 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">{s1.title}</h1>
@@ -68,6 +70,7 @@ export function Slide1MarketReality() {
           </div>
         </RevealBlock>
       </div>
+      )}
     </div>
   )
 }
