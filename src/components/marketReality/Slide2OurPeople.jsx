@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { motion, useInView, useReducedMotion } from 'framer-motion'
 import { marketRealitySlides } from '../../data/marketRealitySlides'
+import { marketRealityImages } from '../../data/marketRealityImages'
 import { personaImages } from '../../data/personaImages'
 
 const item = {
@@ -78,14 +79,29 @@ export function Slide2OurPeople() {
   const isInView = useInView(ref, { amount: 0.15, once: true })
   const prefersReducedMotion = useReducedMotion()
   const s2 = marketRealitySlides.slide2
+  const heroSrc = marketRealityImages?.slide2?.hero
 
   return (
     <div
       ref={ref}
-      className="min-h-screen w-full flex flex-col justify-center px-6 py-20 md:px-12 md:py-24 bg-slate-100"
+      className="min-h-screen w-full flex flex-col justify-center px-6 py-20 md:px-12 md:py-24 bg-slate-100 relative overflow-hidden"
     >
+      {heroSrc && (
+        <>
+          <img
+            src={heroSrc}
+            alt=""
+            aria-hidden
+            className="absolute inset-0 w-full h-full object-cover opacity-20"
+            onError={(e) => {
+              e.target.style.display = 'none'
+            }}
+          />
+          <div className="absolute inset-0 bg-slate-100/80" aria-hidden />
+        </>
+      )}
       <motion.div
-        className="max-w-6xl mx-auto w-full"
+        className="max-w-6xl mx-auto w-full relative z-10"
         initial={prefersReducedMotion ? 'visible' : 'hidden'}
         animate={prefersReducedMotion || isInView ? 'visible' : 'hidden'}
         variants={{ visible: { transition: { staggerChildren: 0.12 } } }}

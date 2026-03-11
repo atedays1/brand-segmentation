@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "analyze-docs": "node scripts/analyze-docs.mjs",
     "merge-analysis": "node scripts/merge-analysis.mjs",
-    "generate-story": "node scripts/generate-story.mjs"
+    "generate-story": "node scripts/generate-story.mjs",
+    "generate-market-reality-images": "node scripts/generate-market-reality-images.mjs"
   },
   "dependencies": {
     "framer-motion": "^11.11.17",
