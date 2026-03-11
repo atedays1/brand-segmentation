@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 import { AppNav } from './components/AppNav'
 import { SegmentationDeck } from './pages/SegmentationDeck'
 import { MarketRealityPage } from './pages/MarketRealityPage'
+import { MarketExplorationPage } from './pages/MarketExplorationPage'
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Route path="/" element={<MarketRealityPage />} />
         <Route path="/segmentation" element={<SegmentationDeck />} />
         <Route path="/market-reality" element={<MarketRealityPage />} />
+        <Route path="/market-exploration" element={<MarketExplorationPage />} />
       </Routes>
     </>
   )

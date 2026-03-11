@@ -1,6 +1,9 @@
 import { createContext, useContext, useState, useRef, useCallback, useEffect } from 'react'
 
-export const MAX_STEPS_PER_SLIDE = [9, 12, 6, 3] // S1: 9; S2: title, intro, Mike card+headline, 4 paras, Maria card+headline, 4 paras; S3–4 unchanged
+export const MAX_STEPS_PER_SLIDE = [9, 12, 6, 3] // S1: 9; S2: 12; S3: 6; S4: 3
+
+// Exploration order (marketplace → segments → behavior → personas): slide 1, 3, 4, 2
+export const MAX_STEPS_EXPLORATION = [9, 6, 3, 12]
 
 const MarketRealityContext = createContext(null)
 
@@ -9,15 +12,16 @@ export function useMarketReality() {
   return ctx
 }
 
-export function MarketRealityProvider({ children, sectionRefs }) {
+export function MarketRealityProvider({ children, sectionRefs, maxStepsPerSlideOverride }) {
+  const steps = maxStepsPerSlideOverride ?? MAX_STEPS_PER_SLIDE
   const [currentSlide, setCurrentSlide] = useState(0)
   const [revealStep, setRevealStep] = useState(0)
   const [contentUnlocked, setContentUnlocked] = useState(false)
   const lastScrollWasKeyboard = useRef(true) // true on load so we don't override to "show all" before first interaction
-  const stateRef = useRef({ currentSlide: 0, revealStep: 0, maxStep: MAX_STEPS_PER_SLIDE[0] })
-  stateRef.current = { currentSlide, revealStep, maxStep: MAX_STEPS_PER_SLIDE[currentSlide] ?? 0 }
+  const stateRef = useRef({ currentSlide: 0, revealStep: 0, maxStep: steps[0] })
+  stateRef.current = { currentSlide, revealStep, maxStep: steps[currentSlide] ?? 0 }
 
-  const maxStep = MAX_STEPS_PER_SLIDE[currentSlide] ?? 0
+  const maxStep = steps[currentSlide] ?? 0
 
   const goToSlide = useCallback(
     (index) => {
@@ -94,7 +98,7 @@ export function MarketRealityProvider({ children, sectionRefs }) {
     nextSlide,
     resetReveal,
     sectionRefs: sectionRefs || [],
-    maxStepsPerSlide: MAX_STEPS_PER_SLIDE,
+    maxStepsPerSlide: steps,
     lastScrollWasKeyboard,
   }
 

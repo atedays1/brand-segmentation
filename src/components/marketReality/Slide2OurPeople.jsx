@@ -65,14 +65,14 @@ function PersonaCardParagraphs({ persona, stepIndexStart, visibleUpToStep }) {
   )
 }
 
-export function Slide2OurPeople() {
+export function Slide2OurPeople({ positionIndex = 1 }) {
   const ref = useRef(null)
   const ctx = useMarketReality()
   const s2 = marketRealitySlides.slide2
   const heroSrc = marketRealityImages?.slide2?.hero
 
   const unlocked = ctx && ctx.contentUnlocked
-  const isActive = ctx?.currentSlide === 1
+  const isActive = ctx?.currentSlide === positionIndex
   const visibleUpToStep = unlocked ? (isActive ? ctx.revealStep : 0) : 0
 
   const showMikeCard = visibleUpToStep > 2

@@ -4,7 +4,7 @@ import { marketRealityImages } from '../../data/marketRealityImages'
 import { useMarketReality } from '../../context/MarketRealityContext'
 import { RevealBlock } from './RevealBlock'
 
-export function Slide3Shopify() {
+export function Slide3Shopify({ positionIndex = 2 }) {
   const ref = useRef(null)
   const ctx = useMarketReality()
   const s3 = marketRealitySlides.slide3
@@ -12,7 +12,7 @@ export function Slide3Shopify() {
   const stats = s3.stats || []
 
   const unlocked = ctx && ctx.contentUnlocked
-  const isActive = ctx?.currentSlide === 2
+  const isActive = ctx?.currentSlide === positionIndex
   const visibleUpToStep = unlocked ? (isActive ? ctx.revealStep : 0) : 0
 
   return (

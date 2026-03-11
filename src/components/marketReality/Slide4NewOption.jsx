@@ -5,14 +5,14 @@ import { marketRealityImages } from '../../data/marketRealityImages'
 import { useMarketReality } from '../../context/MarketRealityContext'
 import { RevealBlock } from './RevealBlock'
 
-export function Slide4NewOption() {
+export function Slide4NewOption({ positionIndex = 3 }) {
   const ref = useRef(null)
   const ctx = useMarketReality()
   const s4 = marketRealitySlides.slide4
   const heroSrc = marketRealityImages?.slide4?.hero
 
   const unlocked = ctx && ctx.contentUnlocked
-  const isActive = ctx?.currentSlide === 3
+  const isActive = ctx?.currentSlide === positionIndex
   const visibleUpToStep = unlocked ? (isActive ? ctx.revealStep : 0) : 0
 
   return (

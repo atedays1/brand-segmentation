@@ -4,14 +4,14 @@ import { marketRealityImages } from '../../data/marketRealityImages'
 import { useMarketReality } from '../../context/MarketRealityContext'
 import { RevealBlock } from './RevealBlock'
 
-export function Slide1MarketReality() {
+export function Slide1MarketReality({ positionIndex = 0 }) {
   const ref = useRef(null)
   const ctx = useMarketReality()
   const s1 = marketRealitySlides.slide1
   const heroSrc = marketRealityImages?.slide1?.hero
 
   const unlocked = ctx && ctx.contentUnlocked
-  const isActive = ctx?.currentSlide === 0
+  const isActive = ctx?.currentSlide === positionIndex
   const visibleUpToStep = unlocked ? (isActive ? ctx.revealStep : 0) : 0
   const storySentences = (s1.story || '').split(/(?<=[.!?])\s+/).filter(Boolean)
 
