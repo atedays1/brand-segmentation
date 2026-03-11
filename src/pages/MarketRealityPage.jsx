@@ -138,7 +138,7 @@ function DeckProgressBar() {
 function KeyboardHint() {
   const ctx = useMarketReality()
   if (!ctx) return null
-  const { currentSlide, revealStep, maxStepsPerSlide } = ctx
+  const { currentSlide, revealStep, maxStepsPerSlide, resetReveal } = ctx
   const maxStep = maxStepsPerSlide[currentSlide] ?? 0
 
   return (
@@ -149,6 +149,14 @@ function KeyboardHint() {
       className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-4 px-4 py-2.5 rounded-full bg-slate-900/90 backdrop-blur text-slate-300 text-sm border border-slate-700/50 shadow-xl"
       aria-hidden
     >
+      <button
+        type="button"
+        onClick={resetReveal}
+        className="px-3 py-1.5 rounded-lg bg-slate-700 hover:bg-slate-600 text-white font-medium text-xs uppercase tracking-wide transition-colors"
+      >
+        Reset
+      </button>
+      <span className="text-slate-600">|</span>
       <span className="hidden sm:inline">Space</span>
       <kbd className="hidden sm:inline px-1.5 py-0.5 rounded bg-slate-700 text-slate-200 font-mono text-xs">
         space

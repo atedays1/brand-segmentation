@@ -43,6 +43,11 @@ export function MarketRealityProvider({ children, sectionRefs }) {
     setRevealStep((s) => Math.max(0, s - 1))
   }, [])
 
+  const resetReveal = useCallback(() => {
+    setContentUnlocked(false)
+    setRevealStep(0)
+  }, [])
+
   const nextSlide = useCallback(() => {
     if (currentSlide < 3) goToSlide(currentSlide + 1)
   }, [currentSlide, goToSlide])
@@ -83,6 +88,7 @@ export function MarketRealityProvider({ children, sectionRefs }) {
     nextStep,
     prevStep,
     nextSlide,
+    resetReveal,
     sectionRefs: sectionRefs || [],
     maxStepsPerSlide: MAX_STEPS_PER_SLIDE,
     lastScrollWasKeyboard,
