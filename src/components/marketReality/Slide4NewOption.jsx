@@ -61,11 +61,11 @@ export function Slide4NewOption({ positionIndex = 3 }) {
                   </h3>
                 )}
                 {grunsFlowSrc && (
-                  <div className="rounded-xl overflow-hidden border border-white/20 bg-white/5">
+                  <div className="rounded-xl overflow-hidden border border-white/20 bg-white/5 h-[420px] flex items-center justify-center">
                     <img
                       src={grunsFlowSrc}
                       alt={flows.gruns?.caption || 'Grüns consumer flow'}
-                      className="w-full h-auto object-contain"
+                      className="w-full h-full object-contain"
                       onError={(e) => {
                         e.target.style.display = 'none'
                       }}
@@ -88,11 +88,11 @@ export function Slide4NewOption({ positionIndex = 3 }) {
                   </h3>
                 )}
                 {thorneFlowSrc && (
-                  <div className="rounded-xl overflow-hidden border border-white/20 bg-white/5">
+                  <div className="rounded-xl overflow-hidden border border-white/20 bg-white/5 h-[420px] flex items-center justify-center">
                     <img
                       src={thorneFlowSrc}
                       alt={flows.thorne?.caption || 'Thorne consumer flow'}
-                      className="w-full h-auto object-contain"
+                      className="w-full h-full object-contain"
                       onError={(e) => {
                         e.target.style.display = 'none'
                       }}
