@@ -23,7 +23,7 @@ export function Slide4NewOption() {
             src={heroSrc}
             alt=""
             aria-hidden
-            className="absolute inset-0 w-full h-full object-cover opacity-30"
+            className="absolute inset-0 w-full h-full object-cover object-center opacity-30 scale-75"
             onError={(e) => {
               e.target.style.display = 'none'
             }}
