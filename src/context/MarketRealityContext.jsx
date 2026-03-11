@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useRef, useCallback, useEffect } from 'react'
 
-export const MAX_STEPS_PER_SLIDE = [9, 3, 6, 3] // S1: title, story×2, friction label, 4 bullets, solution; S2–4 unchanged
+export const MAX_STEPS_PER_SLIDE = [9, 12, 6, 3] // S1: 9; S2: title, intro, Mike card+headline, 4 paras, Maria card+headline, 4 paras; S3–4 unchanged
 
 const MarketRealityContext = createContext(null)
 
