@@ -142,11 +142,8 @@ function KeyboardHint() {
   const maxStep = maxStepsPerSlide[currentSlide] ?? 0
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 8 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.8, duration: 0.4 }}
-      className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-4 px-4 py-2.5 rounded-full bg-slate-900/90 backdrop-blur text-slate-300 text-sm border border-slate-700/50 shadow-xl"
+    <div
+      className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[100] flex items-center gap-4 px-4 py-2.5 rounded-full bg-slate-900/90 backdrop-blur text-slate-300 text-sm border border-slate-700/50 shadow-xl"
       aria-hidden
     >
       <button
@@ -173,7 +170,7 @@ function KeyboardHint() {
           · Step {revealStep + 1}/{maxStep}
         </span>
       )}
-    </motion.div>
+    </div>
   )
 }
 
@@ -184,7 +181,7 @@ function SlideDots() {
 
   return (
     <div
-      className="fixed right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-2"
+      className="fixed right-6 top-1/2 -translate-y-1/2 z-[100] flex flex-col gap-2"
       aria-label="Slide navigation"
     >
       {[0, 1, 2, 3].map((i) => (
