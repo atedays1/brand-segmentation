@@ -26,13 +26,13 @@ function PersonaCardHeader({ persona, imageSrc }) {
           Photo placeholder
         </div>
       )}
-      <p className="text-xs font-semibold uppercase tracking-wider text-emerald-600 mb-1">
-        {persona.segment} ({persona.segmentPctLabel})
-      </p>
-      <h3 className="text-xl font-bold text-slate-900">
-        {persona.name}, {persona.age} — {persona.role}
+      <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-2">
+        {persona.segment} <span className="text-slate-500 font-normal">({persona.segmentPctLabel})</span>
       </h3>
-      <p className="text-slate-500 text-sm mt-1">{persona.household}</p>
+      <p className="text-base font-medium text-slate-600">
+        {persona.name}, {persona.age} — {persona.role}
+      </p>
+      <p className="text-slate-500 text-sm mt-0.5">{persona.household}</p>
     </>
   )
 }
