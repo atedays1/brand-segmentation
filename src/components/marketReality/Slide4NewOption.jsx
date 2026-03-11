@@ -65,7 +65,7 @@ export function Slide4NewOption({ positionIndex = 3 }) {
                     <img
                       src={grunsFlowSrc}
                       alt={flows.gruns?.caption || 'Grüns consumer flow'}
-                      className="w-full h-full object-contain"
+                      className="w-full h-full object-cover"
                       onError={(e) => {
                         e.target.style.display = 'none'
                       }}
@@ -92,7 +92,7 @@ export function Slide4NewOption({ positionIndex = 3 }) {
                     <img
                       src={thorneFlowSrc}
                       alt={flows.thorne?.caption || 'Thorne consumer flow'}
-                      className="w-full h-full object-contain"
+                      className="w-full h-full object-cover"
                       onError={(e) => {
                         e.target.style.display = 'none'
                       }}
