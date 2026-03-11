@@ -3,19 +3,12 @@ import { motion, useInView, useReducedMotion } from 'framer-motion'
 import { marketRealitySlides } from '../../data/marketRealitySlides'
 import { marketRealityImages } from '../../data/marketRealityImages'
 import { personaImages } from '../../data/personaImages'
+import { useMarketReality } from '../../context/MarketRealityContext'
+import { RevealBlock } from './RevealBlock'
 
-const item = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0 },
-}
-const cardVariants = {
-  hidden: { opacity: 0, x: -24 },
-  visible: { opacity: 1, x: 0 },
-}
-const cardVariantsRight = {
-  hidden: { opacity: 0, x: 24 },
-  visible: { opacity: 1, x: 0 },
-}
+const fallbackItem = { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } }
+const cardVariants = { hidden: { opacity: 0, x: -24 }, visible: { opacity: 1, x: 0 } }
+const cardVariantsRight = { hidden: { opacity: 0, x: 24 }, visible: { opacity: 1, x: 0 } }
 
 function PersonaCard({ persona, imageSrc, variants, delay = 0 }) {
   return (
@@ -78,8 +71,13 @@ export function Slide2OurPeople() {
   const ref = useRef(null)
   const isInView = useInView(ref, { amount: 0.15, once: true })
   const prefersReducedMotion = useReducedMotion()
+  const ctx = useMarketReality()
   const s2 = marketRealitySlides.slide2
   const heroSrc = marketRealityImages?.slide2?.hero
+
+  const isActive = ctx?.currentSlide === 1
+  const visibleUpToStep = isActive ? ctx.revealStep : 3
+  const useReveal = isActive && ctx != null
 
   return (
     <div
@@ -100,33 +98,73 @@ export function Slide2OurPeople() {
           <div className="absolute inset-0 bg-slate-100/80" aria-hidden />
         </>
       )}
-      <motion.div
-        className="max-w-6xl mx-auto w-full relative z-10"
-        initial={prefersReducedMotion ? 'visible' : 'hidden'}
-        animate={prefersReducedMotion || isInView ? 'visible' : 'hidden'}
-        variants={{ visible: { transition: { staggerChildren: 0.12 } } }}
-      >
-        <motion.h2 variants={item} className="text-3xl md:text-4xl font-bold text-slate-900 mb-2">
-          {s2.title}
-        </motion.h2>
-        <motion.p variants={item} className="text-lg text-slate-600 mb-10 max-w-2xl">
-          {s2.intro}
-        </motion.p>
-        <div className="grid md:grid-cols-2 gap-8 md:gap-10 items-start">
-          <PersonaCard
-            persona={s2.mike}
-            imageSrc={personaImages['practical-minimalists']}
-            variants={cardVariants}
-            delay={0.1}
-          />
-          <PersonaCard
-            persona={s2.maria}
-            imageSrc={personaImages['wellness-optimizers']}
-            variants={cardVariantsRight}
-            delay={0.2}
-          />
-        </div>
-      </motion.div>
+      <div className="max-w-6xl mx-auto w-full relative z-10">
+        {useReveal ? (
+          <>
+            <RevealBlock stepIndex={0} visibleUpToStep={visibleUpToStep}>
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-2">{s2.title}</h2>
+            </RevealBlock>
+            <RevealBlock stepIndex={1} visibleUpToStep={visibleUpToStep}>
+              <p className="text-lg text-slate-600 mb-10 max-w-2xl">{s2.intro}</p>
+            </RevealBlock>
+            <RevealBlock stepIndex={2} visibleUpToStep={visibleUpToStep}>
+              <div className="grid md:grid-cols-2 gap-8 md:gap-10 items-start">
+                <motion.div
+                  initial={{ opacity: 0, x: -24 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ type: 'spring', stiffness: 260, damping: 24 }}
+                >
+                  <PersonaCard
+                    persona={s2.mike}
+                    imageSrc={personaImages['practical-minimalists']}
+                    variants={cardVariants}
+                    delay={0}
+                  />
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, x: 24 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ type: 'spring', stiffness: 260, damping: 24, delay: 0.1 }}
+                >
+                  <PersonaCard
+                    persona={s2.maria}
+                    imageSrc={personaImages['wellness-optimizers']}
+                    variants={cardVariantsRight}
+                    delay={0}
+                  />
+                </motion.div>
+              </div>
+            </RevealBlock>
+          </>
+        ) : (
+          <motion.div
+            initial={prefersReducedMotion ? 'visible' : 'hidden'}
+            animate={prefersReducedMotion || isInView ? 'visible' : 'hidden'}
+            variants={{ visible: { transition: { staggerChildren: 0.12 } } }}
+          >
+            <motion.h2 variants={fallbackItem} className="text-3xl md:text-4xl font-bold text-slate-900 mb-2">
+              {s2.title}
+            </motion.h2>
+            <motion.p variants={fallbackItem} className="text-lg text-slate-600 mb-10 max-w-2xl">
+              {s2.intro}
+            </motion.p>
+            <div className="grid md:grid-cols-2 gap-8 md:gap-10 items-start">
+              <PersonaCard
+                persona={s2.mike}
+                imageSrc={personaImages['practical-minimalists']}
+                variants={cardVariants}
+                delay={0.1}
+              />
+              <PersonaCard
+                persona={s2.maria}
+                imageSrc={personaImages['wellness-optimizers']}
+                variants={cardVariantsRight}
+                delay={0.2}
+              />
+            </div>
+          </motion.div>
+        )}
+      </div>
     </div>
   )
 }

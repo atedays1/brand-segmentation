@@ -1,13 +1,16 @@
-import { useRef } from 'react'
+import { useRef, useEffect } from 'react'
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
+import { MarketRealityProvider, useMarketReality, MAX_STEPS_PER_SLIDE } from '../context/MarketRealityContext'
 import { Slide1MarketReality } from '../components/marketReality/Slide1MarketReality'
 import { Slide2OurPeople } from '../components/marketReality/Slide2OurPeople'
 import { Slide3Shopify } from '../components/marketReality/Slide3Shopify'
 import { Slide4NewOption } from '../components/marketReality/Slide4NewOption'
 
-export function MarketRealityPage() {
+function MarketRealityContent() {
   const containerRef = useRef(null)
   const prefersReducedMotion = useReducedMotion()
+  const ctx = useMarketReality()
+  const sectionRefs = ctx?.sectionRefs || []
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -35,9 +38,45 @@ export function MarketRealityPage() {
     [prefersReducedMotion ? 1 : 0.3, 1, 1]
   )
 
+  // When user scrolls with wheel/touch, mark so we show full content on that slide
+  useEffect(() => {
+    const markManual = () => {
+      if (ctx?.lastScrollWasKeyboard) ctx.lastScrollWasKeyboard.current = false
+    }
+    window.addEventListener('wheel', markManual, { passive: true })
+    window.addEventListener('touchmove', markManual, { passive: true })
+    return () => {
+      window.removeEventListener('wheel', markManual)
+      window.removeEventListener('touchmove', markManual)
+    }
+  }, [ctx?.lastScrollWasKeyboard])
+
+  // Sync currentSlide + revealStep when user scrolls manually (so all content shows)
+  useEffect(() => {
+    if (!sectionRefs?.length || !ctx?.setCurrentSlide || !ctx?.setRevealStep) return
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return
+          const index = sectionRefs.findIndex((r) => r?.current === entry.target)
+          if (index !== -1) {
+            ctx.setCurrentSlide(index)
+            if (!ctx.lastScrollWasKeyboard?.current) {
+              ctx.setRevealStep(MAX_STEPS_PER_SLIDE[index])
+            }
+          }
+        })
+      },
+      { threshold: 0.5, rootMargin: '-10% 0px -10% 0px' }
+    )
+    sectionRefs.forEach((r) => r?.current && observer.observe(r.current))
+    return () => observer.disconnect()
+  }, [sectionRefs, ctx])
+
   return (
     <div ref={containerRef} className="pt-14 font-sans">
       <motion.section
+        ref={sectionRefs[0]}
         style={prefersReducedMotion ? undefined : { opacity: slide1Opacity }}
         className="min-h-screen w-full flex flex-col justify-center"
         id="market-reality-slide-1"
@@ -45,6 +84,7 @@ export function MarketRealityPage() {
         <Slide1MarketReality />
       </motion.section>
       <motion.section
+        ref={sectionRefs[1]}
         style={prefersReducedMotion ? undefined : { opacity: slide2Opacity }}
         className="min-h-screen w-full flex flex-col justify-center"
         id="market-reality-slide-2"
@@ -52,6 +92,7 @@ export function MarketRealityPage() {
         <Slide2OurPeople />
       </motion.section>
       <motion.section
+        ref={sectionRefs[2]}
         style={prefersReducedMotion ? undefined : { opacity: slide3Opacity }}
         className="min-h-screen w-full flex flex-col justify-center"
         id="market-reality-slide-3"
@@ -59,6 +100,7 @@ export function MarketRealityPage() {
         <Slide3Shopify />
       </motion.section>
       <motion.section
+        ref={sectionRefs[3]}
         style={prefersReducedMotion ? undefined : { opacity: slide4Opacity }}
         className="min-h-screen w-full flex flex-col justify-center"
         id="market-reality-slide-4"
@@ -66,5 +108,103 @@ export function MarketRealityPage() {
         <Slide4NewOption />
       </motion.section>
     </div>
+  )
+}
+
+function DeckProgressBar() {
+  const ctx = useMarketReality()
+  if (!ctx) return null
+  const { currentSlide, revealStep, maxStepsPerSlide } = ctx
+  const maxStep = Math.max(1, maxStepsPerSlide[currentSlide] ?? 1)
+  const stepProgress = (revealStep + 1) / maxStep
+  const slideProgress = (currentSlide + stepProgress) / 4
+
+  return (
+    <div
+      className="fixed top-14 left-0 right-0 z-40 h-1 bg-slate-800/80"
+      aria-hidden
+      role="presentation"
+    >
+      <motion.div
+        className="h-full bg-gradient-to-r from-emerald-500 to-emerald-400"
+        initial={{ width: 0 }}
+        animate={{ width: `${slideProgress * 100}%` }}
+        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+      />
+    </div>
+  )
+}
+
+function KeyboardHint() {
+  const ctx = useMarketReality()
+  if (!ctx) return null
+  const { currentSlide, revealStep, maxStepsPerSlide } = ctx
+  const maxStep = maxStepsPerSlide[currentSlide] ?? 0
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.8, duration: 0.4 }}
+      className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-4 px-4 py-2.5 rounded-full bg-slate-900/90 backdrop-blur text-slate-300 text-sm border border-slate-700/50 shadow-xl"
+      aria-hidden
+    >
+      <span className="hidden sm:inline">Space</span>
+      <kbd className="hidden sm:inline px-1.5 py-0.5 rounded bg-slate-700 text-slate-200 font-mono text-xs">
+        space
+      </kbd>
+      <span className="text-slate-500">·</span>
+      <span className="hidden sm:inline">Next</span>
+      <kbd className="px-1.5 py-0.5 rounded bg-slate-700 text-slate-200 font-mono text-xs">→</kbd>
+      <span className="text-slate-500">·</span>
+      <span className="hidden sm:inline">Prev</span>
+      <kbd className="px-1.5 py-0.5 rounded bg-slate-700 text-slate-200 font-mono text-xs">←</kbd>
+      <span className="text-slate-500 ml-1">Slide {currentSlide + 1}/4</span>
+      {maxStep > 0 && (
+        <span className="text-slate-500">
+          · Step {revealStep + 1}/{maxStep}
+        </span>
+      )}
+    </motion.div>
+  )
+}
+
+function SlideDots() {
+  const ctx = useMarketReality()
+  if (!ctx) return null
+  const { currentSlide, goToSlide } = ctx
+
+  return (
+    <div
+      className="fixed right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-2"
+      aria-label="Slide navigation"
+    >
+      {[0, 1, 2, 3].map((i) => (
+        <motion.button
+          key={i}
+          type="button"
+          onClick={() => goToSlide(i)}
+          className={`w-2.5 h-2.5 rounded-full transition-colors duration-300 ${
+            i === currentSlide ? 'bg-emerald-500 ring-2 ring-emerald-400/50' : 'bg-slate-500 hover:bg-slate-400'
+          }`}
+          animate={{ scale: i === currentSlide ? 1.35 : 1 }}
+          transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+          aria-label={`Go to slide ${i + 1}`}
+        />
+      ))}
+    </div>
+  )
+}
+
+export function MarketRealityPage() {
+  const sectionRefs = [useRef(null), useRef(null), useRef(null), useRef(null)]
+
+  return (
+    <MarketRealityProvider sectionRefs={sectionRefs}>
+      <MarketRealityContent />
+      <DeckProgressBar />
+      <KeyboardHint />
+      <SlideDots />
+    </MarketRealityProvider>
   )
 }
