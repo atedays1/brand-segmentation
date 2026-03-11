@@ -17,8 +17,8 @@ export function Slide3Shopify() {
   const stats = s3.stats || []
 
   const isActive = ctx?.currentSlide === 2
-  const visibleUpToStep = isActive ? ctx.revealStep : 6
-  const useReveal = isActive && ctx != null
+  const visibleUpToStep = (ctx != null) ? (isActive ? ctx.revealStep : 0) : 6
+  const useReveal = ctx != null
 
   return (
     <div

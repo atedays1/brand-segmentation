@@ -16,8 +16,8 @@ export function Slide1MarketReality() {
   const heroSrc = marketRealityImages?.slide1?.hero
 
   const isActive = ctx?.currentSlide === 0
-  const visibleUpToStep = isActive ? ctx.revealStep : 9
-  const useReveal = isActive && ctx != null
+  const visibleUpToStep = (ctx != null) ? (isActive ? ctx.revealStep : 0) : 9
+  const useReveal = ctx != null
   // Split story into sentences for line-by-line reveal
   const storySentences = (s1.story || '').split(/(?<=[.!?])\s+/).filter(Boolean)
 

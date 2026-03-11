@@ -76,8 +76,8 @@ export function Slide2OurPeople() {
   const heroSrc = marketRealityImages?.slide2?.hero
 
   const isActive = ctx?.currentSlide === 1
-  const visibleUpToStep = isActive ? ctx.revealStep : 3
-  const useReveal = isActive && ctx != null
+  const visibleUpToStep = (ctx != null) ? (isActive ? ctx.revealStep : 0) : 3
+  const useReveal = ctx != null
 
   return (
     <div

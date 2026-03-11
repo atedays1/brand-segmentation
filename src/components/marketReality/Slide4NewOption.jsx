@@ -16,8 +16,8 @@ export function Slide4NewOption() {
   const heroSrc = marketRealityImages?.slide4?.hero
 
   const isActive = ctx?.currentSlide === 3
-  const visibleUpToStep = isActive ? ctx.revealStep : 3
-  const useReveal = isActive && ctx != null
+  const visibleUpToStep = (ctx != null) ? (isActive ? ctx.revealStep : 0) : 3
+  const useReveal = ctx != null
 
   return (
     <div
