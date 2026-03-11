@@ -57,7 +57,7 @@ export function Slide4NewOption({ positionIndex = 3 }) {
               >
                 {flows.gruns?.headline && (
                   <h3 className="text-lg font-semibold text-emerald-300 mb-2">
-                    {flows.gruns.headline}
+                    Grüns: {flows.gruns.headline}
                   </h3>
                 )}
                 {grunsFlowSrc && (
@@ -84,7 +84,7 @@ export function Slide4NewOption({ positionIndex = 3 }) {
               >
                 {flows.thorne?.headline && (
                   <h3 className="text-lg font-semibold text-emerald-300 mb-2">
-                    {flows.thorne.headline}
+                    Thorne: {flows.thorne.headline}
                   </h3>
                 )}
                 {thorneFlowSrc && (
