@@ -1,5 +1,5 @@
 import { useRef, useEffect } from 'react'
-import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
+import { motion } from 'framer-motion'
 import {
   MarketRealityProvider,
   useMarketReality,
@@ -16,35 +16,8 @@ import { Slide4NewOption } from '../components/marketReality/Slide4NewOption'
  */
 function MarketExplorationContent() {
   const containerRef = useRef(null)
-  const prefersReducedMotion = useReducedMotion()
   const ctx = useMarketReality()
   const sectionRefs = ctx?.sectionRefs || []
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start start', 'end end'],
-  })
-
-  const slide0Opacity = useTransform(
-    scrollYProgress,
-    [0, 0.15, 0.35],
-    [1, 1, prefersReducedMotion ? 1 : 0.3]
-  )
-  const slide1Opacity = useTransform(
-    scrollYProgress,
-    [0.2, 0.4, 0.5, 0.65],
-    [prefersReducedMotion ? 1 : 0.3, 1, 1, prefersReducedMotion ? 1 : 0.3]
-  )
-  const slide2Opacity = useTransform(
-    scrollYProgress,
-    [0.5, 0.65, 0.75, 0.85],
-    [prefersReducedMotion ? 1 : 0.3, 1, 1, prefersReducedMotion ? 1 : 0.3]
-  )
-  const slide3Opacity = useTransform(
-    scrollYProgress,
-    [0.75, 0.9, 1],
-    [prefersReducedMotion ? 1 : 0.3, 1, 1]
-  )
 
   useEffect(() => {
     const markManual = () => {
@@ -88,7 +61,6 @@ function MarketExplorationContent() {
     <div ref={containerRef} className="pt-14 font-sans">
       <motion.section
         ref={sectionRefs[0]}
-        style={prefersReducedMotion ? undefined : { opacity: slide0Opacity }}
         className="min-h-screen w-full flex flex-col justify-center"
         id="exploration-slide-1"
       >
@@ -96,7 +68,6 @@ function MarketExplorationContent() {
       </motion.section>
       <motion.section
         ref={sectionRefs[1]}
-        style={prefersReducedMotion ? undefined : { opacity: slide1Opacity }}
         className="min-h-screen w-full flex flex-col justify-center"
         id="exploration-slide-2"
       >
@@ -104,7 +75,6 @@ function MarketExplorationContent() {
       </motion.section>
       <motion.section
         ref={sectionRefs[2]}
-        style={prefersReducedMotion ? undefined : { opacity: slide2Opacity }}
         className="min-h-screen w-full flex flex-col justify-center"
         id="exploration-slide-3"
       >
@@ -112,7 +82,6 @@ function MarketExplorationContent() {
       </motion.section>
       <motion.section
         ref={sectionRefs[3]}
-        style={prefersReducedMotion ? undefined : { opacity: slide3Opacity }}
         className="min-h-screen w-full flex flex-col justify-center"
         id="exploration-slide-4"
       >
