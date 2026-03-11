@@ -43,7 +43,7 @@ export function ScrollProgress() {
   }, [])
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 h-1 bg-slate-200/80">
+    <div className="fixed top-12 left-0 right-0 z-40 h-1 bg-slate-200/80">
       <motion.div
         className="h-full bg-emerald-600"
         style={{ width: `${progress}%` }}
