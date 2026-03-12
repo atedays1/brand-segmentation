@@ -28,6 +28,16 @@ export function AppNav() {
         Market Exploration
       </NavLink>
       <NavLink
+        to="/gallery"
+        className={({ isActive }) =>
+          `text-sm font-medium px-4 py-2 rounded-lg transition-colors ${
+            isActive ? 'bg-emerald-600 text-white' : 'text-slate-300 hover:text-white hover:bg-slate-700'
+          }`
+        }
+      >
+        Gallery
+      </NavLink>
+      <NavLink
         to="/segmentation"
         className={({ isActive }) =>
           `text-sm font-medium px-4 py-2 rounded-lg transition-colors ${
