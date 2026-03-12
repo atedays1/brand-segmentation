@@ -13,9 +13,16 @@ export function GalleryPage() {
     setLoading(true)
     setError(null)
     fetch('/extracted/data.json')
-      .then((res) => {
-        if (!res.ok) throw new Error('Failed to load data.json')
-        return res.json()
+      .then(async (res) => {
+        if (!res.ok) {
+          throw new Error('data.json not found. Run the Figma extractor (npm run figma-extract) and ensure public/extracted/ contains data.json.')
+        }
+        const text = await res.text()
+        const trimmed = text.trim()
+        if (!trimmed.startsWith('[') && !trimmed.startsWith('{')) {
+          throw new Error('data.json not found or invalid (server returned a non-JSON page). Run the Figma extractor and ensure public/extracted/data.json exists.')
+        }
+        return JSON.parse(text)
       })
       .then((data) => {
         if (cancelled) return
