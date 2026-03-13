@@ -152,7 +152,7 @@ function BoardDeckContent() {
   if (!slide) return null
 
   return (
-    <div className="fixed inset-0 pt-12 sm:pt-14 pb-20 flex flex-col bg-slate-950 overflow-hidden">
+    <div className="fixed inset-0 pt-10 sm:pt-14 pb-20 flex flex-col bg-slate-950 overflow-hidden">
       <BackgroundDecor />
 
       <motion.div
@@ -172,7 +172,7 @@ function BoardDeckContent() {
       </motion.div>
 
       <div
-        className="relative flex-1 flex flex-col w-full px-6 md:px-12 lg:px-16 backdrop-blur-3xl min-h-0 justify-start items-center pt-4 sm:pt-8 md:pt-12 lg:pt-16"
+        className="relative flex-1 flex flex-col w-full px-6 md:px-12 lg:px-16 backdrop-blur-3xl min-h-0 justify-start items-center pt-0 sm:pt-6 md:pt-12 lg:pt-16 overflow-y-auto"
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
@@ -183,7 +183,7 @@ function BoardDeckContent() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -32 }}
             transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className={`outline-none max-w-5xl w-full text-left flex-1 flex flex-col min-h-0 ${slide.layout === 'report' ? 'pt-0' : slide.layout === 'topBrands' ? 'justify-start pt-6 md:pt-10' : 'justify-center'}`}
+            className={`outline-none max-w-5xl w-full text-left flex-1 flex flex-col min-h-0 ${slide.layout === 'report' ? 'pt-0' : slide.layout === 'topBrands' ? 'justify-start pt-6 md:pt-10' : ['takeaways', 'strategy', 'ecommerce'].includes(slide.layout) ? 'justify-start pt-0 sm:pt-2 md:justify-center md:pt-0' : 'justify-center'}`}
           >
             {(slide.title || slide.headerIcon) ? (
               <motion.h1
