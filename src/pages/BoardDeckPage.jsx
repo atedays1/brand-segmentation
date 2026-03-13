@@ -35,9 +35,9 @@ import {
   Gauge,
   Store,
 } from 'lucide-react'
-import { useBoardDeck } from './context/BoardDeckContext'
-import { boardDeckSlides } from './data/boardDeckSlides'
-import { BackgroundDecor } from './components/BackgroundDecor'
+import { BoardDeckProvider, useBoardDeck } from '../context/BoardDeckContext'
+import { boardDeckSlides } from '../data/boardDeckSlides'
+import { BackgroundDecor } from '../components/BackgroundDecor'
 
 const EMERALD_ACCENT = '#10b981'
 
@@ -107,7 +107,7 @@ const EMPTY_SLIDE_ICONS = {
   XOctagon,
 }
 
-export function BoardDeckContent() {
+function BoardDeckContent() {
   const { currentSlideIndex, reportStep, goNextSlide, goPrevSlide, canGoNextSlide, canGoPrevSlide, totalSlides } = useBoardDeck()
   const slide = boardDeckSlides[currentSlideIndex]
   const parallaxRef = useRef(null)
@@ -131,7 +131,7 @@ export function BoardDeckContent() {
   if (!slide) return null
 
   return (
-    <div className="fixed inset-0 pt-6 pb-20 flex flex-col bg-slate-950 overflow-hidden">
+    <div className="fixed inset-0 pt-14 pb-20 flex flex-col bg-slate-950 overflow-hidden">
       <BackgroundDecor />
 
       <motion.div
@@ -905,5 +905,13 @@ export function BoardDeckContent() {
         {slide?.layout === 'report' ? ' · ← → keys advance line by line' : ' · ← → keys'}
       </p>
     </div>
+  )
+}
+
+export function BoardDeckPage() {
+  return (
+    <BoardDeckProvider>
+      <BoardDeckContent />
+    </BoardDeckProvider>
   )
 }

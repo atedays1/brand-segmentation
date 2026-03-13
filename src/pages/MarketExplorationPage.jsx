@@ -5,6 +5,7 @@ import {
   useMarketReality,
   MAX_STEPS_EXPLORATION,
 } from '../context/MarketRealityContext'
+import { useSidebarLibrary } from '../context/SidebarLibraryContext'
 import { Slide1MarketReality } from '../components/marketReality/Slide1MarketReality'
 import { Slide2OurPeople } from '../components/marketReality/Slide2OurPeople'
 import { Slide3Shopify } from '../components/marketReality/Slide3Shopify'
@@ -117,6 +118,7 @@ function DeckProgressBar() {
 
 function KeyboardHint() {
   const ctx = useMarketReality()
+  const { editMode, toggleEditMode, undo, redo, canUndo, canRedo } = useSidebarLibrary()
   if (!ctx) return null
   const { currentSlide, revealStep, maxStepsPerSlide, resetReveal, presentMode, togglePresentMode } = ctx
   const maxStep = maxStepsPerSlide[currentSlide] ?? 0
@@ -134,6 +136,36 @@ function KeyboardHint() {
         }`}
       >
         {presentMode ? 'Exit present' : 'Present mode'}
+      </button>
+      <span className="text-slate-600">|</span>
+      <button
+        type="button"
+        onClick={toggleEditMode}
+        title={editMode ? 'Exit edit mode (hide resize/move handles)' : 'Enter edit mode (show move, resize, order)'}
+        className={`px-3 py-1.5 rounded-lg font-medium text-xs uppercase tracking-wide transition-colors ${
+          editMode ? 'bg-emerald-600 hover:bg-emerald-500 text-white' : 'bg-slate-700 hover:bg-slate-600 text-white'
+        }`}
+      >
+        {editMode ? 'Edit on' : 'Edit mode'}
+      </button>
+      <span className="text-slate-600">|</span>
+      <button
+        type="button"
+        onClick={(e) => { e.stopPropagation(); undo(); }}
+        disabled={!canUndo}
+        className="px-3 py-1.5 rounded-lg bg-slate-700 hover:bg-slate-600 disabled:opacity-40 disabled:cursor-not-allowed text-white font-medium text-xs uppercase tracking-wide transition-colors"
+        title="Undo"
+      >
+        Undo
+      </button>
+      <button
+        type="button"
+        onClick={(e) => { e.stopPropagation(); redo(); }}
+        disabled={!canRedo}
+        className="px-3 py-1.5 rounded-lg bg-slate-700 hover:bg-slate-600 disabled:opacity-40 disabled:cursor-not-allowed text-white font-medium text-xs uppercase tracking-wide transition-colors"
+        title="Redo"
+      >
+        Redo
       </button>
       {presentMode && (
         <>

@@ -3,6 +3,7 @@ import { marketRealitySlides } from '../../data/marketRealitySlides'
 import { marketRealityImages } from '../../data/marketRealityImages'
 import { useMarketReality } from '../../context/MarketRealityContext'
 import { RevealBlock } from './RevealBlock'
+import { EditableElement } from '../EditableElement'
 
 export function Slide3Shopify({ positionIndex = 2 }) {
   const ref = useRef(null)
@@ -36,7 +37,8 @@ export function Slide3Shopify({ positionIndex = 2 }) {
         </>
       )}
       {!unlocked ? null : (
-      <div className="max-w-4xl mx-auto w-full relative z-10">
+      <EditableElement id={`slide-${positionIndex}`} className="max-w-4xl mx-auto w-full relative z-10">
+        <div className="w-full">
         <RevealBlock stepIndex={0} visibleUpToStep={visibleUpToStep}>
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-2">{s3.title}</h2>
         </RevealBlock>
@@ -82,7 +84,8 @@ export function Slide3Shopify({ positionIndex = 2 }) {
             </div>
           </RevealBlock>
         ))}
-      </div>
+        </div>
+      </EditableElement>
       )}
     </div>
   )

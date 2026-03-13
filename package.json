@@ -14,10 +14,17 @@
     "generate-hero-images": "node scripts/generate-hero-images-imagen.mjs",
     "extract-pdf-flows": "node scripts/extract-pdf-flows.mjs",
     "synthesize-gruns-thorne-flows": "node scripts/synthesize-gruns-thorne-flows.mjs",
-    "figma-extract": "tsx scripts/figma-extract-frame.ts"
+    "figma-extract": "tsx scripts/figma-extract-frame.ts",
+    "build:plugin": "esbuild plugin/code.ts --outfile=plugin/code.js --format=iife --target=es6 && node scripts/inline-plugin-ui.cjs",
+    "receiver": "node server/receiver.js",
+    "api": "next dev -p 3000",
+    "api:alt": "next dev -p 3001",
+    "clear-exports": "node scripts/clear-figma-exports.mjs"
   },
   "dependencies": {
     "framer-motion": "^11.11.17",
+    "lucide-react": "^0.577.0",
+    "next": "^14.2.35",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.13.1",
@@ -25,11 +32,14 @@
   },
   "devDependencies": {
     "@anthropic-ai/sdk": "^0.32.1",
+    "@figma/plugin-typings": "^1.123.0",
     "@figma/rest-api-spec": "^0.36.0",
     "@google/genai": "^1.0.0",
+    "@types/react": "19.2.14",
     "@vitejs/plugin-react": "^4.3.3",
     "autoprefixer": "^10.4.20",
     "dotenv": "^16.4.5",
+    "esbuild": "^0.24.0",
     "fast-xml-parser": "^4.3.6",
     "jszip": "^3.10.1",
     "pdf-to-img": "^5.0.0",

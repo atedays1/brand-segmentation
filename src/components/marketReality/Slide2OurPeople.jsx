@@ -4,6 +4,7 @@ import { marketRealityImages } from '../../data/marketRealityImages'
 import { personaImages } from '../../data/personaImages'
 import { useMarketReality } from '../../context/MarketRealityContext'
 import { RevealBlock } from './RevealBlock'
+import { EditableElement } from '../EditableElement'
 
 // Step 0: title, 1: intro, 2: Mike card+headline, 3–6: Mike paras, 7: Maria card+headline, 8–11: Maria paras
 
@@ -99,7 +100,8 @@ export function Slide2OurPeople({ positionIndex = 1 }) {
         </>
       )}
       {!unlocked ? null : (
-        <div className="max-w-6xl mx-auto w-full relative z-10">
+        <EditableElement id={`slide-${positionIndex}`} className="max-w-6xl mx-auto w-full relative z-10">
+          <div className="w-full">
           <RevealBlock stepIndex={0} visibleUpToStep={visibleUpToStep}>
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-2">
               {s2.title}
@@ -152,7 +154,8 @@ export function Slide2OurPeople({ positionIndex = 1 }) {
               )}
             </div>
           </div>
-        </div>
+          </div>
+        </EditableElement>
       )}
     </div>
   )

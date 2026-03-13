@@ -5,6 +5,7 @@ import { marketRealityImages } from '../../data/marketRealityImages'
 import grunsThorneFlows from '../../data/grunsThorneFlows.json'
 import { useMarketReality } from '../../context/MarketRealityContext'
 import { RevealBlock } from './RevealBlock'
+import { EditableElement } from '../EditableElement'
 
 export function Slide4NewOption({ positionIndex = 3 }) {
   const ref = useRef(null)
@@ -40,7 +41,8 @@ export function Slide4NewOption({ positionIndex = 3 }) {
         </>
       )}
       {!unlocked ? null : (
-        <div className="max-w-5xl mx-auto w-full relative z-10">
+        <EditableElement id={`slide-${positionIndex}`} className="max-w-5xl mx-auto w-full relative z-10">
+          <div className="w-full">
           <RevealBlock stepIndex={0} visibleUpToStep={visibleUpToStep}>
             <h2 className="text-3xl md:text-4xl font-bold mb-6">{s4.title}</h2>
           </RevealBlock>
@@ -127,7 +129,8 @@ export function Slide4NewOption({ positionIndex = 3 }) {
               </motion.div>
             </div>
           </RevealBlock>
-        </div>
+          </div>
+        </EditableElement>
       )}
     </div>
   )

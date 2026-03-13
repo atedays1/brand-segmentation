@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useRef, useCallback, useEffect } from 'react'
+import { useSidebarLibrary } from './SidebarLibraryContext'
 
 export const MAX_STEPS_PER_SLIDE = [9, 12, 6, 4] // S1: 9; S2: 12; S3: 6; S4: 4 (title, intro, flow images, cards)
 
@@ -13,6 +14,7 @@ export function useMarketReality() {
 }
 
 export function MarketRealityProvider({ children, sectionRefs, maxStepsPerSlideOverride }) {
+  const { editMode } = useSidebarLibrary() || {}
   const steps = maxStepsPerSlideOverride ?? MAX_STEPS_PER_SLIDE
   const [currentSlide, setCurrentSlide] = useState(0)
   const [revealStep, setRevealStep] = useState(0)
@@ -77,11 +79,11 @@ export function MarketRealityProvider({ children, sectionRefs, maxStepsPerSlideO
     if (currentSlide < 3) goToSlide(currentSlide + 1)
   }, [currentSlide, goToSlide])
 
-  // Keyboard: Space = next slide, Right = next step, Left = prev step
-  // Use refs so handler always sees latest state (no stale closure) and use capture so we run before focus
+  // Keyboard: Space = next slide, Right = next step, Left = prev step (disabled in edit mode so spacebar can be used for typing)
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.defaultPrevented) return
+      if (editMode) return // let spacebar and arrows pass through for typing/navigation in fields
       const { currentSlide: cur, revealStep: step, maxStep: max } = stateRef.current
       if (e.key === ' ') {
         e.preventDefault()
@@ -103,7 +105,7 @@ export function MarketRealityProvider({ children, sectionRefs, maxStepsPerSlideO
     }
     window.addEventListener('keydown', handleKeyDown, true)
     return () => window.removeEventListener('keydown', handleKeyDown, true)
-  }, [nextSlide, nextStep, prevStep, goToSlide])
+  }, [editMode, nextSlide, nextStep, prevStep, goToSlide])
 
   const value = {
     currentSlide,

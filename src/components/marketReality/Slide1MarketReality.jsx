@@ -3,6 +3,7 @@ import { marketRealitySlides } from '../../data/marketRealitySlides'
 import { marketRealityImages } from '../../data/marketRealityImages'
 import { useMarketReality } from '../../context/MarketRealityContext'
 import { RevealBlock } from './RevealBlock'
+import { EditableElement } from '../EditableElement'
 
 export function Slide1MarketReality({ positionIndex = 0 }) {
   const ref = useRef(null)
@@ -36,7 +37,8 @@ export function Slide1MarketReality({ positionIndex = 0 }) {
         </>
       )}
       {!unlocked ? null : (
-      <div className="max-w-3xl mx-auto w-full relative z-10">
+      <EditableElement id={`slide-${positionIndex}`} className="max-w-3xl mx-auto w-full relative z-10">
+        <div className="w-full">
         <RevealBlock stepIndex={0} visibleUpToStep={visibleUpToStep}>
           <h1 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">{s1.title}</h1>
         </RevealBlock>
@@ -70,7 +72,8 @@ export function Slide1MarketReality({ positionIndex = 0 }) {
             <p className="text-lg text-slate-200 leading-relaxed">{s1.solution.body}</p>
           </div>
         </RevealBlock>
-      </div>
+        </div>
+      </EditableElement>
       )}
     </div>
   )
