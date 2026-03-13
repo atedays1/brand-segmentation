@@ -152,7 +152,7 @@ function BoardDeckContent() {
   if (!slide) return null
 
   return (
-    <div className="fixed inset-0 pt-14 pb-20 flex flex-col bg-slate-950 overflow-hidden">
+    <div className="fixed inset-0 pt-12 sm:pt-14 pb-20 flex flex-col bg-slate-950 overflow-hidden">
       <BackgroundDecor />
 
       <motion.div
@@ -172,7 +172,7 @@ function BoardDeckContent() {
       </motion.div>
 
       <div
-        className="relative flex-1 flex flex-col w-full px-6 md:px-12 lg:px-16 backdrop-blur-3xl min-h-0 justify-start items-center pt-12 md:pt-16"
+        className="relative flex-1 flex flex-col w-full px-6 md:px-12 lg:px-16 backdrop-blur-3xl min-h-0 justify-start items-center pt-4 sm:pt-8 md:pt-12 lg:pt-16"
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
