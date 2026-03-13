@@ -107,12 +107,33 @@ const EMPTY_SLIDE_ICONS = {
   XOctagon,
 }
 
+const SWIPE_THRESHOLD_PX = 50
+
 export function BoardDeckContent() {
-  const { currentSlideIndex, reportStep, goNextSlide, goPrevSlide, canGoNextSlide, canGoPrevSlide, totalSlides } = useBoardDeck()
+  const { currentSlideIndex, reportStep, goNextSlide, goPrevSlide, goNext, goPrev, canGoNextSlide, canGoPrevSlide, totalSlides } = useBoardDeck()
   const slide = boardDeckSlides[currentSlideIndex]
   const parallaxRef = useRef(null)
   const reportSectionRef = useRef(null)
+  const touchStartRef = useRef(null)
   const [top50Expanded, setTop50Expanded] = useState(false)
+
+  const handleTouchStart = (e) => {
+    if (e.touches.length !== 1) return
+    touchStartRef.current = { x: e.touches[0].clientX, y: e.touches[0].clientY }
+  }
+  const handleTouchEnd = (e) => {
+    if (!touchStartRef.current || e.changedTouches.length !== 1) return
+    const { x: startX, y: startY } = touchStartRef.current
+    const endX = e.changedTouches[0].clientX
+    const endY = e.changedTouches[0].clientY
+    const deltaX = endX - startX
+    const deltaY = endY - startY
+    touchStartRef.current = null
+    if (Math.abs(deltaX) < SWIPE_THRESHOLD_PX) return
+    if (Math.abs(deltaX) <= Math.abs(deltaY)) return
+    if (deltaX < 0) goNext()
+    else goPrev()
+  }
 
   useEffect(() => {
     document.body.style.overflow = 'hidden'
@@ -150,7 +171,11 @@ export function BoardDeckContent() {
         />
       </motion.div>
 
-      <div className="relative flex-1 flex flex-col w-full px-6 md:px-12 lg:px-16 backdrop-blur-3xl min-h-0 justify-start items-center pt-12 md:pt-16">
+      <div
+        className="relative flex-1 flex flex-col w-full px-6 md:px-12 lg:px-16 backdrop-blur-3xl min-h-0 justify-start items-center pt-12 md:pt-16"
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlideIndex}
@@ -902,7 +927,7 @@ export function BoardDeckContent() {
       </div>
       <p className="absolute bottom-2 left-1/2 -translate-x-1/2 text-slate-500 text-xs pointer-events-none">
         {currentSlideIndex + 1} / {totalSlides}
-        {slide?.layout === 'report' ? ' · ← → keys advance line by line' : ' · ← → keys'}
+        {slide?.layout === 'report' ? ' · ← → or swipe advances line by line' : ' · ← → or swipe'}
       </p>
     </div>
   )
