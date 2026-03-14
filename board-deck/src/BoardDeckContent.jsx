@@ -246,8 +246,12 @@ export function BoardDeckContent() {
             )}
             {slide.layout === 'report' && (slide.intro || slide.introParts) && slide.sections && slide.sections.length > 0 && (() => {
               const chartItems = []
-              if (slide.marketShareChart) chartItems.push({ type: 'marketChart', chart: slide.marketShareChart })
-              if (slide.marketShareChartByChannel) chartItems.push({ type: 'marketChart', chart: slide.marketShareChartByChannel })
+              if (slide.marketShareChart && slide.marketShareChartByChannel) {
+                chartItems.push({ type: 'marketChartsPair' })
+              } else {
+                if (slide.marketShareChart) chartItems.push({ type: 'marketChart', chart: slide.marketShareChart })
+                if (slide.marketShareChartByChannel) chartItems.push({ type: 'marketChart', chart: slide.marketShareChartByChannel })
+              }
               if (slide.deliveryFormatChart) chartItems.push({ type: 'marketChart', chart: slide.deliveryFormatChart })
               if (slide.pillFatigueCard) chartItems.push({ type: 'pillFatigue', card: slide.pillFatigueCard })
               const items = [
@@ -294,10 +298,68 @@ export function BoardDeckContent() {
                           </motion.p>
                         )
                       }
+                      if (item.type === 'marketChartsPair') {
+                        const renderPieCard = (chart, isCat) => {
+                          let cum = 0
+                          const sub = isCat ? 'supplement industry market share by product category' : 'supplement market share by channel'
+                          return (
+                            <div className="rounded-xl border border-white/10 bg-slate-800/40 p-5 backdrop-blur-xl flex-1 min-w-0 flex flex-col h-full" style={{ boxShadow: '0 0 0 1px rgba(16, 185, 129, 0.06)' }}>
+                              <h3 className="text-sm font-bold text-white mb-4 leading-snug">
+                                <span className="font-semibold text-emerald-400">$69.28 billion</span> {sub}, 2024
+                              </h3>
+                              <div className="flex flex-col sm:flex-row items-center gap-4 flex-1 min-h-0">
+                                <div className="flex-shrink-0 w-[180px] h-[180px] sm:w-[200px] sm:h-[200px]">
+                                  <svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet" className="w-full h-full overflow-visible" aria-hidden>
+                                    {chart.segments.map((seg, i) => {
+                                      const startPct = cum
+                                      cum += seg.pct
+                                      const path = getArcPath(startPct, cum, 100, 100, 90)
+                                      const fill = CHART_COLORS[i % CHART_COLORS.length]
+                                      return <path key={seg.label} d={path} fill={fill} stroke="rgba(15,23,42,0.5)" strokeWidth={1} />
+                                    })}
+                                  </svg>
+                                </div>
+                                <ul className="flex flex-wrap gap-x-4 gap-y-1.5 text-sm text-slate-300">
+                                  {chart.segments.map((seg, i) => (
+                                    <li key={seg.label} className="flex items-center gap-2">
+                                      <span className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ backgroundColor: CHART_COLORS[i % CHART_COLORS.length] }} aria-hidden />
+                                      <span>{seg.label}</span>
+                                      <span className="font-semibold text-white">{seg.pct}%</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                              <p className="text-xs text-slate-500 mt-4">Source: {chart.source}</p>
+                            </div>
+                          )
+                        }
+                        const showSecondChart = reportStep >= 2
+                        return (
+                          <div
+                            key="marketChartsRow"
+                            ref={itemIdx === visibleItems.length - 1 ? reportSectionRef : undefined}
+                            className="flex flex-col lg:flex-row gap-4 max-w-4xl items-stretch"
+                          >
+                            <div className="flex-1 min-w-0 flex">
+                              {renderPieCard(slide.marketShareChart, true)}
+                            </div>
+                            {showSecondChart && (
+                              <motion.div
+                                key="marketChartChannel"
+                                initial={{ opacity: 0, x: 16 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
+                                className="flex-1 min-w-0 flex"
+                              >
+                                {renderPieCard(slide.marketShareChartByChannel, false)}
+                              </motion.div>
+                            )}
+                          </div>
+                        )
+                      }
                       if (item.type === 'marketChart') {
                         const c = item.chart
                         const isCategory = c === slide.marketShareChart
-                        const channelAlsoVisible = visibleItems.some((v, idx) => idx > itemIdx && v.type === 'marketChart' && v.chart === slide.marketShareChartByChannel)
                         const renderPieCard = (chart, isCat) => {
                           let cum = 0
                           const sub = isCat ? 'supplement industry market share by product category' : 'supplement market share by channel'
@@ -331,34 +393,6 @@ export function BoardDeckContent() {
                               <p className="text-xs text-slate-500 mt-4">Source: {chart.source}</p>
                             </div>
                           )
-                        }
-                        if (isCategory) {
-                          const showChannel = channelAlsoVisible
-                          return (
-                            <div
-                              key="marketChartsRow"
-                              ref={itemIdx === visibleItems.length - 1 ? reportSectionRef : undefined}
-                              className="flex flex-col lg:flex-row gap-4 max-w-4xl"
-                            >
-                              <div key="marketChartCategory" className="flex-1 min-w-0">
-                                {renderPieCard(slide.marketShareChart, true)}
-                              </div>
-                              {showChannel && (
-                                <motion.div
-                                  key="marketChartChannel"
-                                  initial={{ opacity: 0, y: 12 }}
-                                  animate={{ opacity: 1, y: 0 }}
-                                  transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
-                                  className="flex-1 min-w-0"
-                                >
-                                  {renderPieCard(slide.marketShareChartByChannel, false)}
-                                </motion.div>
-                              )}
-                            </div>
-                          )
-                        }
-                        if (!isCategory && slide.marketShareChart) {
-                          return null
                         }
                         const subtitle = isCategory ? 'supplement industry market share by product category' : 'supplement market share by channel'
                         const chartKey = c.cardTitle ? 'deliveryFormat' : (isCategory ? 'marketChartCategory' : 'marketChartChannel')
