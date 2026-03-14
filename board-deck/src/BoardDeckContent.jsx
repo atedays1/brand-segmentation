@@ -338,22 +338,23 @@ export function BoardDeckContent() {
                           <div
                             key="marketChartsRow"
                             ref={itemIdx === visibleItems.length - 1 ? reportSectionRef : undefined}
-                            className="flex flex-col lg:flex-row gap-4 max-w-4xl items-stretch"
+                            className="grid grid-cols-1 lg:grid-cols-2 gap-4 max-w-4xl items-stretch"
                           >
-                            <div className="flex-1 min-w-0 flex">
+                            <div key="marketChartCategorySlot" className="min-h-0 flex">
                               {renderPieCard(slide.marketShareChart, true)}
                             </div>
-                            {showSecondChart && (
-                              <motion.div
-                                key="marketChartChannel"
-                                initial={{ opacity: 0, x: 16 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
-                                className="flex-1 min-w-0 flex"
-                              >
-                                {renderPieCard(slide.marketShareChartByChannel, false)}
-                              </motion.div>
-                            )}
+                            <div key="marketChartChannelSlot" className="min-h-0 flex">
+                              {showSecondChart ? (
+                                <motion.div
+                                  initial={{ opacity: 0, x: 20 }}
+                                  animate={{ opacity: 1, x: 0 }}
+                                  transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+                                  className="w-full h-full flex"
+                                >
+                                  {renderPieCard(slide.marketShareChartByChannel, false)}
+                                </motion.div>
+                              ) : null}
+                            </div>
                           </div>
                         )
                       }
