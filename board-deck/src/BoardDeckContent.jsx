@@ -332,23 +332,33 @@ export function BoardDeckContent() {
                             </div>
                           )
                         }
-                        if (isCategory && channelAlsoVisible) {
-                          return null
-                        }
-                        if (!isCategory && slide.marketShareChart) {
+                        if (isCategory) {
+                          const showChannel = channelAlsoVisible
                           return (
-                            <motion.div
+                            <div
                               key="marketChartsRow"
                               ref={itemIdx === visibleItems.length - 1 ? reportSectionRef : undefined}
-                              initial={isNew ? { opacity: 0, y: 12 } : false}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
                               className="flex flex-col lg:flex-row gap-4 max-w-4xl"
                             >
-                              {renderPieCard(slide.marketShareChart, true)}
-                              {renderPieCard(c, false)}
-                            </motion.div>
+                              <div key="marketChartCategory" className="flex-1 min-w-0">
+                                {renderPieCard(slide.marketShareChart, true)}
+                              </div>
+                              {showChannel && (
+                                <motion.div
+                                  key="marketChartChannel"
+                                  initial={{ opacity: 0, y: 12 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
+                                  className="flex-1 min-w-0"
+                                >
+                                  {renderPieCard(slide.marketShareChartByChannel, false)}
+                                </motion.div>
+                              )}
+                            </div>
                           )
+                        }
+                        if (!isCategory && slide.marketShareChart) {
+                          return null
                         }
                         const subtitle = isCategory ? 'supplement industry market share by product category' : 'supplement market share by channel'
                         const chartKey = c.cardTitle ? 'deliveryFormat' : (isCategory ? 'marketChartCategory' : 'marketChartChannel')
