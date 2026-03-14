@@ -1,11 +1,8 @@
 import { createContext, useContext, useState, useCallback, useEffect, useMemo } from 'react'
 import { boardDeckSlides } from '../data/boardDeckSlides'
 
-const TOTAL_SLIDES = boardDeckSlides.length
-
-function getReportMaxStep(slideIndex) {
-  const slide = boardDeckSlides[slideIndex]
-  if (slide?.layout !== 'report' || !slide.sections) return 0
+function getReportMaxStep(slide) {
+  if (!slide || slide.layout !== 'report' || !slide.sections) return 0
   return slide.sections.reduce((acc, s) => acc + 1 + (s.lines?.length ?? 0), 1) - 1
 }
 
@@ -16,11 +13,20 @@ export function useBoardDeck() {
 }
 
 export function BoardDeckProvider({ children }) {
+  const visibleSlides = useMemo(() => boardDeckSlides.filter((s) => !s.hidden), [])
+  const TOTAL_SLIDES = visibleSlides.length
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0)
   const [reportStep, setReportStep] = useState(0)
+  const currentSlide = visibleSlides[currentSlideIndex]
 
-  const isOnReportSlide = boardDeckSlides[currentSlideIndex]?.layout === 'report'
-  const reportMaxStep = useMemo(() => getReportMaxStep(currentSlideIndex), [currentSlideIndex])
+  const isOnReportSlide = currentSlide?.layout === 'report'
+  const reportMaxStep = useMemo(() => getReportMaxStep(currentSlide), [currentSlide])
+
+  useEffect(() => {
+    if (currentSlideIndex >= TOTAL_SLIDES && TOTAL_SLIDES > 0) {
+      setCurrentSlideIndex(TOTAL_SLIDES - 1)
+    }
+  }, [currentSlideIndex, TOTAL_SLIDES])
 
   useEffect(() => {
     if (!isOnReportSlide) setReportStep(0)
@@ -77,6 +83,7 @@ export function BoardDeckProvider({ children }) {
 
   const value = {
     currentSlideIndex,
+    visibleSlides,
     totalSlides: TOTAL_SLIDES,
     reportStep: isOnReportSlide ? reportStep : 0,
     goNext,

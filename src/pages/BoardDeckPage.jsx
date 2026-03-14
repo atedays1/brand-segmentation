@@ -36,7 +36,6 @@ import {
   Store,
 } from 'lucide-react'
 import { BoardDeckProvider, useBoardDeck } from '../context/BoardDeckContext'
-import { boardDeckSlides } from '../data/boardDeckSlides'
 import { BackgroundDecor } from '../components/BackgroundDecor'
 
 const EMERALD_ACCENT = '#10b981'
@@ -110,8 +109,8 @@ const EMPTY_SLIDE_ICONS = {
 const SWIPE_THRESHOLD_PX = 50
 
 function BoardDeckContent() {
-  const { currentSlideIndex, reportStep, goNextSlide, goPrevSlide, goNext, goPrev, canGoNextSlide, canGoPrevSlide, totalSlides } = useBoardDeck()
-  const slide = boardDeckSlides[currentSlideIndex]
+  const { currentSlideIndex, reportStep, visibleSlides, goNextSlide, goPrevSlide, goNext, goPrev, canGoNextSlide, canGoPrevSlide, totalSlides } = useBoardDeck()
+  const slide = visibleSlides[currentSlideIndex]
   const parallaxRef = useRef(null)
   const reportSectionRef = useRef(null)
   const touchStartRef = useRef(null)

@@ -14,6 +14,7 @@ export const boardDeckSlides = [
     title: 'Format',
     headerIcon: 'Layout',
     subtitle: 'Examining the cultural elevation of health & wellness via use & interest.',
+    hidden: true,
   },
   {
     id: 3,
@@ -695,10 +696,12 @@ export const boardDeckSlides = [
     id: 21,
     title: 'Here are our people',
     headerIcon: 'PersonStanding',
+    hidden: true,
   },
   {
     id: 22,
     title: '',
+    hidden: true,
     personas: [
       {
         image: '/images/personas/wellness-optimizers.png',
@@ -716,6 +719,7 @@ export const boardDeckSlides = [
   {
     id: 23,
     title: '',
+    hidden: true,
     personas: [
       {
         image: '/images/personas/practical-minimalists.png',
@@ -734,5 +738,6 @@ export const boardDeckSlides = [
     id: 24,
     title: "What's next?",
     headerIcon: 'Goal',
+    hidden: true,
   },
 ]
