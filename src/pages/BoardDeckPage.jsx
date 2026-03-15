@@ -182,7 +182,7 @@ function BoardDeckContent() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -32 }}
             transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className={`outline-none max-w-5xl w-full text-left flex-1 flex flex-col min-h-0 ${slide.layout === 'report' ? 'pt-0' : slide.layout === 'topBrands' ? 'justify-start pt-6 md:pt-10' : ['takeaways', 'strategy', 'ecommerce'].includes(slide.layout) ? 'justify-start pt-0 sm:pt-2 md:justify-center md:pt-0' : 'justify-center'}`}
+            className={`outline-none max-w-5xl w-full text-left flex-1 flex flex-col min-h-0 ${slide.layout === 'report' ? 'pt-0' : slide.layout === 'topBrands' ? 'justify-start pt-6 md:pt-10' : ['takeaways', 'strategy', 'ecommerce'].includes(slide.layout) ? 'justify-start pt-12 sm:pt-16 md:pt-20 lg:pt-24' : 'justify-center'}`}
           >
             {(slide.title || slide.headerIcon) ? (
               <motion.h1

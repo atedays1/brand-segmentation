@@ -3,7 +3,17 @@ import { boardDeckSlides } from '../data/boardDeckSlides'
 
 function getReportMaxStep(slide) {
   if (!slide || slide.layout !== 'report' || !slide.sections) return 0
-  return slide.sections.reduce((acc, s) => acc + 1 + (s.lines?.length ?? 0), 1) - 1
+  let chartCount = 0
+  if (slide.marketShareChart && slide.marketShareChartByChannel) chartCount = 1
+  else {
+    if (slide.marketShareChart) chartCount += 1
+    if (slide.marketShareChartByChannel) chartCount += 1
+  }
+  if (slide.deliveryFormatChart) chartCount += 1
+  if (slide.pillFatigueCard) chartCount += 1
+  const sectionSteps = slide.sections.reduce((acc, s) => acc + 1 + (s.lines?.length ?? 0), 0)
+  const totalItems = 1 + chartCount + sectionSteps
+  return Math.max(0, totalItems - 1)
 }
 
 const BoardDeckContext = createContext(null)

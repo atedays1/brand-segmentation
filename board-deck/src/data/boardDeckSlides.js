@@ -1,5 +1,5 @@
 /**
- * Board Deck: 24 slides — simple, compelling copy for arrow-key presentation.
+ * Board Deck: 26 slides — simple, compelling copy for arrow-key presentation.
  */
 
 export const boardDeckSlides = [
@@ -7,7 +7,7 @@ export const boardDeckSlides = [
     id: 1,
     title: 'Objective',
     headerIcon: 'Target',
-    subtitle: 'Elevate understanding of market, consumer, where to play and how to win.',
+    subtitle: 'Elevate understanding of market, consumer, where to play and how to win. This deck walks that path: the market, the evidence, our strategy, and who we\'re building for.',
   },
   {
     id: 2,
@@ -21,16 +21,16 @@ export const boardDeckSlides = [
     title: 'Health & Wellness is a $69B market',
     highlight: '+5.2% growth in 2024',
     highlightIcon: 'BarChart3',
-    subtitle: 'A large, growing category with clear opportunity.',
+    subtitle: 'A large, growing category. The next slides show what the research says about where to play and how to win.',
   },
   {
     id: 4,
     title: 'NBJ Condition Specific Report (2025)',
     layout: 'report',
     headerIcon: 'FileText',
-    intro: 'The Market and Consumer Exploratory Report (December 2025) validates our strategy of disrupting the $69B supplement market with a fast-acting, high-efficacy format.',
+    intro: 'The NBJ Condition Specific Report (2025) validates Ate Days\' strategy of disrupting the $69B supplement market with a fast-acting, high-efficacy format.',
     introParts: [
-      { text: 'validates our strategy', bold: true },
+      { text: 'validates Ate Days\' strategy', bold: true },
       { text: ' of disrupting the ' },
       { text: '$69B supplement market', bold: true },
       { text: ' with a ' },
@@ -68,14 +68,12 @@ export const boardDeckSlides = [
         lines: [
           { parts: [{ text: 'Rapid Growth:', bold: true }, { text: ' The U.S. wellness industry is valued at over ' }, { text: '$500B', bold: true }, { text: ' and is growing at ' }, { text: '4-5% annually', bold: true }, { text: ', driven by younger consumers (' }, { text: 'Gen Z and Millennials', bold: true }, { text: ') who prioritize nutrition, mindfulness, and appearance.' }] },
           { parts: [{ text: 'Shift to Performance:', bold: true }, { text: ' While general health remains a priority, the fastest-growing condition categories are ' }, { text: 'Fitness/Energy, Healthy Aging (Vitality), and Brain Health (Cognitive Performance)', bold: true }, { text: '.' }] },
-          { parts: [{ text: 'E-Commerce Dominance:', bold: true }, { text: ' Digital channels are booming and are projected to soon become the ' }, { text: 'share leader in the supplement category', bold: true }, { text: '.' }] },
         ],
       },
       {
         heading: '2. The Right Customers: Segmenting for "Fast-Acting" Solutions',
         icon: 'Users',
         lines: [
-          { parts: [{ text: 'The research identifies two high-potential segments that align with a "feel-the-impact" product:' }] },
           { parts: [{ text: 'Targeted Problem Solvers:', bold: true }, { text: ' These goal-oriented consumers seek ' }, { text: 'immediate results', bold: true }, { text: ' for specific needs like energy or sleep. They are open to trying new products but will discontinue use if results aren\'t ' }, { text: 'tangible', bold: true }, { text: '.' }] },
           { parts: [{ text: 'Convenience Seekers:', bold: true }, { text: ' This group values simplicity and ease of use above all else. They are prone to ' }, { text: '"pill fatigue"', bold: true }, { text: ' and actively look for ' }, { text: 'alternative formats', bold: true }, { text: ' that fit a busy lifestyle.' }] },
         ],
@@ -86,7 +84,6 @@ export const boardDeckSlides = [
         lines: [
           { parts: [{ text: 'Format Utility:', bold: true }, { text: ' There is clear evidence of ' }, { text: 'pill fatigue', bold: true }, { text: '; consumers are migrating toward ' }, { text: 'gummies and other "blurring" formats', bold: true }, { text: ' between functional foods and supplements.' }] },
           { parts: [{ text: 'The Need for Efficacy:', bold: true }, { text: ' A primary pain point is skepticism about effectiveness. Users increasingly require ' }, { text: 'tangible results (physical or visible)', bold: true }, { text: ' to maintain ' }, { text: 'long-term loyalty', bold: true }, { text: '.' }] },
-          { parts: [{ text: 'Sensory Anchors:', bold: true }, { text: ' The research suggests using sensory cues (' }, { text: 'taste, texture, onset feeling', bold: true }, { text: ') to signal that a product is working, which reinforces the perception of efficacy.' }] },
         ],
       },
       {
@@ -95,7 +92,6 @@ export const boardDeckSlides = [
         lines: [
           { parts: [{ text: 'Own the "In-the-Moment" Occasion:', bold: true }, { text: ' Focus on targeted wellness needs (e.g., ' }, { text: 'energy, focus, sleep', bold: true }, { text: ') that require ' }, { text: 'immediate response', bold: true }, { text: ' rather than long-term prevention.' }] },
           { parts: [{ text: 'Lead with Science:', bold: true }, { text: ' ' }, { text: 'Clinical trials and third-party certifications', bold: true }, { text: ' are critical "trust anchors" for skeptical modern consumers.' }] },
-          { parts: [{ text: 'Optimize for Portability:', bold: true }, { text: ' Ensure the format is truly ' }, { text: 'portable and dissolvable', bold: true }, { text: ' to serve "on-the-go" usage occasions.' }] },
         ],
       },
     ],
@@ -105,7 +101,7 @@ export const boardDeckSlides = [
     title: '2025 NBJ Herbs and Botanicals Report',
     layout: 'report',
     headerIcon: 'FileText',
-    intro: 'The 2025 NBJ Herbs and Botanicals Report highlights a massive, shifting market that increasingly rewards the clinical efficacy and "impact-obvious" results your startup is building toward.',
+    intro: 'The 2025 NBJ Herbs and Botanicals Report highlights a massive, shifting market that increasingly rewards the clinical efficacy and "impact-obvious" results Ate Days is built to deliver.',
     introParts: [
       { text: 'highlights a ' },
       { text: 'massive, shifting market', bold: true },
@@ -113,7 +109,7 @@ export const boardDeckSlides = [
       { text: 'clinical efficacy', bold: true },
       { text: ' and ' },
       { text: '"impact-obvious" results', bold: true },
-      { text: ' your startup is building toward.' },
+      { text: ' Ate Days is built to deliver.' },
     ],
     deliveryFormatChart: {
       cardTitle: 'Supplement market share by delivery format, 2024',
@@ -147,16 +143,13 @@ export const boardDeckSlides = [
         icon: 'TrendingUp',
         lines: [
           { parts: [{ text: 'Total Category Value:', bold: true }, { text: ' The Herbs and Botanicals sector reached ' }, { text: '$13.2 billion', bold: true }, { text: ' in 2024, representing nearly ', bold: false }, { text: 'one out of every five dollars', bold: true }, { text: ' spent in the broader supplement industry.', bold: false }] },
-          { parts: [{ text: 'Sustained Momentum:', bold: true }, { text: ' The market is projected to grow at ', bold: false }, { text: '6.1% to 6.9% annually', bold: true }, { text: ', reaching ', bold: false }, { text: '$17 billion by 2028', bold: true }, { text: '.', bold: false }] },
           { parts: [{ text: 'Ingredient Superstars:', bold: true }, { text: ' ', bold: false }, { text: 'Ashwagandha', bold: true }, { text: ' is a primary driver, with a projected ', bold: false }, { text: '14.5% CAGR through 2028', bold: true }, { text: ', reflecting a move toward stress-relief and cognitive support.', bold: false }] },
-          { parts: [{ text: 'Channel Shift:', bold: true }, { text: ' The practitioner channel is skyrocketing toward ', bold: false }, { text: '$2 billion by 2028', bold: true }, { text: ', signaling that expert-backed recommendations are becoming a dominant sales driver.', bold: false }] },
         ],
       },
       {
         heading: '2. The Right Customers: The "Focus on Focus" Demographic',
         icon: 'Users',
         lines: [
-          { parts: [{ text: 'Intentional Buyers:', bold: true }, { text: ' ', bold: false }, { text: '59%', bold: true }, { text: ' of general consumers express a likelihood to purchase herbal supplements, with ', bold: false }, { text: '72% of men', bold: true }, { text: ' showing particularly high purchase intent.', bold: false }] },
           { parts: [{ text: 'Younger Professionals:', bold: true }, { text: ' ', bold: false }, { text: 'Gen Z and Millennials', bold: true }, { text: ' are specifically seeking solutions for ', bold: false }, { text: '"burnout" and cognitive performance', bold: true }, { text: ', leading to a ', bold: false }, { text: '"focus on focus"', bold: true }, { text: ' trend.', bold: false }] },
           { parts: [{ text: 'Digital-Native Shoppers:', bold: true }, { text: ' While these generations use digital channels, they show a surprising preference for the websites of ', bold: false }, { text: 'mass-market retailers (like Target and Walmart)', bold: true }, { text: ' over traditional e-commerce giants.', bold: false }] },
         ],
@@ -166,8 +159,7 @@ export const boardDeckSlides = [
         icon: 'ShieldCheck',
         lines: [
           { parts: [{ text: 'Willingness to Pay:', bold: true }, { text: ' Nearly ', bold: false }, { text: '60%', bold: true }, { text: ' of herbal supplement users state they would ', bold: false }, { text: 'pay a premium for products with clinically proven benefits', bold: true }, { text: '.', bold: false }] },
-          { parts: [{ text: 'Addressing Efficacy Gaps:', bold: true }, { text: ' A key reason for category abandonment is that ', bold: false }, { text: '11% of consumers "didn\'t notice results"', bold: true }, { text: ', providing a clear opening for your ', bold: false }, { text: '"fast-acting" and "tangible impact"', bold: true }, { text: ' value proposition.', bold: false }] },
-          { parts: [{ text: 'Format Diversification:', bold: true }, { text: ' Younger consumers are "open-minded" about formats; while traditional supplements lead, ', bold: false }, { text: 'functional beverages (like Matcha, which grew 393%)', bold: true }, { text: ' and teas are rapidly gaining ground.', bold: false }] },
+          { parts: [{ text: 'Addressing Efficacy Gaps:', bold: true }, { text: ' A key reason for category abandonment is that ', bold: false }, { text: '11% of consumers "didn\'t notice results"', bold: true }, { text: ', providing a clear opening for Ate Days\' ', bold: false }, { text: '"fast-acting" and "tangible impact"', bold: true }, { text: ' value proposition.', bold: false }] },
         ],
       },
       {
@@ -175,9 +167,7 @@ export const boardDeckSlides = [
         icon: 'Lightbulb',
         lines: [
           { parts: [{ text: 'Lead with Science-Backed Formulations:', bold: true }, { text: ' ', bold: false }, { text: 'Clinical evidence', bold: true }, { text: ' is the primary persuader; prioritize ', bold: false }, { text: 'branded ingredients and third-party certifications', bold: true }, { text: ' to anchor consumer trust.', bold: false }] },
-          { parts: [{ text: 'Target Cognitive Performance:', bold: true }, { text: ' Position products to solve the ', bold: false }, { text: '"burnout" and "energy"', bold: true }, { text: ' needs of professionals and adult students.', bold: false }] },
-          { parts: [{ text: 'Embrace Transparency:', bold: true }, { text: ' Use ', bold: false }, { text: 'clear, reliable product information', bold: true }, { text: ' to overcome the top consumer barrier: ', bold: false }, { text: 'conflicting information on benefits', bold: true }, { text: '.', bold: false }] },
-          { parts: [{ text: 'Differentiate via Format:', bold: true }, { text: ' Given the rise in ', bold: false }, { text: 'functional beverages', bold: true }, { text: ', ensure your ', bold: false }, { text: 'fast-acting format', bold: true }, { text: ' is positioned as a modern, convenient alternative to traditional capsules.', bold: false }] },
+          { parts: [{ text: 'Differentiate via Format:', bold: true }, { text: ' Given the rise in ', bold: false }, { text: 'functional beverages', bold: true }, { text: ', ensure Ate Days\' ', bold: false }, { text: 'fast-acting format', bold: true }, { text: ' is positioned as a modern, convenient alternative to traditional capsules.', bold: false }] },
         ],
       },
     ],
@@ -187,7 +177,7 @@ export const boardDeckSlides = [
     title: 'NCN 2024 Year-End Investment Trends Report',
     layout: 'report',
     headerIcon: 'FileText',
-    intro: 'The NCN 2024 Year-End Investment Trends Report (February 2025) confirms that the investment community is specifically looking for "science-first" and "high-utilitarian" innovation.',
+    intro: 'Alongside format and channel data, the NCN 2024 Year-End Investment Trends Report (February 2025) confirms that the investment community is specifically looking for "science-first" and "high-utilitarian" innovation.',
     introParts: [
       { text: 'confirms that the ' },
       { text: 'investment community', bold: true },
@@ -202,36 +192,32 @@ export const boardDeckSlides = [
         heading: '1. Market Opportunity: A "Flight to Quality" and Efficacy',
         icon: 'TrendingUp',
         lines: [
-          { parts: [{ text: 'Sector Resilience:', bold: true }, { text: ' Despite a broader slowdown in venture capital, the ' }, { text: 'Health & Nutrition sector', bold: true }, { text: ' remains a priority for investors, with ' }, { text: '754 total transactions in 2024', bold: true }, { text: '.' }] },
-          { parts: [{ text: 'The "Science Premium":', bold: true }, { text: ' Investors are moving away from "lifestyle" brands and toward ' }, { text: 'science-backed, clinically validated', bold: true }, { text: ' products. Companies that can prove ' }, { text: 'efficacy', bold: true }, { text: ' (the "impact-obvious" factor) are commanding ' }, { text: 'higher valuations', bold: true }, { text: '.' }] },
-          { parts: [{ text: 'M&A Activity:', bold: true }, { text: ' ' }, { text: 'Strategic buyers (large conglomerates)', bold: true }, { text: ' are actively seeking ' }, { text: '"bolt-on" acquisitions', bold: true }, { text: ' of innovative brands that solve specific consumer problems, particularly in the ' }, { text: 'Supplements and Ingredient Technology', bold: true }, { text: ' segments.' }] },
+          { parts: [{ text: 'Sector Resilience:', bold: true }, { text: ' Despite a broader slowdown in venture capital, the ', bold: false }, { text: 'Health & Nutrition sector', bold: true }, { text: ' remains a priority for investors, with ', bold: false }, { text: '754 total transactions in 2024', bold: true }, { text: '.', bold: false }] },
+          { parts: [{ text: 'The "Science Premium":', bold: true }, { text: ' Investors are moving away from "lifestyle" brands and toward ', bold: false }, { text: 'science-backed, clinically validated', bold: true }, { text: ' products. Companies that can prove ', bold: false }, { text: 'efficacy', bold: true }, { text: ' (the "impact-obvious" factor) are commanding ', bold: false }, { text: 'higher valuations', bold: true }, { text: '.', bold: false }] },
         ],
       },
       {
         heading: '2. The Right Customers: Solving the "Modern Ailment"',
         icon: 'Users',
         lines: [
-          { parts: [{ text: 'The MAHA Movement:', bold: true }, { text: ' A major 2025 theme is ' }, { text: '"Make America Healthy Again,"', bold: true }, { text: ' which has shifted consumer focus toward ' }, { text: 'metabolic health, longevity, and cognitive performance', bold: true }, { text: '.' }] },
-          { parts: [{ text: 'Performance-Driven Demographics:', bold: true }, { text: ' There is high investment interest in brands targeting the ' }, { text: '"active aging" and "cognitive optimization"', bold: true }, { text: ' demographics—groups that prioritize ' }, { text: 'functional benefits', bold: true }, { text: ' over general wellness.' }] },
-          { parts: [{ text: 'Personalization & Precision:', bold: true }, { text: ' Consumers (and therefore investors) are gravitating toward products that offer ' }, { text: 'targeted delivery systems', bold: true }, { text: ' rather than "one-size-fits-all" pills.' }] },
+          { parts: [{ text: 'The MAHA Movement:', bold: true }, { text: ' A major 2025 theme is ', bold: false }, { text: '"Make America Healthy Again,"', bold: true }, { text: ' which has shifted consumer focus toward ', bold: false }, { text: 'metabolic health, longevity, and cognitive performance', bold: true }, { text: '.', bold: false }] },
+          { parts: [{ text: 'Performance-Driven Demographics:', bold: true }, { text: ' There is high investment interest in brands targeting the ', bold: false }, { text: '"active aging" and "cognitive optimization"', bold: true }, { text: ' demographics—groups that prioritize ', bold: false }, { text: 'functional benefits', bold: true }, { text: ' over general wellness.', bold: false }] },
         ],
       },
       {
         heading: '3. Strategic Validation: Format Innovation is the Key to Exit',
         icon: 'ShieldCheck',
         lines: [
-          { parts: [{ text: 'Disrupting Traditional Formats:', bold: true }, { text: ' The report identifies ' }, { text: 'Ingredient Technology', bold: true }, { text: ' as a ' }, { text: 'top segment for financing', bold: true }, { text: '. This validates your approach of moving away from traditional pills toward a more effective, ' }, { text: 'fast-acting delivery format', bold: true }, { text: '.' }] },
-          { parts: [{ text: 'Solving "Pill Fatigue":', bold: true }, { text: ' Market data shows that brands offering ' }, { text: 'alternative delivery methods (like dissolvables or liquids)', bold: true }, { text: ' are successfully ' }, { text: 'capturing market share', bold: true }, { text: ' from legacy capsule brands.' }] },
-          { parts: [{ text: 'Direct-to-Consumer (DTC) Efficiency:', bold: true }, { text: ' While retail is important, investors are rewarding brands that maintain a high ' }, { text: 'digital-first growth rate', bold: true }, { text: ' paired with strong ' }, { text: 'repeat-purchase metrics', bold: true }, { text: '.' }] },
+          { parts: [{ text: 'Disrupting Traditional Formats:', bold: true }, { text: ' The report identifies ', bold: false }, { text: 'Ingredient Technology', bold: true }, { text: ' as a ', bold: false }, { text: 'top segment for financing', bold: true }, { text: '. This validates moving away from traditional pills toward a more effective, ', bold: false }, { text: 'fast-acting delivery format', bold: true }, { text: '.', bold: false }] },
+          { parts: [{ text: 'Direct-to-Consumer (DTC) Efficiency:', bold: true }, { text: ' While retail is important, investors are rewarding brands that maintain a high ', bold: false }, { text: 'digital-first growth rate', bold: true }, { text: ' paired with strong ', bold: false }, { text: 'repeat-purchase metrics', bold: true }, { text: '.', bold: false }] },
         ],
       },
       {
         heading: '4. Key Recommendations',
         icon: 'Lightbulb',
         lines: [
-          { parts: [{ text: 'Highlight the "Moat":', bold: true }, { text: ' Emphasize your ' }, { text: 'unique formulation or delivery technology', bold: true }, { text: ' as a ' }, { text: 'proprietary asset', bold: true }, { text: '; investors view ' }, { text: 'IP and specialized formats', bold: true }, { text: ' as significant ' }, { text: 'barriers to entry', bold: true }, { text: ' for competitors.' }] },
-          { parts: [{ text: 'Position for Acquisition:', bold: true }, { text: ' Structure the brand narrative around being a ' }, { text: '"science-led disruptor."', bold: true }, { text: ' Large strategics are looking for brands that have already solved the ' }, { text: 'efficacy and format challenges', bold: true }, { text: '.' }] },
-          { parts: [{ text: 'Focus on High-Margin Segments:', bold: true }, { text: ' Lean into the ' }, { text: 'Cognitive/Energy and Metabolic', bold: true }, { text: ' categories, as these showed the most consistent ' }, { text: 'investment activity', bold: true }, { text: ' and highest ' }, { text: 'exit potential', bold: true }, { text: ' in the 2024-2025 cycle.' }] },
+          { parts: [{ text: 'Position for Acquisition:', bold: true }, { text: ' Structure the brand narrative around being a ', bold: false }, { text: '"science-led disruptor."', bold: true }, { text: ' Large strategics are looking for brands that have already solved the ', bold: false }, { text: 'efficacy and format challenges', bold: true }, { text: '.', bold: false }] },
+          { parts: [{ text: 'Focus on High-Margin Segments:', bold: true }, { text: ' Lean into the ', bold: false }, { text: 'Cognitive/Energy and Metabolic', bold: true }, { text: ' categories, as these showed the most consistent ', bold: false }, { text: 'investment activity', bold: true }, { text: ' and highest ', bold: false }, { text: 'exit potential', bold: true }, { text: ' in the 2024-2025 cycle.', bold: false }] },
         ],
       },
     ],
@@ -254,37 +240,32 @@ export const boardDeckSlides = [
         heading: '1. Market Opportunity: The Shift from "Holistic" to "High-Performance"',
         icon: 'TrendingUp',
         lines: [
-          { parts: [{ text: 'The Macro Trend:', bold: true }, { text: ' Wellness is no longer a passive pursuit; it is becoming a ' }, { text: '"high-performance" category', bold: true }, { text: '. Consumers are moving away from broad, preventative health toward ' }, { text: 'acute, condition-specific solutions', bold: true }, { text: '.' }] },
-          { parts: [{ text: 'Primary Demand Spaces:', bold: true }, { text: ' High growth is concentrated in ' }, { text: 'Cognitive Optimization (Focus/Brain Health), Stress Management, and Metabolic Health', bold: true }, { text: '.' }] },
-          { parts: [{ text: 'The "Format Gap":', bold: true }, { text: ' While the industry is flooded with legacy pills and powders, there is a distinct lack of innovation in truly ' }, { text: 'portable, fast-acting delivery systems', bold: true }, { text: ' that match a ' }, { text: 'high-mobility lifestyle', bold: true }, { text: '.' }] },
+          { parts: [{ text: 'The Macro Trend:', bold: true }, { text: ' Wellness is no longer a passive pursuit; it is becoming a ', bold: false }, { text: '"high-performance" category', bold: true }, { text: '. Consumers are moving away from broad, preventative health toward ', bold: false }, { text: 'acute, condition-specific solutions', bold: true }, { text: '.', bold: false }] },
+          { parts: [{ text: 'The "Format Gap":', bold: true }, { text: ' While the industry is flooded with legacy pills and powders, there is a distinct lack of innovation in truly ', bold: false }, { text: 'portable, fast-acting delivery systems', bold: true }, { text: ' that match a ', bold: false }, { text: 'high-mobility lifestyle', bold: true }, { text: '.', bold: false }] },
         ],
       },
       {
         heading: '2. The Right Customers: High-Intent "Optimizer" Profiles',
         icon: 'Users',
         lines: [
-          { parts: [{ text: 'The exploratory research highlights two core personas that represent the early adopter "sweet spot":' }] },
-          { parts: [{ text: 'The Intentional Optimizer:', bold: true }, { text: ' These are high-achieving professionals and parents who view wellness as a tool for productivity. They prioritize ' }, { text: 'efficacy and speed of onset', bold: true }, { text: ' above all else.' }] },
-          { parts: [{ text: 'The Skeptical Switcher:', bold: true }, { text: ' Consumers who have grown tired of ' }, { text: '"pill fatigue"', bold: true }, { text: ' and the slow results of traditional herbal supplements. They are actively looking for a reason to switch to a brand that offers a tangible, ' }, { text: '"impact-obvious" sensory experience', bold: true }, { text: '.' }] },
+          { parts: [{ text: 'The Intentional Optimizer:', bold: true }, { text: ' These are high-achieving professionals and parents who view wellness as a tool for productivity. They prioritize ', bold: false }, { text: 'efficacy and speed of onset', bold: true }, { text: ' above all else.', bold: false }] },
+          { parts: [{ text: 'The Skeptical Switcher:', bold: true }, { text: ' Consumers who have grown tired of ', bold: false }, { text: '"pill fatigue"', bold: true }, { text: ' and the slow results of traditional herbal supplements. They are actively looking for a reason to switch to a brand that offers a tangible, ', bold: false }, { text: '"impact-obvious" sensory experience', bold: true }, { text: '.', bold: false }] },
         ],
       },
       {
         heading: '3. Strategic Validation: The "Efficacy First" Mandate',
         icon: 'ShieldCheck',
         lines: [
-          { parts: [{ text: 'The Trust Barrier:', bold: true }, { text: ' Modern consumers are increasingly skeptical of "marketing fluff." The report confirms that ' }, { text: 'clinical transparency and ingredient traceability', bold: true }, { text: ' are now ' }, { text: 'table stakes', bold: true }, { text: ' for premium positioning.' }] },
-          { parts: [{ text: 'Sensory Reinforcement:', bold: true }, { text: ' The research indicates that ' }, { text: '"feeling it work"', bold: true }, { text: ' (the onset of focus or energy) is the most powerful driver for long-term retention and word-of-mouth growth.' }] },
-          { parts: [{ text: 'The Convenience Premium:', bold: true }, { text: ' Consumers are willing to pay a ' }, { text: 'significant premium', bold: true }, { text: ' for products that integrate ' }, { text: 'seamlessly into their daily flow', bold: true }, { text: ' without requiring water or a kitchen setup.' }] },
+          { parts: [{ text: 'The Trust Barrier:', bold: true }, { text: ' Modern consumers are increasingly skeptical of "marketing fluff." The report confirms that ', bold: false }, { text: 'clinical transparency and ingredient traceability', bold: true }, { text: ' are now ', bold: false }, { text: 'table stakes', bold: true }, { text: ' for premium positioning.', bold: false }] },
+          { parts: [{ text: 'Sensory Reinforcement:', bold: true }, { text: ' The research indicates that ', bold: false }, { text: '"feeling it work"', bold: true }, { text: ' (the onset of focus or energy) is the most powerful driver for long-term retention and word-of-mouth growth.', bold: false }] },
         ],
       },
       {
         heading: '4. Key Recommendations',
         icon: 'Lightbulb',
         lines: [
-          { parts: [{ text: 'Prioritize "Impact-Obvious" Marketing:', bold: true }, { text: ' Your messaging should lead with the ' }, { text: 'speed of results', bold: true }, { text: '. Don\'t just promise wellness; promise a ' }, { text: 'measurable shift in state', bold: true }, { text: ' (e.g., focus within minutes).' }] },
-          { parts: [{ text: 'Target the "Productivity Occasion":', bold: true }, { text: ' Position the initial product line around ' }, { text: 'morning focus or the afternoon slump', bold: true }, { text: ', where the need for a fast-acting solution is most acute.' }] },
-          { parts: [{ text: 'Build a "Science-Forward" Identity:', bold: true }, { text: ' Use the launch to establish Ate Days Wellness as a ' }, { text: 'biotechnology-driven brand', bold: true }, { text: ' rather than just another supplement company.' }] },
-          { parts: [{ text: 'Leverage Digital Scarcity:', bold: true }, { text: ' Focus on a high-velocity ' }, { text: 'DTC launch strategy', bold: true }, { text: ' that targets the digital-native ' }, { text: '"Optimizer" community', bold: true }, { text: ' to build early social proof.' }] },
+          { parts: [{ text: 'Prioritize "Impact-Obvious" Marketing:', bold: true }, { text: ' Our messaging should lead with the ', bold: false }, { text: 'speed of results', bold: true }, { text: '. Don\'t just promise wellness; promise a ', bold: false }, { text: 'measurable shift in state', bold: true }, { text: ' (e.g., focus within minutes).', bold: false }] },
+          { parts: [{ text: 'Build a "Science-Forward" Identity:', bold: true }, { text: ' Use the launch to establish Ate Days as a ', bold: false }, { text: 'biotechnology-driven brand', bold: true }, { text: ' rather than just another supplement company.', bold: false }] },
         ],
       },
     ],
@@ -309,37 +290,32 @@ export const boardDeckSlides = [
         heading: '1. Market Opportunity: A $69B Industry Primed for Innovation',
         icon: 'TrendingUp',
         lines: [
-          { parts: [{ text: 'Massive Total Addressable Market (TAM):', bold: true }, { text: ' The U.S. supplement industry is valued at ' }, { text: '$69.28 billion', bold: true }, { text: ' as of 2024.' }] },
-          { parts: [{ text: 'Diverse Growth Engines:', bold: true }, { text: ' While vitamins remain large ($18.93B), the highest-value sectors for innovation are ' }, { text: 'Specialty Supplements ($15.42B)', bold: true }, { text: ' and ' }, { text: 'Herbs and Botanicals ($13.23B)', bold: true }, { text: '.' }] },
-          { parts: [{ text: 'Sustained Trajectory:', bold: true }, { text: ' The market is projected to continue its ' }, { text: 'expansion through 2028', bold: true }, { text: ', with significant "added dollars" coming from ' }, { text: 'non-traditional categories', bold: true }, { text: '.' }] },
+          { parts: [{ text: 'Massive Total Addressable Market (TAM):', bold: true }, { text: ' The U.S. supplement industry is valued at ', bold: false }, { text: '$69.28 billion', bold: true }, { text: ' as of 2024.', bold: false }] },
+          { parts: [{ text: 'Diverse Growth Engines:', bold: true }, { text: ' While vitamins remain large ($18.93B), the highest-value sectors for innovation are ', bold: false }, { text: 'Specialty Supplements ($15.42B)', bold: true }, { text: ' and ', bold: false }, { text: 'Herbs and Botanicals ($13.23B)', bold: true }, { text: '.', bold: false }] },
         ],
       },
       {
         heading: '2. The Right Customers: Identifying the "High-Value" Segments',
         icon: 'Users',
         lines: [
-          { parts: [{ text: 'The Performance Consumer:', bold: true }, { text: ' The ' }, { text: 'Sports Nutrition segment ($10.54B)', bold: true }, { text: ' represents a core demographic that prioritizes ' }, { text: 'fast results and functional benefits', bold: true }, { text: '.' }] },
-          { parts: [{ text: 'The Targeted Solution Seeker:', bold: true }, { text: ' The ' }, { text: 'Specialty Supplement segment ($15.42B)', bold: true }, { text: '—which includes prebiotics, probiotics, and collagen—shows a massive consumer shift toward solving ' }, { text: 'specific biological needs', bold: true }, { text: ' rather than general health.' }] },
-          { parts: [{ text: 'The Practitioner-Led Buyer:', bold: true }, { text: ' The ' }, { text: 'Practitioner channel', bold: true }, { text: ' is a key growth area, indicating that consumers are increasingly looking for ' }, { text: 'professional validation and high-efficacy products', bold: true }, { text: '.' }] },
+          { parts: [{ text: 'The Performance Consumer:', bold: true }, { text: ' The ', bold: false }, { text: 'Sports Nutrition segment ($10.54B)', bold: true }, { text: ' represents a core demographic that prioritizes ', bold: false }, { text: 'fast results and functional benefits', bold: true }, { text: '.', bold: false }] },
+          { parts: [{ text: 'The Targeted Solution Seeker:', bold: true }, { text: ' The ', bold: false }, { text: 'Specialty Supplement segment ($15.42B)', bold: true }, { text: '—which includes prebiotics, probiotics, and collagen—shows a massive consumer shift toward solving ', bold: false }, { text: 'specific biological needs', bold: true }, { text: ' rather than general health.', bold: false }] },
         ],
       },
       {
         heading: '3. Strategic Validation: The Death of the "Standard Pill"',
         icon: 'ShieldCheck',
         lines: [
-          { parts: [{ text: 'Format Disruption:', bold: true }, { text: ' The report tracks a significant shift in delivery formats. ' }, { text: 'Traditional Tablets and Capsules', bold: true }, { text: ' are being challenged by more "enjoyable" or "functional" formats.' }] },
-          { parts: [{ text: 'The Rise of Experiential Delivery:', bold: true }, { text: ' ' }, { text: 'Gummies, Liquids, and Powders', bold: true }, { text: ' are seeing robust growth, validating your ' }, { text: '"fast-acting, impact-obvious" format', bold: true }, { text: ' as the future of the category.' }] },
-          { parts: [{ text: 'Ingredient High-Performers:', bold: true }, { text: ' The explosive growth of ingredients like ' }, { text: 'Ashwagandha and Mushrooms', bold: true }, { text: ' validates a consumer base that is comfortable with ' }, { text: '"modern herbs"', bold: true }, { text: ' that provide a noticeable feeling.' }] },
+          { parts: [{ text: 'The Rise of Experiential Delivery:', bold: true }, { text: ' ', bold: false }, { text: 'Gummies, Liquids, and Powders', bold: true }, { text: ' are seeing robust growth, validating Ate Days\' ', bold: false }, { text: '"fast-acting, impact-obvious" format', bold: true }, { text: ' as the future of the category.', bold: false }] },
+          { parts: [{ text: 'Ingredient High-Performers:', bold: true }, { text: ' The explosive growth of ingredients like ', bold: false }, { text: 'Ashwagandha and Mushrooms', bold: true }, { text: ' validates a consumer base that is comfortable with ', bold: false }, { text: '"modern herbs"', bold: true }, { text: ' that provide a noticeable feeling.', bold: false }] },
         ],
       },
       {
         heading: '4. Key Recommendations',
         icon: 'Lightbulb',
         lines: [
-          { parts: [{ text: 'Focus on Specialty & Sports:', bold: true }, { text: ' Given their combined market share of ' }, { text: 'over $25B', bold: true }, { text: ', these categories offer the best "on-ramp" for a ' }, { text: 'high-efficacy, fast-acting product', bold: true }, { text: '.' }] },
-          { parts: [{ text: 'Omnichannel Strategy:', bold: true }, { text: ' While ' }, { text: 'E-commerce', bold: true }, { text: ' is a dominant growth driver, do not overlook the ' }, { text: 'Practitioner channel', bold: true }, { text: ' for building early ' }, { text: 'clinical-grade trust', bold: true }, { text: '.' }] },
-          { parts: [{ text: 'Format as the Moat:', bold: true }, { text: ' Use your ' }, { text: 'unique delivery system', bold: true }, { text: ' to capture the ' }, { text: 'market share', bold: true }, { text: ' currently fleeing from traditional tablets and softgels toward more ' }, { text: 'modern, portable options', bold: true }, { text: '.' }] },
-          { parts: [{ text: 'Leverage "Ingredient Superstars":', bold: true }, { text: ' Consider incorporating high-growth, high-awareness ingredients like ' }, { text: 'Magnesium ($1.7B)', bold: true }, { text: ' or ' }, { text: 'Ashwagandha', bold: true }, { text: ' to reduce the ' }, { text: '"education barrier"', bold: true }, { text: ' for new customers.' }] },
+          { parts: [{ text: 'Focus on Specialty & Sports:', bold: true }, { text: ' Given their combined market share of ', bold: false }, { text: 'over $25B', bold: true }, { text: ', these categories offer the best "on-ramp" for a ', bold: false }, { text: 'high-efficacy, fast-acting product', bold: true }, { text: '.', bold: false }] },
+          { parts: [{ text: 'Format as the Moat:', bold: true }, { text: ' Use our ', bold: false }, { text: 'unique delivery system', bold: true }, { text: ' to capture the ', bold: false }, { text: 'market share', bold: true }, { text: ' currently fleeing from traditional tablets and softgels toward more ', bold: false }, { text: 'modern, portable options', bold: true }, { text: '.', bold: false }] },
         ],
       },
     ],
@@ -366,37 +342,32 @@ export const boardDeckSlides = [
         heading: '1. Market Opportunity: Resilience Amidst Uncertainty',
         icon: 'TrendingUp',
         lines: [
-          { parts: [{ text: 'Steady Growth Projections:', bold: true }, { text: ' Despite potential economic pullbacks, the supplement industry is projected to maintain a ' }, { text: '6.3% growth rate through 2025', bold: true }, { text: ', with total sales reaching ' }, { text: '$73.6 billion', bold: true }, { text: '.' }] },
-          { parts: [{ text: 'The "Necessity" Shift:', bold: true }, { text: ' Supplements have moved from "discretionary" to "essential" for many. ' }, { text: '64% of consumers', bold: true }, { text: ' state they will ' }, { text: 'maintain or increase their supplement spending', bold: true }, { text: ' even if the economy worsens.' }] },
-          { parts: [{ text: 'Channel Dynamics:', bold: true }, { text: ' ' }, { text: 'E-commerce', bold: true }, { text: ' remains the powerhouse, but ' }, { text: 'mass-market retailers (Target, Walmart)', bold: true }, { text: ' are gaining ground as consumers look for both ' }, { text: 'convenience and perceived value', bold: true }, { text: '.' }] },
+          { parts: [{ text: 'Steady Growth Projections:', bold: true }, { text: ' Despite potential economic pullbacks, the supplement industry is projected to maintain a ', bold: false }, { text: '6.3% growth rate through 2025', bold: true }, { text: ', with total sales reaching ', bold: false }, { text: '$73.6 billion', bold: true }, { text: '.', bold: false }] },
+          { parts: [{ text: 'The "Necessity" Shift:', bold: true }, { text: ' Supplements have moved from "discretionary" to "essential" for many. ', bold: false }, { text: '64% of consumers', bold: true }, { text: ' state they will ', bold: false }, { text: 'maintain or increase their supplement spending', bold: true }, { text: ' even if the economy worsens.', bold: false }] },
         ],
       },
       {
         heading: '2. The Right Customers: The "Critical Maintainer"',
         icon: 'Users',
         lines: [
-          { parts: [{ text: 'The Habitual User:', bold: true }, { text: ' Research shows that ' }, { text: '"heavy users" (taking 3+ supplements daily)', bold: true }, { text: ' are the ' }, { text: 'least likely to cut back during inflation', bold: true }, { text: ', prioritizing their health routines over other lifestyle expenditures.' }] },
-          { parts: [{ text: 'The Value-Focused Millennial:', bold: true }, { text: ' This group is the most sensitive to economic shifts but is also the most likely to invest in products that provide a clear ' }, { text: '"return on health,"', bold: true }, { text: ' validating the need for your ' }, { text: '"impact-obvious" approach', bold: true }, { text: '.' }] },
-          { parts: [{ text: 'Generational Trust:', bold: true }, { text: ' While Baby Boomers prioritize price, ' }, { text: 'Gen Z and Millennials', bold: true }, { text: ' are more willing to pay a ' }, { text: 'premium', bold: true }, { text: ' for brands that offer ' }, { text: 'transparency and proven efficacy', bold: true }, { text: '.' }] },
+          { parts: [{ text: 'The Habitual User:', bold: true }, { text: ' Research shows that ', bold: false }, { text: '"heavy users" (taking 3+ supplements daily)', bold: true }, { text: ' are the ', bold: false }, { text: 'least likely to cut back during inflation', bold: true }, { text: ', prioritizing their health routines over other lifestyle expenditures.', bold: false }] },
+          { parts: [{ text: 'The Value-Focused Millennial:', bold: true }, { text: ' This group is the most sensitive to economic shifts but is also the most likely to invest in products that provide a clear ', bold: false }, { text: '"return on health,"', bold: true }, { text: ' validating the need for Ate Days\' ', bold: false }, { text: '"impact-obvious" approach', bold: true }, { text: '.', bold: false }] },
         ],
       },
       {
         heading: '3. Strategic Validation: Combatting "Efficacy Inflation"',
         icon: 'ShieldCheck',
         lines: [
-          { parts: [{ text: 'The Flight to Quality:', bold: true }, { text: ' As "cost-per-serving" becomes a bigger factor, consumers are weeding out "filler" products. The report confirms that ' }, { text: 'efficacy is the #1 reason', bold: true }, { text: ' consumers ' }, { text: 'stay loyal to a brand', bold: true }, { text: ' during a downturn.' }] },
-          { parts: [{ text: 'Format Flexibility:', bold: true }, { text: ' During economic pullbacks, consumers look for "multi-benefit" products. Your ' }, { text: 'fast-acting format', bold: true }, { text: ' can be positioned as a ' }, { text: 'high-efficiency alternative', bold: true }, { text: ' that replaces multiple slower-acting, lower-quality options.' }] },
-          { parts: [{ text: 'Science as a Shield:', bold: true }, { text: ' Brands that lead with ' }, { text: 'clinical evidence', bold: true }, { text: ' are seen as ' }, { text: 'lower-risk purchases', bold: true }, { text: ' by skeptical consumers who cannot afford to waste money on products that don\'t work.' }] },
+          { parts: [{ text: 'The Flight to Quality:', bold: true }, { text: ' As "cost-per-serving" becomes a bigger factor, consumers are weeding out "filler" products. The report confirms that ', bold: false }, { text: 'efficacy is the #1 reason', bold: true }, { text: ' consumers ', bold: false }, { text: 'stay loyal to a brand', bold: true }, { text: ' during a downturn.', bold: false }] },
+          { parts: [{ text: 'Science as a Shield:', bold: true }, { text: ' Brands that lead with ', bold: false }, { text: 'clinical evidence', bold: true }, { text: ' are seen as ', bold: false }, { text: 'lower-risk purchases', bold: true }, { text: ' by skeptical consumers who cannot afford to waste money on products that don\'t work.', bold: false }] },
         ],
       },
       {
         heading: '4. Key Recommendations for Launch',
         icon: 'Lightbulb',
         lines: [
-          { parts: [{ text: 'Emphasize "Cost-per-Result":', bold: true }, { text: ' Instead of focusing solely on the price point, market the ' }, { text: 'efficiency and speed', bold: true }, { text: ' of the format. A product that ' }, { text: 'works instantly', bold: true }, { text: ' is perceived as a ' }, { text: 'better value', bold: true }, { text: ' than a cheaper pill that takes weeks to show results.' }] },
-          { parts: [{ text: 'Leverage E-Commerce Agility:', bold: true }, { text: ' Use the DTC channel to offer subscription-based "value locks," appealing to the ' }, { text: '64% of consumers', bold: true }, { text: ' who are determined to maintain their wellness spending.' }] },
-          { parts: [{ text: 'Position as a Productivity Essential:', bold: true }, { text: ' Tie the "fast-acting" benefit to ' }, { text: 'economic performance', bold: true }, { text: '—helping consumers stay ' }, { text: 'focused and energetic', bold: true }, { text: ' in a competitive professional environment.' }] },
-          { parts: [{ text: 'Own the "Efficacy Narrative":', bold: true }, { text: ' Use your branding to directly address the ' }, { text: '#1 consumer fear in 2025', bold: true }, { text: ': spending money on supplements that don\'t produce ' }, { text: 'tangible results', bold: true }, { text: '.' }] },
+          { parts: [{ text: 'Emphasize "Cost-per-Result":', bold: true }, { text: ' Instead of focusing solely on the price point, market the ', bold: false }, { text: 'efficiency and speed', bold: true }, { text: ' of the format. A product that ', bold: false }, { text: 'works instantly', bold: true }, { text: ' is perceived as a ', bold: false }, { text: 'better value', bold: true }, { text: ' than a cheaper pill that takes weeks to show results.', bold: false }] },
+          { parts: [{ text: 'Own the "Efficacy Narrative":', bold: true }, { text: ' Use our branding to directly address the ', bold: false }, { text: '#1 consumer fear in 2025', bold: true }, { text: ': spending money on supplements that don\'t produce ', bold: false }, { text: 'tangible results', bold: true }, { text: '.', bold: false }] },
         ],
       },
     ],
@@ -406,12 +377,12 @@ export const boardDeckSlides = [
     title: 'Functional Nutrition Consumer Segmentation Opportunity Assessment',
     layout: 'report',
     headerIcon: 'FileText',
-    intro: 'The Functional Nutrition Consumer Segmentation Opportunity Assessment provides the granular consumer profiles needed to target the highest-value users.',
+    intro: 'The Functional Nutrition Consumer Segmentation Assessment gives us the exact segments we need: high-value users who align with Ate Days\' positioning.',
     introParts: [
-      { text: 'provides the ' },
-      { text: 'granular consumer profiles', bold: true },
-      { text: ' needed to target the ' },
-      { text: 'highest-value users', bold: true },
+      { text: 'gives us the ' },
+      { text: 'exact segments we need', bold: true },
+      { text: ': high-value users who align with ' },
+      { text: 'Ate Days\' positioning', bold: true },
       { text: '.' },
     ],
     sections: [
@@ -419,43 +390,44 @@ export const boardDeckSlides = [
         heading: '1. Market Opportunity: Capturing the "High-Spend" Multichannel Consumer',
         icon: 'TrendingUp',
         lines: [
-          { parts: [{ text: 'High-Value Segments:', bold: true }, { text: ' The research identifies ' }, { text: 'Wellness Optimizers (13%)', bold: true }, { text: ' and ' }, { text: 'Impact Seekers (19%)', bold: true }, { text: ' as the "power users" of the category, with the ' }, { text: 'highest average monthly spend', bold: true }, { text: ' on supplements (' }, { text: '$81.60 and $65.30', bold: true }, { text: ', respectively).' }] },
-          { parts: [{ text: 'The "Trifecta" User:', bold: true }, { text: ' These top segments are not just supplement users; they are heavy consumers of ' }, { text: 'functional foods and functional beverages', bold: true }, { text: ', indicating a massive opportunity for a format that "blurs" these lines (like a ' }, { text: 'fast-acting dissolvable', bold: true }, { text: ').' }] },
-          { parts: [{ text: 'Willingness to Pay:', bold: true }, { text: ' A significant majority of the most active segments (' }, { text: '84% of Wellness Optimizers', bold: true }, { text: ') are explicitly willing to pay a ' }, { text: 'premium for superior benefits and higher-quality ingredients', bold: true }, { text: '.' }] },
+          { parts: [{ text: 'High-Value Segments:', bold: true }, { text: ' The research identifies ', bold: false }, { text: 'Wellness Optimizers (13%)', bold: true }, { text: ' and ', bold: false }, { text: 'Impact Seekers (19%)', bold: true }, { text: ' as the "power users" of the category, with the ', bold: false }, { text: 'highest average monthly spend', bold: true }, { text: ' on supplements (', bold: false }, { text: '$81.60 and $65.30', bold: true }, { text: ', respectively).', bold: false }] },
+          { parts: [{ text: 'Willingness to Pay:', bold: true }, { text: ' A significant majority of the most active segments (', bold: false }, { text: '84% of Wellness Optimizers', bold: true }, { text: ') are explicitly willing to pay a ', bold: false }, { text: 'premium for superior benefits and higher-quality ingredients', bold: true }, { text: '.', bold: false }] },
         ],
       },
       {
         heading: '2. The Right Customers: Targeting the "Impact-Obvious" Seekers',
         icon: 'Users',
         lines: [
-          { parts: [{ text: 'The data validates two primary personas that perfectly align with your product\'s core value proposition:' }] },
-          { parts: [{ text: 'Wellness Optimizers:', bold: true }, { text: ' The most profitable segment. They are ' }, { text: 'science-driven (64% rely on evidence)', bold: true }, { text: ', frequently ' }, { text: 'experiment with new products (65%)', bold: true }, { text: ', and have the ' }, { text: 'highest budget for premium wellness solutions', bold: true }, { text: '.' }] },
-          { parts: [{ text: 'Impact Seekers:', bold: true }, { text: ' This group chooses products specifically to address ' }, { text: 'immediate needs and goals (54%)', bold: true }, { text: '. They are the most likely to convert if the product delivers a ' }, { text: 'tangible, fast-acting sensation', bold: true }, { text: ' of energy or focus.' }] },
+          { parts: [{ text: 'Wellness Optimizers:', bold: true }, { text: ' The most profitable segment. They are ', bold: false }, { text: 'science-driven (64% rely on evidence)', bold: true }, { text: ', frequently ', bold: false }, { text: 'experiment with new products (65%)', bold: true }, { text: ', and have the ', bold: false }, { text: 'highest budget for premium wellness solutions', bold: true }, { text: '.', bold: false }] },
+          { parts: [{ text: 'Impact Seekers:', bold: true }, { text: ' This group chooses products specifically to address ', bold: false }, { text: 'immediate needs and goals (54%)', bold: true }, { text: '. They are the most likely to convert if the product delivers a ', bold: false }, { text: 'tangible, fast-acting sensation', bold: true }, { text: ' of energy or focus.', bold: false }] },
         ],
       },
       {
         heading: '3. Strategic Validation: The "Sensory Trust" Mandate',
         icon: 'ShieldCheck',
         lines: [
-          { parts: [{ text: 'The Trust Gap:', bold: true }, { text: ' Across the most valuable segments (Optimizers, Seekers, and Experimenters), approximately ' }, { text: '70% of consumers', bold: true }, { text: ' state they must ' }, { text: 'feel or see the impact', bold: true }, { text: ' of a product to trust that it is working.' }] },
-          { parts: [{ text: 'Science as a Standard:', bold: true }, { text: ' For the core target, "' }, { text: 'science-backed claims', bold: true }, { text: '" are a non-negotiable requirement (' }, { text: '67%', bold: true }, { text: '), validating your "Lead with Science" launch pillar.' }] },
-          { parts: [{ text: 'Experimentation as an Entry Point:', bold: true }, { text: ' Since these consumers are "' }, { text: 'Conflicted Experimenters (11%)', bold: true }, { text: '" or "Wellness Optimizers," they are actively searching for better solutions, making them highly susceptible to a ' }, { text: 'disruptive, superior format', bold: true }, { text: '.' }] },
+          { parts: [{ text: 'The Trust Gap:', bold: true }, { text: ' Across the most valuable segments (Optimizers, Seekers, and Experimenters), approximately ', bold: false }, { text: '70% of consumers', bold: true }, { text: ' state they must ', bold: false }, { text: 'feel or see the impact', bold: true }, { text: ' of a product to trust that it is working.', bold: false }] },
+          { parts: [{ text: 'Science as a Standard:', bold: true }, { text: ' For the core target, "', bold: false }, { text: 'science-backed claims', bold: true }, { text: '" are a non-negotiable requirement (', bold: false }, { text: '67%', bold: true }, { text: '), validating our "Lead with Science" launch pillar.', bold: false }] },
         ],
       },
       {
         heading: '4. Key Recommendations',
         icon: 'Lightbulb',
         lines: [
-          { parts: [{ text: 'Win with "Wellness Optimizers" First:', bold: true }, { text: ' This segment has the ' }, { text: 'highest spend', bold: true }, { text: ' and the ' }, { text: 'lowest barrier', bold: true }, { text: ' to trying new, premium formats. Position Ate Days as the "' }, { text: 'ultimate upgrade', bold: true }, { text: '" for their current routine.' }] },
-          { parts: [{ text: 'Bridge the "Feel-It-Work" Gap:', bold: true }, { text: ' Use marketing and sensory cues to address the ' }, { text: '70% of users', bold: true }, { text: ' who require ' }, { text: 'immediate physical validation', bold: true }, { text: '. If the product is fast-acting, lead with that specific biological "check-in."' }] },
-          { parts: [{ text: 'Multi-Category Positioning:', bold: true }, { text: ' Don\'t limit the brand to the "supplement" aisle. Position the format as a "' }, { text: 'functional performance tool', bold: true }, { text: '" that competes for the budget currently spent on ' }, { text: 'functional beverages and high-end foods', bold: true }, { text: '.' }] },
-          { parts: [{ text: 'Scientific Rigor as a Conversion Tool:', bold: true }, { text: ' Since the target segments are the most likely to ' }, { text: 'research ingredients', bold: true }, { text: ', provide ' }, { text: 'deep-dive technical content', bold: true }, { text: ' on the delivery system to convert the "' }, { text: 'Skeptical Optimizer', bold: true }, { text: '."' }] },
+          { parts: [{ text: 'Win with "Wellness Optimizers" First:', bold: true }, { text: ' This segment has the ', bold: false }, { text: 'highest spend', bold: true }, { text: ' and the ', bold: false }, { text: 'lowest barrier', bold: true }, { text: ' to trying new, premium formats. Position Ate Days as the "', bold: false }, { text: 'ultimate upgrade', bold: true }, { text: '" for their current routine.', bold: false }] },
+          { parts: [{ text: 'Bridge the "Feel-It-Work" Gap:', bold: true }, { text: ' Use marketing and sensory cues to address the ', bold: false }, { text: '70% of users', bold: true }, { text: ' who require ', bold: false }, { text: 'immediate physical validation', bold: true }, { text: '. If the product is fast-acting, lead with that specific biological "check-in."', bold: false }] },
         ],
       },
     ],
   },
   {
     id: 11,
+    title: 'What the research agrees on',
+    headerIcon: 'FileText',
+    subtitle: 'Across NBJ, NCN, and our exploratory work, three themes point to the same opportunity—and the same playbook for Ate Days.',
+  },
+  {
+    id: 12,
     title: 'Summing Up the Research',
     layout: 'takeaways',
     headerIcon: 'FileText',
@@ -482,19 +454,20 @@ export const boardDeckSlides = [
         content: '**Wellness Optimizers** are the highest spenders in the category. They prioritize **science-backed claims** and **fast-acting utility** over price.',
       },
     ],
-    verdict: 'Our fast-acting, impact-obvious format solves the #1 consumer pain point (lack of tangible results) and aligns with the highest-growth investment trends in Health & Nutrition.',
-    thesis: 'The Era of "Impact-Obvious" Wellness: The **$69.2B+** market is shifting from vitamins to **Specialty ($15.4B)** and **Herbs/Botanicals ($13.2B)**. **70%** of consumers must "feel or see" impact to trust a product—the primary driver of pill fatigue. **Wellness Optimizers** and **Impact Seekers** (~32% of the market) spend **$65–$81/mo**, are science-led, and seek premium, fast-acting formats. **64%** won\'t cut supplement spend in a downturn but will flight to quality; investors reward ingredient tech and delivery innovation.',
+    verdict: 'Ate Days\' fast-acting, impact-obvious format solves the #1 consumer pain point (lack of tangible results) and aligns with the highest-growth investment trends in Health & Nutrition.',
+    thesis: 'The **$69.2B+** market is shifting to **Specialty ($15.4B)** and **Herbs/Botanicals ($13.2B)**. **70%** of consumers must "feel or see" impact—the driver of pill fatigue. **Wellness Optimizers** and **Impact Seekers** (~32%) spend **$65–$81/mo**, are science-led, and want premium, fast-acting formats. **64%** won\'t cut spend in a downturn but will trade up; investors reward ingredient tech and delivery innovation.',
   },
   {
-    id: 12,
+    id: 13,
     title: 'Strategic Validation & Channel Execution',
     layout: 'strategy',
     headerIcon: 'Target',
+    subtitle: 'Here\'s how we turn that into execution.',
     strategyPillarsTitle: 'The 3 Pillars of Market Disruption',
     strategyPillars: [
       { title: 'Format Innovation', content: 'Move from "Pill Fatigue" to "Impact-Obvious" fast-acting delivery. (**70%** of users demand to feel the impact).' },
       { title: 'Category Growth', content: 'Target the **$15.4B** Specialty Supplement market, specifically the **6.9%** growth in high-performance botanicals.' },
-      { title: 'Digital-First Dominance', content: 'E-commerce is the projected category share leader.' },
+      { title: 'Digital-First Dominance', content: 'E-commerce is the projected category share leader—our primary channel.' },
     ],
     strategyD2c: {
       title: 'The "Shopify/D2C" Moat (Channel Strategy)',
@@ -506,14 +479,14 @@ export const boardDeckSlides = [
       ],
     },
     strategyVerdictLabel: 'The Founder Verdict',
-    verdict: 'By leveraging a high-performance Shopify D2C infrastructure, Ate Days Wellness will own the customer data and brand narrative required to win the **$73.6B** supplement market in 2026.',
+    verdict: 'Ate Days will use a high-performance Shopify D2C infrastructure to own customer data and brand narrative and win the **$73.6B** supplement market in 2026.',
   },
   {
-    id: 13,
+    id: 14,
     title: 'E-Commerce: The Growth & Launch Channel',
     layout: 'ecommerce',
     headerIcon: 'Target',
-    subtitle: 'E-commerce is the projected category share leader and a proven channel for scaling supplement brands.',
+    subtitle: 'E-commerce is the projected category share leader and our primary launch and scale channel.',
     ecommerceGrowth: {
       title: 'E-commerce channel growth by category',
       source: 'Nutrition Business Journal',
@@ -548,11 +521,11 @@ export const boardDeckSlides = [
     },
   },
   {
-    id: 14,
+    id: 15,
     title: 'Top 50 Supplement Brands: Giants & Emerging Players',
     layout: 'topBrands',
     headerIcon: 'Target',
-    subtitle: 'The top of the list is still dominated by global CPG leaders—but D2C and specialty brands are gaining share.',
+    subtitle: 'The top is still dominated by global CPG—but D2C and specialty brands are gaining share. There\'s room for the next Ate Days.',
     topBrandsEstablished: {
       label: 'Established leaders at the top',
       description: 'Household names and global conglomerates continue to lead dietary supplement sales.',
@@ -618,11 +591,17 @@ export const boardDeckSlides = [
     topBrandsSource: 'Source: Nutrition Business Journal',
   },
   {
-    id: 15,
+    id: 16,
+    title: "The consumer landscape we'll refine next",
+    headerIcon: 'Users',
+    subtitle: 'Categories, jobs, and behaviors that set the stage for defining our target segments.',
+  },
+  {
+    id: 17,
     title: 'General Health is the largest segment',
     titleHighlight: 'General Health',
     headerIcon: 'Layers',
-    subtitle: 'Consumers use supplements across these categories, by market share:',
+    subtitle: 'The consumer landscape we\'ll use to define our target segments. Consumers use supplements across these categories, by market share:',
     bullets: [
       { text: 'Fitness and Energy', icon: 'Zap' },
       { text: 'Healthy Aging', icon: 'Sparkles' },
@@ -636,7 +615,7 @@ export const boardDeckSlides = [
     ],
   },
   {
-    id: 16,
+    id: 18,
     title: "The 'jobs' consumers want supplements to perform",
     headerIcon: 'ListChecks',
     bullets: [
@@ -648,7 +627,7 @@ export const boardDeckSlides = [
     ],
   },
   {
-    id: 17,
+    id: 19,
     title: 'Sub-categories and emerging focus',
     headerIcon: 'Layers',
     bullets: [
@@ -658,7 +637,7 @@ export const boardDeckSlides = [
     subtitle: 'A growing younger consumer base is driving focus on mood/mental health, energy, and sleep.',
   },
   {
-    id: 18,
+    id: 20,
     title: 'Awareness & discovery',
     headerIcon: 'Search',
     quote: 'When I want to perform at my best, I need solutions that help me maximize my effectiveness so I can achieve my goals.',
@@ -669,7 +648,7 @@ export const boardDeckSlides = [
     ],
   },
   {
-    id: 19,
+    id: 21,
     title: 'Consumer expectations',
     headerIcon: 'ShieldCheck',
     quote: 'I look for:',
@@ -681,7 +660,7 @@ export const boardDeckSlides = [
     subtitle: 'Growing these trust anchors propels breakout and condenses the customer journey.',
   },
   {
-    id: 20,
+    id: 22,
     title: 'Segmentation & personas',
     headerIcon: 'Users',
     bullets: [
@@ -693,13 +672,13 @@ export const boardDeckSlides = [
     ],
   },
   {
-    id: 21,
+    id: 23,
     title: 'Here are our people',
     headerIcon: 'PersonStanding',
     hidden: true,
   },
   {
-    id: 22,
+    id: 24,
     title: '',
     hidden: true,
     personas: [
@@ -717,7 +696,7 @@ export const boardDeckSlides = [
     ],
   },
   {
-    id: 23,
+    id: 25,
     title: '',
     hidden: true,
     personas: [
@@ -735,9 +714,10 @@ export const boardDeckSlides = [
     ],
   },
   {
-    id: 24,
+    id: 26,
     title: "What's next?",
     headerIcon: 'Goal',
-    hidden: true,
+    subtitle: 'Use this research to define our target consumer segments. Ate Days: impact-obvious format, science-backed, D2C-first—built for the $73.6B supplement market. Next: sharpen who we\'re building for.',
+    bullets: ['Next phase: segment definition.'],
   },
 ]
