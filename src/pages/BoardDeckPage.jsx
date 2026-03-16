@@ -162,6 +162,13 @@ function BoardDeckContent() {
 
   return (
     <div className="fixed inset-0 pt-10 sm:pt-14 pb-20 flex flex-col bg-slate-950 overflow-hidden">
+      <div className="fixed top-4 right-4 sm:top-5 sm:right-6 z-20 pointer-events-none" aria-hidden>
+        <img
+          src="/ate-days-logo.jpg"
+          alt="Ate Days"
+          className="h-8 sm:h-9 md:h-10 w-auto object-contain opacity-95"
+        />
+      </div>
       <BackgroundDecor />
 
       <motion.div
