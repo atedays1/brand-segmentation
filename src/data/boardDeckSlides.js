@@ -649,7 +649,7 @@ export const boardDeckSlides = [
   },
   {
     id: 21,
-    title: 'Consumer expectations',
+    title: 'Setting Consumer Expectations',
     headerIcon: 'ShieldCheck',
     quote: 'I look for:',
     bullets: [
