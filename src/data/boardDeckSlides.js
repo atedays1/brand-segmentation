@@ -638,7 +638,7 @@ export const boardDeckSlides = [
   },
   {
     id: 20,
-    title: 'Awareness & discovery',
+    title: "Here's Our Consumer",
     headerIcon: 'Search',
     quote: 'When I want to perform at my best, I need solutions that help me maximize my effectiveness so I can achieve my goals.',
     bullets: [
