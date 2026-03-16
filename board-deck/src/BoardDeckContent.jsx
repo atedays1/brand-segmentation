@@ -166,7 +166,7 @@ export function BoardDeckContent() {
         <img
           src="./ate-days-logo.jpg"
           alt="Ate Days"
-          className="h-8 sm:h-9 md:h-10 w-auto object-contain opacity-95"
+          className="h-24 sm:h-28 md:h-30 w-auto object-contain opacity-95"
         />
       </div>
       <BackgroundDecor />
