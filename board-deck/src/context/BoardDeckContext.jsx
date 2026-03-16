@@ -68,6 +68,13 @@ export function BoardDeckProvider({ children }) {
     setCurrentSlideIndex((i) => Math.max(0, i - 1))
   }, [])
 
+  /** Jump directly to slide by index (0-based). Resets report step. */
+  const goToSlide = useCallback((index) => {
+    const i = Math.max(0, Math.min(TOTAL_SLIDES - 1, index))
+    setCurrentSlideIndex(i)
+    setReportStep(0)
+  }, [TOTAL_SLIDES])
+
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'ArrowRight') {
@@ -100,6 +107,7 @@ export function BoardDeckProvider({ children }) {
     goPrev,
     goNextSlide,
     goPrevSlide,
+    goToSlide,
     canGoNext: currentSlideIndex < TOTAL_SLIDES - 1 || (isOnReportSlide && reportStep < reportMaxStep),
     canGoPrev: currentSlideIndex > 0 || (isOnReportSlide && reportStep > 0),
     canGoNextSlide: currentSlideIndex < TOTAL_SLIDES - 1,

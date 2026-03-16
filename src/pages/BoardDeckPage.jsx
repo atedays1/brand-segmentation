@@ -109,7 +109,17 @@ const EMPTY_SLIDE_ICONS = {
 const SWIPE_THRESHOLD_PX = 50
 
 function BoardDeckContent() {
-  const { currentSlideIndex, reportStep, visibleSlides, goNextSlide, goPrevSlide, goNext, goPrev, canGoNextSlide, canGoPrevSlide, totalSlides } = useBoardDeck()
+  const { currentSlideIndex, reportStep, visibleSlides, goNextSlide, goPrevSlide, goNext, goPrev, canGoNextSlide, canGoPrevSlide, totalSlides, goToSlide } = useBoardDeck()
+  const [jumpOpen, setJumpOpen] = useState(false)
+  const jumpRef = useRef(null)
+  useEffect(() => {
+    if (!jumpOpen) return
+    const close = (e) => {
+      if (jumpRef.current && !jumpRef.current.contains(e.target)) setJumpOpen(false)
+    }
+    document.addEventListener('click', close)
+    return () => document.removeEventListener('click', close)
+  }, [jumpOpen])
   const slide = visibleSlides[currentSlideIndex]
   const parallaxRef = useRef(null)
   const reportSectionRef = useRef(null)
@@ -969,10 +979,43 @@ function BoardDeckContent() {
           <ChevronRight size={20} strokeWidth={2} />
         </button>
       </div>
-      <p className="absolute bottom-2 left-1/2 -translate-x-1/2 text-slate-500 text-xs pointer-events-none">
-        {currentSlideIndex + 1} / {totalSlides}
-        {slide?.layout === 'report' ? ' · ← → or swipe advances line by line' : ' · ← → or swipe'}
-      </p>
+      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex flex-col items-center gap-0.5 pointer-events-none">
+        <div className="pointer-events-auto flex items-center gap-2" ref={jumpRef}>
+          <span className="text-slate-500 text-xs">
+            {currentSlideIndex + 1} / {totalSlides}
+            {slide?.layout === 'report' ? ' · ← → or swipe advances line by line' : ' · ← → or swipe'}
+          </span>
+          <button
+            type="button"
+            onClick={() => setJumpOpen((o) => !o)}
+            className="text-xs text-emerald-400 hover:text-emerald-300 underline focus:outline-none focus:ring-2 focus:ring-emerald-500/50 rounded px-1"
+            aria-expanded={jumpOpen}
+            aria-haspopup="listbox"
+            aria-label="Jump to slide"
+          >
+            Jump to slide
+          </button>
+          {jumpOpen && (
+            <ul
+              role="listbox"
+              aria-label="Select slide"
+              className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 w-56 max-h-[min(70vh,320px)] overflow-y-auto rounded-lg border border-slate-600/60 bg-slate-800/95 backdrop-blur-xl shadow-xl py-1 z-50 list-none"
+            >
+              {visibleSlides.map((s, i) => (
+                <li key={s.id || i} role="option" aria-selected={currentSlideIndex === i}>
+                  <button
+                    type="button"
+                    onClick={() => { goToSlide(i); setJumpOpen(false) }}
+                    className={`w-full text-left px-3 py-2 text-sm truncate block ${currentSlideIndex === i ? 'bg-emerald-500/20 text-emerald-300 font-medium' : 'text-slate-300 hover:bg-slate-700/80 hover:text-white'}`}
+                  >
+                    Slide {i + 1}{s.title ? ` · ${s.title}` : ''}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </div>
     </div>
   )
 }
