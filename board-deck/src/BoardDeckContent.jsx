@@ -525,7 +525,7 @@ export function BoardDeckContent() {
             })()}
             {slide.layout === 'takeaways' && slide.pillars && slide.pillars.length > 0 && (
               <div className="mt-6 space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className={`grid grid-cols-1 gap-4 ${slide.pillars.length === 2 ? 'md:grid-cols-2' : 'md:grid-cols-3'}`}>
                   {slide.pillars.map((pillar, idx) => {
                     const IconComponent = pillar.icon ? TAKEAWAY_ICONS[pillar.icon] : null
                     const isGauge = pillar.icon === 'Gauge'

@@ -324,6 +324,7 @@ export const boardDeckSlides = [
     id: 9,
     title: '2025 NBJ Supplement Market Update and Economic Outlook',
     layout: 'report',
+    hidden: true,
     headerIcon: 'FileText',
     intro: 'The 2025 NBJ Supplement Market Update and Economic Outlook demonstrates that even in a shifting economic landscape, high-efficacy products are protected by "sticky" consumer habits and a flight toward value-driven results.',
     introParts: [
@@ -445,13 +446,6 @@ export const boardDeckSlides = [
         stat: '70%',
         statLabel: 'Demand Tangible Results',
         content: '**70%** of high-value users demand to "feel" the product work. Legacy pills are failing on sensory reinforcement, leading to massive **"pill fatigue."**',
-      },
-      {
-        header: 'The $80/mo "Optimizer"',
-        icon: 'Users',
-        stat: '$81.60',
-        statLabel: 'Avg. Monthly Spend',
-        content: '**Wellness Optimizers** are the highest spenders in the category. They prioritize **science-backed claims** and **fast-acting utility** over price.',
       },
     ],
     verdict: 'Ate Days\' fast-acting, impact-obvious format solves the #1 consumer pain point (lack of tangible results) and aligns with the highest-growth investment trends in Health & Nutrition.',
