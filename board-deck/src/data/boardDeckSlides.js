@@ -519,7 +519,7 @@ export const boardDeckSlides = [
     title: 'Top 50 Supplement Brands: Giants & Emerging Players',
     layout: 'topBrands',
     headerIcon: 'Target',
-    subtitle: 'The top is still dominated by global CPG—but D2C and specialty brands are gaining share. There\'s room for the next Ate Days.',
+    subtitle: 'The top is still dominated by global CPG — but D2C and specialty brands are gaining share, and the ones that are innovating and offer a better experience are going to win. This is where we play.',
     topBrandsEstablished: {
       label: 'Established leaders at the top',
       description: 'Household names and global conglomerates continue to lead dietary supplement sales.',
