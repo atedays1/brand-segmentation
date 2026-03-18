@@ -10,21 +10,21 @@ export const boardDeckSlides = [
     subtitle: 'Elevate understanding of market, consumer, where to play and how to win. This deck walks that path: the market, the evidence, our strategy, and who we\'re building for.',
   },
   {
-    id: 2,
+    id: 101,
     title: 'Format',
     headerIcon: 'Layout',
     subtitle: 'Examining the cultural elevation of health & wellness via use & interest.',
     hidden: true,
   },
   {
-    id: 3,
+    id: 2,
     title: 'Health & Wellness is a $69B market',
     highlight: '+5.2% growth in 2024',
     highlightIcon: 'BarChart3',
     subtitle: 'A large, growing category. The next slides show what the research says about where to play and how to win.',
   },
   {
-    id: 4,
+    id: 3,
     title: 'NBJ Condition Specific Report (2025)',
     layout: 'report',
     headerIcon: 'FileText',
@@ -97,7 +97,7 @@ export const boardDeckSlides = [
     ],
   },
   {
-    id: 5,
+    id: 4,
     title: '2025 NBJ Herbs and Botanicals Report',
     layout: 'report',
     headerIcon: 'FileText',
@@ -173,7 +173,7 @@ export const boardDeckSlides = [
     ],
   },
   {
-    id: 6,
+    id: 5,
     title: 'NCN 2024 Year-End Investment Trends Report',
     layout: 'report',
     headerIcon: 'FileText',
@@ -223,7 +223,7 @@ export const boardDeckSlides = [
     ],
   },
   {
-    id: 7,
+    id: 6,
     title: 'Market and Consumer Exploratory Final Report',
     layout: 'report',
     headerIcon: 'FileText',
@@ -271,7 +271,7 @@ export const boardDeckSlides = [
     ],
   },
   {
-    id: 8,
+    id: 7,
     title: '2025 NBJ Supplement Business Report',
     layout: 'report',
     headerIcon: 'FileText',
@@ -321,7 +321,7 @@ export const boardDeckSlides = [
     ],
   },
   {
-    id: 9,
+    id: 8,
     title: '2025 NBJ Supplement Market Update and Economic Outlook',
     layout: 'report',
     headerIcon: 'FileText',
@@ -373,7 +373,7 @@ export const boardDeckSlides = [
     ],
   },
   {
-    id: 10,
+    id: 102,
     title: 'Functional Nutrition Consumer Segmentation Opportunity Assessment',
     layout: 'report',
     hidden: true,
@@ -422,13 +422,13 @@ export const boardDeckSlides = [
     ],
   },
   {
-    id: 11,
+    id: 9,
     title: 'What the research agrees on',
     headerIcon: 'FileText',
     subtitle: 'Across NBJ, NCN, and our exploratory work, three themes point to the same opportunity—and the same playbook for Ate Days.',
   },
   {
-    id: 12,
+    id: 10,
     title: 'Summing Up the Research',
     layout: 'takeaways',
     headerIcon: 'FileText',
@@ -452,7 +452,7 @@ export const boardDeckSlides = [
     thesis: 'The **$69.2B+** market is shifting to **Specialty ($15.4B)** and **Herbs/Botanicals ($13.2B)**. **70%** of consumers must "feel or see" impact—the driver of pill fatigue. **Wellness Optimizers** and **Impact Seekers** (~32%) spend **$65–$81/mo**, are science-led, and want premium, fast-acting formats. **64%** won\'t cut spend in a downturn but will trade up; investors reward ingredient tech and delivery innovation.',
   },
   {
-    id: 13,
+    id: 11,
     title: 'Strategic Validation & Channel Execution',
     layout: 'strategy',
     headerIcon: 'Target',
@@ -476,11 +476,7 @@ export const boardDeckSlides = [
     verdict: 'Ate Days will use a high-performance Shopify D2C infrastructure to own customer data and brand narrative and win the **$73.6B** supplement market in 2026.',
   },
   {
-    id: 14,
-    title: "That's the research. Here's our plan of action.",
-  },
-  {
-    id: 15,
+    id: 12,
     title: 'E-Commerce: The Growth & Launch Channel',
     layout: 'ecommerce',
     headerIcon: 'Target',
@@ -519,7 +515,7 @@ export const boardDeckSlides = [
     },
   },
   {
-    id: 16,
+    id: 13,
     title: 'Top 50 Supplement Brands: Giants & Emerging Players',
     layout: 'topBrands',
     headerIcon: 'Target',
@@ -589,13 +585,17 @@ export const boardDeckSlides = [
     topBrandsSource: 'Source: Nutrition Business Journal',
   },
   {
-    id: 17,
+    id: 14,
+    title: "That's the research. Here's our plan of action.",
+  },
+  {
+    id: 15,
     title: "The consumer landscape we'll refine next",
     headerIcon: 'Users',
     subtitle: 'Categories, jobs, and behaviors that set the stage for defining our target segments.',
   },
   {
-    id: 18,
+    id: 16,
     title: 'General Health is the largest segment',
     titleHighlight: 'General Health',
     headerIcon: 'Layers',
@@ -613,7 +613,7 @@ export const boardDeckSlides = [
     ],
   },
   {
-    id: 19,
+    id: 17,
     title: "The 'jobs' consumers want supplements to perform",
     headerIcon: 'ListChecks',
     bullets: [
@@ -625,7 +625,7 @@ export const boardDeckSlides = [
     ],
   },
   {
-    id: 20,
+    id: 18,
     title: 'Sub-categories and emerging focus',
     headerIcon: 'Layers',
     bullets: [
@@ -635,7 +635,7 @@ export const boardDeckSlides = [
     subtitle: 'A growing younger consumer base is driving focus on mood/mental health, energy, and sleep.',
   },
   {
-    id: 21,
+    id: 19,
     title: "Here's Our Consumer",
     headerIcon: 'Search',
     quote: 'When I want to perform at my best, I need solutions that help me maximize my effectiveness so I can achieve my goals.',
@@ -646,7 +646,7 @@ export const boardDeckSlides = [
     ],
   },
   {
-    id: 22,
+    id: 20,
     title: 'Setting Consumer Expectations',
     headerIcon: 'ShieldCheck',
     quote: 'I look for:',
@@ -658,7 +658,7 @@ export const boardDeckSlides = [
     subtitle: 'Growing these trust anchors propels breakout and condenses the customer journey.',
   },
   {
-    id: 23,
+    id: 21,
     title: 'Segmentation & personas',
     headerIcon: 'Users',
     bullets: [
@@ -670,13 +670,13 @@ export const boardDeckSlides = [
     ],
   },
   {
-    id: 24,
+    id: 103,
     title: 'Here are our people',
     headerIcon: 'PersonStanding',
     hidden: true,
   },
   {
-    id: 25,
+    id: 104,
     title: '',
     hidden: true,
     personas: [
@@ -694,7 +694,7 @@ export const boardDeckSlides = [
     ],
   },
   {
-    id: 26,
+    id: 105,
     title: '',
     hidden: true,
     personas: [
@@ -712,7 +712,7 @@ export const boardDeckSlides = [
     ],
   },
   {
-    id: 27,
+    id: 22,
     title: "What's next?",
     headerIcon: 'Goal',
     subtitle: 'Use this research to define our target consumer segments. Ate Days: impact-obvious format, science-backed, D2C-first—built for the $73.6B supplement market. Next: sharpen who we\'re building for.',

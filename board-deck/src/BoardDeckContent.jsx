@@ -164,7 +164,7 @@ export function BoardDeckContent() {
     <div className="fixed inset-0 pt-2 sm:pt-6 pb-20 flex flex-col bg-slate-950 overflow-hidden">
       <div className="fixed top-4 right-4 sm:top-5 sm:right-6 z-20 pointer-events-none" aria-hidden>
         <img
-          src="./ate-days-logo.jpg"
+          src="./ate-days-logo-transparent.png"
           alt="Ate Days"
           className="h-24 sm:h-28 md:h-30 w-auto object-contain opacity-95"
         />
