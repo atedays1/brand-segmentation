@@ -297,25 +297,80 @@ export function BoardDeckContent() {
               return (
                 <div className="mt-4 flex-1 min-h-0 flex flex-col">
                   <div className="overflow-y-auto pr-2 -mr-2 space-y-4 pb-4 max-h-[55vh] md:max-h-[60vh] scroll-smooth">
-                    {visibleItems.map((item, itemIdx) => {
-                      const isNew = itemIdx === reportStep
-                      if (item.type === 'intro') {
-                        return (
-                          <motion.p
-                            key="intro"
-                            ref={itemIdx === visibleItems.length - 1 ? reportSectionRef : undefined}
-                            className="text-lg md:text-xl text-slate-300 max-w-3xl leading-relaxed"
-                            initial={isNew ? { opacity: 0, x: -16 } : false}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.32, ease: [0.25, 0.46, 0.45, 0.94] }}
-                          >
-                            {slide.introParts
-                              ? slide.introParts.map((p, i) => (p.bold ? <span key={i} className="font-semibold text-white">{p.text}</span> : <span key={i}>{p.text}</span>))
-                              : slide.intro}
-                          </motion.p>
-                        )
-                      }
-                      if (item.type === 'marketChartsPair') {
+                    {(() => {
+                      const reportNodes = []
+                      for (let itemIdx = 0; itemIdx < visibleItems.length; itemIdx++) {
+                        const item = visibleItems[itemIdx]
+                        const isNew = itemIdx === reportStep
+                        const isLastItem = itemIdx === visibleItems.length - 1
+                        const itemRef = isLastItem ? reportSectionRef : undefined
+
+                        if (item.type === 'heading' && item.section.heading.includes('Key Recommendations')) {
+                          const sectionIdx = item.sectionIdx
+                          const lineItems = []
+                          let j = itemIdx + 1
+                          while (j < visibleItems.length && visibleItems[j].type === 'line' && visibleItems[j].sectionIdx === sectionIdx) {
+                            lineItems.push(visibleItems[j])
+                            j++
+                          }
+                          const blockLastIdx = j - 1
+                          const blockIsLastVisible = blockLastIdx === visibleItems.length - 1
+                          const SectionIcon = item.section.icon ? SECTION_ICONS[item.section.icon] : null
+                          reportNodes.push(
+                            <motion.div
+                              key={`key-rec-${sectionIdx}`}
+                              ref={blockIsLastVisible ? reportSectionRef : undefined}
+                              initial={isNew ? { opacity: 0, x: -16 } : false}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ duration: 0.32, ease: [0.25, 0.46, 0.45, 0.94] }}
+                              className="rounded-xl border-2 border-emerald-500/60 bg-emerald-500/10 p-4 space-y-2"
+                            >
+                              <div className="flex items-center gap-2 mb-2">
+                                {SectionIcon && (
+                                  <span style={{ color: EMERALD_ACCENT }}>
+                                    <SectionIcon size={22} strokeWidth={2} className="flex-shrink-0" />
+                                  </span>
+                                )}
+                                <h3 className="text-base md:text-lg font-bold text-white">{item.section.heading}</h3>
+                              </div>
+                              {lineItems.map((lineItem) => {
+                                const content = lineItem.line.parts
+                                  ? lineItem.line.parts.map((p, i) => (p.bold ? <span key={i} className="font-semibold text-white">{p.text}</span> : <span key={i}>{p.text}</span>))
+                                  : typeof lineItem.line === 'string' ? lineItem.line : null
+                                return (
+                                  <p
+                                    key={`${lineItem.sectionIdx}-${lineItem.lineIdx}`}
+                                    className="text-slate-300 text-base md:text-lg leading-relaxed pl-8 flex gap-2"
+                                  >
+                                    <span style={{ color: EMERALD_ACCENT }} className="flex-shrink-0">●</span>
+                                    <span className="inline">{content}</span>
+                                  </p>
+                                )
+                              })}
+                            </motion.div>
+                          )
+                          itemIdx = j - 1
+                          continue
+                        }
+
+                        if (item.type === 'intro') {
+                          reportNodes.push(
+                            <motion.p
+                              key="intro"
+                              ref={itemRef}
+                              className="text-lg md:text-xl text-slate-300 max-w-3xl leading-relaxed"
+                              initial={isNew ? { opacity: 0, x: -16 } : false}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ duration: 0.32, ease: [0.25, 0.46, 0.45, 0.94] }}
+                            >
+                              {slide.introParts
+                                ? slide.introParts.map((p, i) => (p.bold ? <span key={i} className="font-semibold text-white">{p.text}</span> : <span key={i}>{p.text}</span>))
+                                : slide.intro}
+                            </motion.p>
+                          )
+                          continue
+                        }
+                        if (item.type === 'marketChartsPair') {
                         const renderPieCard = (chart, isCat) => {
                           let cum = 0
                           const sub = isCat ? 'supplement industry market share by product category' : 'supplement market share by channel'
@@ -351,10 +406,10 @@ export function BoardDeckContent() {
                           )
                         }
                         const showSecondChart = reportStep >= 2
-                        return (
+                        reportNodes.push(
                           <div
                             key="marketChartsRow"
-                            ref={itemIdx === visibleItems.length - 1 ? reportSectionRef : undefined}
+                            ref={itemRef}
                             className="grid grid-cols-1 lg:grid-cols-2 gap-4 max-w-4xl items-stretch"
                           >
                             <div key="marketChartCategorySlot" className="min-h-0 flex">
@@ -373,9 +428,8 @@ export function BoardDeckContent() {
                               ) : null}
                             </div>
                           </div>
-                        )
-                      }
-                      if (item.type === 'marketChart') {
+                        ); continue }
+                        if (item.type === 'marketChart') {
                         const c = item.chart
                         const isCategory = c === slide.marketShareChart
                         const renderPieCard = (chart, isCat) => {
@@ -414,10 +468,10 @@ export function BoardDeckContent() {
                         }
                         const subtitle = isCategory ? 'supplement industry market share by product category' : 'supplement market share by channel'
                         const chartKey = c.cardTitle ? 'deliveryFormat' : (isCategory ? 'marketChartCategory' : 'marketChartChannel')
-                        return (
+                        reportNodes.push(
                           <motion.div
                             key={chartKey}
-                            ref={itemIdx === visibleItems.length - 1 ? reportSectionRef : undefined}
+                            ref={itemRef}
                             initial={isNew ? { opacity: 0, y: 12 } : false}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
@@ -451,14 +505,13 @@ export function BoardDeckContent() {
                             </div>
                             <p className="text-xs text-slate-500 mt-4">Source: {c.source}</p>
                           </motion.div>
-                        )
-                      }
-                      if (item.type === 'pillFatigue') {
+                        ); continue }
+                        if (item.type === 'pillFatigue') {
                         const { card } = item
-                        return (
+                        reportNodes.push(
                           <motion.div
                             key="pillFatigue"
-                            ref={itemIdx === visibleItems.length - 1 ? reportSectionRef : undefined}
+                            ref={itemRef}
                             initial={isNew ? { opacity: 0, y: 12 } : false}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
@@ -480,14 +533,13 @@ export function BoardDeckContent() {
                             <p className="text-sm text-slate-300 border-t border-white/10 pt-4 font-medium">{card.takeaway}</p>
                             <p className="text-xs text-slate-500 mt-3">Source: {card.source}</p>
                           </motion.div>
-                        )
-                      }
-                      if (item.type === 'heading') {
+                        ); continue }
+                        if (item.type === 'heading') {
                         const SectionIcon = item.section.icon ? SECTION_ICONS[item.section.icon] : null
-                        return (
+                        reportNodes.push(
                           <motion.div
                             key={`h-${item.sectionIdx}`}
-                            ref={itemIdx === visibleItems.length - 1 ? reportSectionRef : undefined}
+                            ref={itemRef}
                             className="flex items-center gap-2 mb-2"
                             initial={isNew ? { opacity: 0, x: -16 } : false}
                             animate={{ opacity: 1, x: 0 }}
@@ -500,25 +552,26 @@ export function BoardDeckContent() {
                             )}
                             <h3 className="text-base md:text-lg font-bold text-white">{item.section.heading}</h3>
                           </motion.div>
+                        ); continue }
+                          const content = item.line.parts
+                          ? item.line.parts.map((p, i) => (p.bold ? <span key={i} className="font-semibold text-white">{p.text}</span> : <span key={i}>{p.text}</span>))
+                          : typeof item.line === 'string' ? item.line : null
+                        reportNodes.push(
+                          <motion.p
+                            key={`${item.sectionIdx}-${item.lineIdx}`}
+                            ref={itemRef}
+                            className="text-slate-300 text-base md:text-lg leading-relaxed pl-8 flex gap-2"
+                            initial={isNew ? { opacity: 0, x: -16 } : false}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.32, ease: [0.25, 0.46, 0.45, 0.94] }}
+                          >
+                            <span style={{ color: EMERALD_ACCENT }} className="flex-shrink-0">●</span>
+                            <span className="inline">{content}</span>
+                          </motion.p>
                         )
                       }
-                      const content = item.line.parts
-                        ? item.line.parts.map((p, i) => (p.bold ? <span key={i} className="font-semibold text-white">{p.text}</span> : <span key={i}>{p.text}</span>))
-                        : typeof item.line === 'string' ? item.line : null
-                      return (
-                        <motion.p
-                          key={`${item.sectionIdx}-${item.lineIdx}`}
-                          ref={itemIdx === visibleItems.length - 1 ? reportSectionRef : undefined}
-                          className="text-slate-300 text-base md:text-lg leading-relaxed pl-8 flex gap-2"
-                          initial={isNew ? { opacity: 0, x: -16 } : false}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.32, ease: [0.25, 0.46, 0.45, 0.94] }}
-                        >
-                          <span style={{ color: EMERALD_ACCENT }} className="flex-shrink-0">●</span>
-                          <span className="inline">{content}</span>
-                        </motion.p>
-                      )
-                    })}
+                      return reportNodes
+                    })()}
                   </div>
                 </div>
               )

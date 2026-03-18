@@ -1,5 +1,5 @@
 /**
- * Board Deck: 26 slides — simple, compelling copy for arrow-key presentation.
+ * Board Deck: 27 slides — simple, compelling copy for arrow-key presentation.
  */
 
 export const boardDeckSlides = [
@@ -477,6 +477,10 @@ export const boardDeckSlides = [
   },
   {
     id: 14,
+    title: "That's the research. Here's our plan of action.",
+  },
+  {
+    id: 15,
     title: 'E-Commerce: The Growth & Launch Channel',
     layout: 'ecommerce',
     headerIcon: 'Target',
@@ -515,7 +519,7 @@ export const boardDeckSlides = [
     },
   },
   {
-    id: 15,
+    id: 16,
     title: 'Top 50 Supplement Brands: Giants & Emerging Players',
     layout: 'topBrands',
     headerIcon: 'Target',
@@ -585,13 +589,13 @@ export const boardDeckSlides = [
     topBrandsSource: 'Source: Nutrition Business Journal',
   },
   {
-    id: 16,
+    id: 17,
     title: "The consumer landscape we'll refine next",
     headerIcon: 'Users',
     subtitle: 'Categories, jobs, and behaviors that set the stage for defining our target segments.',
   },
   {
-    id: 17,
+    id: 18,
     title: 'General Health is the largest segment',
     titleHighlight: 'General Health',
     headerIcon: 'Layers',
@@ -609,7 +613,7 @@ export const boardDeckSlides = [
     ],
   },
   {
-    id: 18,
+    id: 19,
     title: "The 'jobs' consumers want supplements to perform",
     headerIcon: 'ListChecks',
     bullets: [
@@ -621,7 +625,7 @@ export const boardDeckSlides = [
     ],
   },
   {
-    id: 19,
+    id: 20,
     title: 'Sub-categories and emerging focus',
     headerIcon: 'Layers',
     bullets: [
@@ -631,7 +635,7 @@ export const boardDeckSlides = [
     subtitle: 'A growing younger consumer base is driving focus on mood/mental health, energy, and sleep.',
   },
   {
-    id: 20,
+    id: 21,
     title: "Here's Our Consumer",
     headerIcon: 'Search',
     quote: 'When I want to perform at my best, I need solutions that help me maximize my effectiveness so I can achieve my goals.',
@@ -642,7 +646,7 @@ export const boardDeckSlides = [
     ],
   },
   {
-    id: 21,
+    id: 22,
     title: 'Setting Consumer Expectations',
     headerIcon: 'ShieldCheck',
     quote: 'I look for:',
@@ -654,7 +658,7 @@ export const boardDeckSlides = [
     subtitle: 'Growing these trust anchors propels breakout and condenses the customer journey.',
   },
   {
-    id: 22,
+    id: 23,
     title: 'Segmentation & personas',
     headerIcon: 'Users',
     bullets: [
@@ -666,13 +670,13 @@ export const boardDeckSlides = [
     ],
   },
   {
-    id: 23,
+    id: 24,
     title: 'Here are our people',
     headerIcon: 'PersonStanding',
     hidden: true,
   },
   {
-    id: 24,
+    id: 25,
     title: '',
     hidden: true,
     personas: [
@@ -690,7 +694,7 @@ export const boardDeckSlides = [
     ],
   },
   {
-    id: 25,
+    id: 26,
     title: '',
     hidden: true,
     personas: [
@@ -708,7 +712,7 @@ export const boardDeckSlides = [
     ],
   },
   {
-    id: 26,
+    id: 27,
     title: "What's next?",
     headerIcon: 'Goal',
     subtitle: 'Use this research to define our target consumer segments. Ate Days: impact-obvious format, science-backed, D2C-first—built for the $73.6B supplement market. Next: sharpen who we\'re building for.',
