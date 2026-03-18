@@ -324,7 +324,6 @@ export const boardDeckSlides = [
     id: 9,
     title: '2025 NBJ Supplement Market Update and Economic Outlook',
     layout: 'report',
-    hidden: true,
     headerIcon: 'FileText',
     intro: 'The 2025 NBJ Supplement Market Update and Economic Outlook demonstrates that even in a shifting economic landscape, high-efficacy products are protected by "sticky" consumer habits and a flight toward value-driven results.',
     introParts: [
@@ -377,6 +376,7 @@ export const boardDeckSlides = [
     id: 10,
     title: 'Functional Nutrition Consumer Segmentation Opportunity Assessment',
     layout: 'report',
+    hidden: true,
     headerIcon: 'FileText',
     intro: 'The Functional Nutrition Consumer Segmentation Assessment gives us the exact segments we need: high-value users who align with Ate Days\' positioning.',
     introParts: [
