@@ -32,6 +32,8 @@ import {
   ChevronRight,
   ChevronDown,
   ChevronUp,
+  Maximize2,
+  Minimize2,
   Gauge,
   Store,
 } from 'lucide-react'
@@ -111,7 +113,9 @@ const SWIPE_THRESHOLD_PX = 50
 export function BoardDeckContent() {
   const { currentSlideIndex, reportStep, visibleSlides, goNextSlide, goPrevSlide, goNext, goPrev, canGoNextSlide, canGoPrevSlide, totalSlides, goToSlide } = useBoardDeck()
   const [jumpOpen, setJumpOpen] = useState(false)
+  const [isFullscreen, setIsFullscreen] = useState(false)
   const jumpRef = useRef(null)
+  const fullscreenRef = useRef(null)
   useEffect(() => {
     if (!jumpOpen) return
     const close = (e) => {
@@ -150,6 +154,40 @@ export function BoardDeckContent() {
   }, [])
 
   useEffect(() => {
+    const onFullscreenChange = () => {
+      const fsElement = document.fullscreenElement
+      setIsFullscreen(Boolean(fsElement && fullscreenRef.current && fullscreenRef.current.contains(fsElement)))
+      if (!fsElement) setJumpOpen(false)
+    }
+    document.addEventListener('fullscreenchange', onFullscreenChange)
+    return () => document.removeEventListener('fullscreenchange', onFullscreenChange)
+  }, [])
+
+  const toggleFullscreen = async () => {
+    try {
+      if (!document.fullscreenElement) {
+        await fullscreenRef.current?.requestFullscreen?.()
+      } else {
+        await document.exitFullscreen?.()
+      }
+    } catch {
+      // Ignore fullscreen errors (browser policy/user gesture limits).
+    }
+  }
+
+  useEffect(() => {
+    const onKeyDown = (e) => {
+      if (e.key.toLowerCase() !== 'f') return
+      const tag = e.target?.tagName?.toLowerCase()
+      if (tag === 'input' || tag === 'textarea' || e.target?.isContentEditable) return
+      e.preventDefault()
+      toggleFullscreen()
+    }
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [])
+
+  useEffect(() => {
     if (slide?.layout === 'report' && reportSectionRef.current) {
       const t = setTimeout(() => {
         reportSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -161,14 +199,38 @@ export function BoardDeckContent() {
   if (!slide) return null
 
   return (
-    <div className="fixed inset-0 pt-2 sm:pt-6 pb-20 flex flex-col bg-slate-950 overflow-hidden">
-      <div className="fixed top-4 right-4 sm:top-5 sm:right-6 z-20 pointer-events-none" aria-hidden>
+    <div ref={fullscreenRef} className={`fixed inset-0 ${isFullscreen ? 'pt-0 pb-0' : 'pt-2 sm:pt-6 pb-20'} flex flex-col bg-slate-950 overflow-hidden`}>
+      {!isFullscreen && (
+        <button
+          type="button"
+          onClick={toggleFullscreen}
+          className="fixed top-4 left-4 sm:top-5 sm:left-6 z-30 pointer-events-auto p-2 rounded-full bg-slate-800/80 hover:bg-slate-700/90 text-white transition-colors border border-slate-600/50"
+          aria-label="Enter fullscreen presentation"
+          title="Enter fullscreen (F)"
+        >
+          <Maximize2 size={18} strokeWidth={2} />
+        </button>
+      )}
+      {isFullscreen && (
+        <button
+          type="button"
+          onClick={toggleFullscreen}
+          className="fixed top-4 left-4 sm:top-5 sm:left-6 z-30 pointer-events-auto p-2 rounded-full bg-slate-800/80 hover:bg-slate-700/90 text-white transition-colors border border-slate-600/50"
+          aria-label="Exit fullscreen presentation"
+          title="Exit fullscreen (Esc)"
+        >
+          <Minimize2 size={18} strokeWidth={2} />
+        </button>
+      )}
+      {!isFullscreen && (
+        <div className="fixed top-4 right-4 sm:top-5 sm:right-6 z-20 pointer-events-none" aria-hidden>
         <img
           src="./ate-days-logo-transparent.png"
           alt="Ate Days"
           className="h-24 sm:h-28 md:h-30 w-auto object-contain opacity-95"
         />
       </div>
+      )}
       <BackgroundDecor />
 
       <motion.div
@@ -1019,6 +1081,7 @@ export function BoardDeckContent() {
         </AnimatePresence>
       </div>
 
+      {!isFullscreen && (
       <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between pointer-events-none">
         <button
           type="button"
@@ -1039,6 +1102,8 @@ export function BoardDeckContent() {
           <ChevronRight size={20} strokeWidth={2} />
         </button>
       </div>
+      )}
+      {!isFullscreen && (
       <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex flex-col items-center gap-0.5 pointer-events-none">
         <div className="pointer-events-auto flex items-center gap-2" ref={jumpRef}>
           <span className="text-slate-500 text-xs">
@@ -1076,6 +1141,7 @@ export function BoardDeckContent() {
           )}
         </div>
       </div>
+      )}
     </div>
   )
 }
