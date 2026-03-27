@@ -11,6 +11,35 @@
     background: #020617 !important;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
+    overflow: visible !important;
+    height: auto !important;
+  }
+
+  #root {
+    overflow: visible !important;
+    height: auto !important;
+    min-height: 0 !important;
+  }
+
+  /*
+   * The live deck uses position:fixed + overflow:hidden so only one viewport is visible.
+   * That clips the whole print stack to a single page unless we reset it for print.
+   */
+  .deck-app-root {
+    position: static !important;
+    inset: auto !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    background: #020617 !important;
   }
 
   /* Hide normal on-screen deck; only the print stack is visible */
@@ -23,6 +52,7 @@
     position: static !important;
     width: 100% !important;
     height: auto !important;
+    min-height: 0 !important;
     overflow: visible !important;
     background: #020617 !important;
   }

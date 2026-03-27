@@ -1054,7 +1054,10 @@ export function BoardDeckContent() {
   if (!slide) return null
 
   return (
-    <div ref={fullscreenRef} className={`fixed inset-0 ${isFullscreen ? 'pt-0 pb-0' : 'pt-2 sm:pt-6 pb-20'} flex flex-col bg-slate-950 overflow-hidden`}>
+    <div
+      ref={fullscreenRef}
+      className={`deck-app-root fixed inset-0 ${isFullscreen ? 'pt-0 pb-0' : 'pt-2 sm:pt-6 pb-20'} flex flex-col bg-slate-950 overflow-hidden`}
+    >
       <div className="deck-screen-root flex flex-col flex-1 min-h-0 overflow-hidden relative">
       {!isFullscreen && (
         <button
