@@ -1,8 +1,12 @@
-/* Full-deck PDF export: one screen slide per printed page */
+/*
+ * Full-deck PDF export: one logical slide per printed page (long slides may span pages).
+ * Letter landscape gives deck-like width with enough height to reduce orphan lines.
+ * No forced min-height on slides (avoids half-blank pages and bad internal breaks).
+ */
 
 @page {
-  size: letter portrait;
-  margin: 0.35in;
+  size: letter landscape;
+  margin: 0.45in 0.52in;
 }
 
 @media print {
@@ -61,10 +65,61 @@
     break-after: page;
     page-break-after: always;
     box-sizing: border-box;
-    min-height: 10.5in;
-    padding: 0.4in 0.55in 0.5in;
+    /* Natural height only — min-height in inches caused huge blank bands and bad breaks */
+    min-height: 0 !important;
+    width: 100% !important;
+    max-width: 56rem !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: stretch !important;
     background: #020617;
     color: #e2e8f0;
+  }
+
+  /* Title + subtitle + quote: keep together when possible; always top-aligned */
+  .deck-print-slide-header {
+    flex-shrink: 0;
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin-bottom: 0.35rem;
+  }
+
+  .deck-print-slide-header h1 {
+    break-after: avoid !important;
+    page-break-after: avoid !important;
+    margin-bottom: 0.35rem !important;
+  }
+
+  .deck-print-slide-header p,
+  .deck-print-slide-header blockquote {
+    orphans: 3;
+    widows: 3;
+  }
+
+  .deck-print-page p,
+  .deck-print-page li {
+    orphans: 3;
+    widows: 3;
+  }
+
+  .deck-print-page h2,
+  .deck-print-page h3 {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  /* Top 50 table: repeat header; discourage row splits */
+  .deck-print-page thead {
+    display: table-header-group;
+  }
+
+  .deck-print-page tbody tr {
+    break-inside: avoid;
+    page-break-inside: avoid;
   }
 
   /*

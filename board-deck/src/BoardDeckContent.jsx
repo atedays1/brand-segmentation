@@ -126,6 +126,7 @@ function BoardDeckSlideMain({
 
   return (
     <>
+            <div className={isPrint ? 'deck-print-slide-header' : 'contents'}>
             {(slide.title || slide.headerIcon) ? (
               <motion.h1
                 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight mb-4 flex items-center gap-3"
@@ -186,6 +187,7 @@ function BoardDeckSlideMain({
                 {slide.quote}
               </blockquote>
             )}
+            </div>
             {slide.layout === 'report' && (slide.intro || slide.introParts) && slide.sections && slide.sections.length > 0 && (() => {
               const chartItems = []
               if (slide.marketShareChart && slide.marketShareChartByChannel) {
@@ -1192,7 +1194,7 @@ export function BoardDeckContent() {
             onClick={exportToPdf}
             className="text-xs text-emerald-400 hover:text-emerald-300 underline focus:outline-none focus:ring-2 focus:ring-emerald-500/50 rounded px-1 inline-flex items-center gap-1"
             aria-label="Export deck to PDF"
-            title="Opens the print dialog — choose Save as PDF (use background graphics for dark slides)"
+            title="Opens print — Save as PDF, enable background graphics. Pages use landscape letter; title stays at top of each slide."
           >
             <FileDown size={12} strokeWidth={2} className="flex-shrink-0 opacity-90" aria-hidden />
             Export PDF
@@ -1226,7 +1228,7 @@ export function BoardDeckContent() {
           {visibleSlides.map((s) => (
             <div
               key={s.id}
-              className={`deck-print-page outline-none max-w-5xl mx-auto w-full text-left flex flex-col min-h-0 ${s.layout === 'report' ? 'pt-0' : s.layout === 'topBrands' ? 'justify-start pt-4' : ['takeaways', 'strategy', 'ecommerce'].includes(s.layout) ? 'justify-start pt-8' : 'justify-center'}`}
+              className="deck-print-page outline-none w-full max-w-none text-left flex flex-col min-h-0 justify-start items-stretch"
             >
               <BoardDeckSlideMain
                 slide={s}
