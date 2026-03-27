@@ -1,0 +1,61 @@
+/* Full-deck PDF export: one screen slide per printed page */
+
+@page {
+  size: letter portrait;
+  margin: 0.35in;
+}
+
+@media print {
+  html,
+  body {
+    background: #020617 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Hide normal on-screen deck; only the print stack is visible */
+  .deck-screen-root {
+    display: none !important;
+  }
+
+  .deck-print-root {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+    background: #020617 !important;
+  }
+
+  .deck-print-page {
+    break-after: page;
+    page-break-after: always;
+    box-sizing: border-box;
+    min-height: 10.5in;
+    padding: 0.4in 0.55in 0.5in;
+    background: #020617;
+    color: #e2e8f0;
+  }
+
+  .deck-print-page:last-child {
+    break-after: auto;
+    page-break-after: auto;
+  }
+
+  /* Report / long slides: allow inner scroll areas to expand for print */
+  .deck-print-page .report-print-expand {
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .deck-print-page .topbrands-print-expand {
+    max-height: none !important;
+    overflow: visible !important;
+  }
+}
+
+@media screen {
+  .deck-print-root {
+    display: none;
+  }
+}

@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useCallback, useEffect, useMemo } from 'react'
 import { boardDeckSlides } from '../data/boardDeckSlides'
 
-function getReportMaxStep(slide) {
+export function getReportMaxStep(slide) {
   if (!slide || slide.layout !== 'report' || !slide.sections) return 0
   let chartCount = 0
   if (slide.marketShareChart && slide.marketShareChartByChannel) chartCount = 1

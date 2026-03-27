@@ -36,8 +36,9 @@ import {
   Minimize2,
   Gauge,
   Store,
+  FileDown,
 } from 'lucide-react'
-import { useBoardDeck } from './context/BoardDeckContext'
+import { useBoardDeck, getReportMaxStep } from './context/BoardDeckContext'
 import { BackgroundDecor } from './components/BackgroundDecor'
 
 const EMERALD_ACCENT = '#10b981'
@@ -110,159 +111,21 @@ const EMPTY_SLIDE_ICONS = {
 
 const SWIPE_THRESHOLD_PX = 50
 
-export function BoardDeckContent() {
-  const { currentSlideIndex, reportStep, visibleSlides, goNextSlide, goPrevSlide, goNext, goPrev, canGoNextSlide, canGoPrevSlide, totalSlides, goToSlide } = useBoardDeck()
-  const [jumpOpen, setJumpOpen] = useState(false)
-  const [isFullscreen, setIsFullscreen] = useState(false)
-  const jumpRef = useRef(null)
-  const fullscreenRef = useRef(null)
-  useEffect(() => {
-    if (!jumpOpen) return
-    const close = (e) => {
-      if (jumpRef.current && !jumpRef.current.contains(e.target)) setJumpOpen(false)
-    }
-    document.addEventListener('click', close)
-    return () => document.removeEventListener('click', close)
-  }, [jumpOpen])
-  const slide = visibleSlides[currentSlideIndex]
-  const parallaxRef = useRef(null)
-  const reportSectionRef = useRef(null)
-  const touchStartRef = useRef(null)
-  const [top50Expanded, setTop50Expanded] = useState(false)
 
-  const handleTouchStart = (e) => {
-    if (e.touches.length !== 1) return
-    touchStartRef.current = { x: e.touches[0].clientX, y: e.touches[0].clientY }
-  }
-  const handleTouchEnd = (e) => {
-    if (!touchStartRef.current || e.changedTouches.length !== 1) return
-    const { x: startX, y: startY } = touchStartRef.current
-    const endX = e.changedTouches[0].clientX
-    const endY = e.changedTouches[0].clientY
-    const deltaX = endX - startX
-    const deltaY = endY - startY
-    touchStartRef.current = null
-    if (Math.abs(deltaX) < SWIPE_THRESHOLD_PX) return
-    if (Math.abs(deltaX) <= Math.abs(deltaY)) return
-    if (deltaX < 0) goNext()
-    else goPrev()
-  }
-
-  useEffect(() => {
-    document.body.style.overflow = 'hidden'
-    return () => { document.body.style.overflow = '' }
-  }, [])
-
-  useEffect(() => {
-    const onFullscreenChange = () => {
-      const fsElement = document.fullscreenElement
-      setIsFullscreen(Boolean(fsElement && fullscreenRef.current && fullscreenRef.current.contains(fsElement)))
-      if (!fsElement) setJumpOpen(false)
-    }
-    document.addEventListener('fullscreenchange', onFullscreenChange)
-    return () => document.removeEventListener('fullscreenchange', onFullscreenChange)
-  }, [])
-
-  const toggleFullscreen = async () => {
-    try {
-      if (!document.fullscreenElement) {
-        await fullscreenRef.current?.requestFullscreen?.()
-      } else {
-        await document.exitFullscreen?.()
-      }
-    } catch {
-      // Ignore fullscreen errors (browser policy/user gesture limits).
-    }
-  }
-
-  useEffect(() => {
-    const onKeyDown = (e) => {
-      if (e.key.toLowerCase() !== 'f') return
-      const tag = e.target?.tagName?.toLowerCase()
-      if (tag === 'input' || tag === 'textarea' || e.target?.isContentEditable) return
-      e.preventDefault()
-      toggleFullscreen()
-    }
-    window.addEventListener('keydown', onKeyDown)
-    return () => window.removeEventListener('keydown', onKeyDown)
-  }, [])
-
-  useEffect(() => {
-    if (slide?.layout === 'report' && reportSectionRef.current) {
-      const t = setTimeout(() => {
-        reportSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      }, 120)
-      return () => clearTimeout(t)
-    }
-  }, [currentSlideIndex, reportStep, slide?.layout])
-
-  if (!slide) return null
+function BoardDeckSlideMain({
+  slide,
+  variant,
+  reportStep,
+  reportSectionRef,
+  top50Expanded,
+  setTop50Expanded,
+}) {
+  const isPrint = variant === 'print'
+  const reportMaxFull = slide.layout === 'report' ? getReportMaxStep(slide) : 0
+  const stepForReport = isPrint ? reportMaxFull : reportStep
 
   return (
-    <div ref={fullscreenRef} className={`fixed inset-0 ${isFullscreen ? 'pt-0 pb-0' : 'pt-2 sm:pt-6 pb-20'} flex flex-col bg-slate-950 overflow-hidden`}>
-      {!isFullscreen && (
-        <button
-          type="button"
-          onClick={toggleFullscreen}
-          className="fixed top-4 left-4 sm:top-5 sm:left-6 z-30 pointer-events-auto p-2 rounded-full bg-slate-800/80 hover:bg-slate-700/90 text-white transition-colors border border-slate-600/50"
-          aria-label="Enter fullscreen presentation"
-          title="Enter fullscreen (F)"
-        >
-          <Maximize2 size={18} strokeWidth={2} />
-        </button>
-      )}
-      {isFullscreen && (
-        <button
-          type="button"
-          onClick={toggleFullscreen}
-          className="fixed top-4 left-4 sm:top-5 sm:left-6 z-30 pointer-events-auto p-2 rounded-full bg-slate-800/80 hover:bg-slate-700/90 text-white transition-colors border border-slate-600/50"
-          aria-label="Exit fullscreen presentation"
-          title="Exit fullscreen (Esc)"
-        >
-          <Minimize2 size={18} strokeWidth={2} />
-        </button>
-      )}
-      {!isFullscreen && (
-        <div className="fixed top-4 right-4 sm:top-5 sm:right-6 z-20 pointer-events-none" aria-hidden>
-        <img
-          src="./ate-days-logo-transparent.png"
-          alt="Ate Days"
-          className="h-24 sm:h-28 md:h-30 w-auto object-contain opacity-95"
-        />
-      </div>
-      )}
-      <BackgroundDecor />
-
-      <motion.div
-        ref={parallaxRef}
-        className="pointer-events-none absolute inset-0 overflow-hidden"
-        initial={false}
-        animate={{
-          x: currentSlideIndex * 12,
-          opacity: 0.25 + (currentSlideIndex % 3) * 0.03,
-        }}
-        transition={{ type: 'spring', stiffness: 80, damping: 20 }}
-      >
-        <div
-          className="absolute -top-1/2 -right-1/4 w-[80vw] h-[80vw] rounded-full bg-slate-600/10 blur-3xl"
-          aria-hidden
-        />
-      </motion.div>
-
-      <div
-        className="relative flex-1 flex flex-col w-full px-6 md:px-12 lg:px-16 backdrop-blur-3xl min-h-0 justify-start items-center pt-0 sm:pt-6 md:pt-12 lg:pt-16 overflow-y-auto"
-        onTouchStart={handleTouchStart}
-        onTouchEnd={handleTouchEnd}
-      >
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentSlideIndex}
-            initial={{ opacity: 0, x: 32 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -32 }}
-            transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className={`outline-none max-w-5xl w-full text-left flex-1 flex flex-col min-h-0 ${slide.layout === 'report' ? 'pt-0' : slide.layout === 'topBrands' ? 'justify-start pt-6 md:pt-10' : ['takeaways', 'strategy', 'ecommerce'].includes(slide.layout) ? 'justify-start pt-12 sm:pt-16 md:pt-20 lg:pt-24' : 'justify-center'}`}
-          >
+    <>
             {(slide.title || slide.headerIcon) ? (
               <motion.h1
                 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight mb-4 flex items-center gap-3"
@@ -341,7 +204,7 @@ export function BoardDeckContent() {
                   ...(section.lines || []).map((line, lineIdx) => ({ type: 'line', sectionIdx, lineIdx, line })),
                 ]),
               ]
-              const visibleItems = items.slice(0, reportStep + 1)
+              const visibleItems = items.slice(0, stepForReport + 1)
               const CHART_COLORS = ['#38bdf8', '#10b981', '#f59e0b', '#f97316', '#a855f7', '#ec4899', '#06b6d4', '#84cc16', '#eab308', '#6366f1']
               const getArcPath = (startPct, endPct, cx, cy, r) => {
                 const startAngle = (startPct / 100) * 360 - 90
@@ -358,12 +221,12 @@ export function BoardDeckContent() {
               }
               return (
                 <div className="mt-4 flex-1 min-h-0 flex flex-col">
-                  <div className="overflow-y-auto pr-2 -mr-2 space-y-4 pb-4 max-h-[55vh] md:max-h-[60vh] scroll-smooth">
+                  <div className={`overflow-y-auto pr-2 -mr-2 space-y-4 pb-4 max-h-[55vh] md:max-h-[60vh] scroll-smooth ${isPrint ? "report-print-expand" : ""}`}>
                     {(() => {
                       const reportNodes = []
                       for (let itemIdx = 0; itemIdx < visibleItems.length; itemIdx++) {
                         const item = visibleItems[itemIdx]
-                        const isNew = itemIdx === reportStep
+                        const isNew = !isPrint && itemIdx === reportStep
                         const isLastItem = itemIdx === visibleItems.length - 1
                         const itemRef = isLastItem ? reportSectionRef : undefined
 
@@ -467,7 +330,7 @@ export function BoardDeckContent() {
                             </div>
                           )
                         }
-                        const showSecondChart = reportStep >= 2
+                        const showSecondChart = isPrint || reportStep >= 2
                         reportNodes.push(
                           <div
                             key="marketChartsRow"
@@ -822,7 +685,7 @@ export function BoardDeckContent() {
             })()}
             {slide.layout === 'topBrands' && (slide.topBrandsEstablished || slide.topBrandsEmerging || (slide.top50List && slide.top50List.length > 0)) && (
               <div className="mt-6 flex flex-col min-h-0 flex-1">
-                <div className="overflow-y-auto overflow-x-hidden pr-2 scroll-smooth flex-1 min-h-0" style={{ maxHeight: 'calc(100vh - 14rem)' }}>
+                <div className={`overflow-y-auto overflow-x-hidden pr-2 scroll-smooth flex-1 min-h-0 ${isPrint ? "topbrands-print-expand" : ""}`} style={isPrint ? undefined : { maxHeight: 'calc(100vh - 14rem)' }}>
                   <div className="space-y-6 pb-4">
                     {/* Two summary cards */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl">
@@ -870,7 +733,7 @@ export function BoardDeckContent() {
                     {/* Truncated full top 50 table below */}
                     {slide.top50List && slide.top50List.length > 0 && (() => {
                       const INITIAL_ROWS = 15
-                      const visible = top50Expanded ? slide.top50List : slide.top50List.slice(0, INITIAL_ROWS)
+                      const visible = (isPrint || top50Expanded) ? slide.top50List : slide.top50List.slice(0, INITIAL_ROWS)
                       const hasMore = slide.top50List.length > INITIAL_ROWS
                       const formatSales = (n) => n >= 1000 ? `${(n / 1000).toFixed(1)}B` : String(n)
                       return (
@@ -907,7 +770,7 @@ export function BoardDeckContent() {
                                 </tbody>
                               </table>
                             </div>
-                            {hasMore && (
+                            {!isPrint && hasMore && (
                               <button
                                 type="button"
                                 onClick={() => setTop50Expanded((e) => !e)}
@@ -1077,6 +940,193 @@ export function BoardDeckContent() {
                 </div>
               )
             })()}
+    </>
+  )
+}
+
+export function BoardDeckContent() {
+  const { currentSlideIndex, reportStep, visibleSlides, goNextSlide, goPrevSlide, goNext, goPrev, canGoNextSlide, canGoPrevSlide, totalSlides, goToSlide } = useBoardDeck()
+  const [jumpOpen, setJumpOpen] = useState(false)
+  const [isFullscreen, setIsFullscreen] = useState(false)
+  const jumpRef = useRef(null)
+  const fullscreenRef = useRef(null)
+  useEffect(() => {
+    if (!jumpOpen) return
+    const close = (e) => {
+      if (jumpRef.current && !jumpRef.current.contains(e.target)) setJumpOpen(false)
+    }
+    document.addEventListener('click', close)
+    return () => document.removeEventListener('click', close)
+  }, [jumpOpen])
+  const slide = visibleSlides[currentSlideIndex]
+  const parallaxRef = useRef(null)
+  const reportSectionRef = useRef(null)
+  const touchStartRef = useRef(null)
+  const [top50Expanded, setTop50Expanded] = useState(false)
+  const [isPrintExport, setIsPrintExport] = useState(false)
+
+  useEffect(() => {
+    const onAfterPrint = () => setIsPrintExport(false)
+    window.addEventListener('afterprint', onAfterPrint)
+    return () => window.removeEventListener('afterprint', onAfterPrint)
+  }, [])
+
+  const exportToPdf = async () => {
+    try {
+      if (document.fullscreenElement) await document.exitFullscreen()
+    } catch {
+      // ignore
+    }
+    setIsPrintExport(true)
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        window.print()
+      })
+    })
+  }
+
+  const handleTouchStart = (e) => {
+    if (e.touches.length !== 1) return
+    touchStartRef.current = { x: e.touches[0].clientX, y: e.touches[0].clientY }
+  }
+  const handleTouchEnd = (e) => {
+    if (!touchStartRef.current || e.changedTouches.length !== 1) return
+    const { x: startX, y: startY } = touchStartRef.current
+    const endX = e.changedTouches[0].clientX
+    const endY = e.changedTouches[0].clientY
+    const deltaX = endX - startX
+    const deltaY = endY - startY
+    touchStartRef.current = null
+    if (Math.abs(deltaX) < SWIPE_THRESHOLD_PX) return
+    if (Math.abs(deltaX) <= Math.abs(deltaY)) return
+    if (deltaX < 0) goNext()
+    else goPrev()
+  }
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden'
+    return () => { document.body.style.overflow = '' }
+  }, [])
+
+  useEffect(() => {
+    const onFullscreenChange = () => {
+      const fsElement = document.fullscreenElement
+      setIsFullscreen(Boolean(fsElement && fullscreenRef.current && fullscreenRef.current.contains(fsElement)))
+      if (!fsElement) setJumpOpen(false)
+    }
+    document.addEventListener('fullscreenchange', onFullscreenChange)
+    return () => document.removeEventListener('fullscreenchange', onFullscreenChange)
+  }, [])
+
+  const toggleFullscreen = async () => {
+    try {
+      if (!document.fullscreenElement) {
+        await fullscreenRef.current?.requestFullscreen?.()
+      } else {
+        await document.exitFullscreen?.()
+      }
+    } catch {
+      // Ignore fullscreen errors (browser policy/user gesture limits).
+    }
+  }
+
+  useEffect(() => {
+    const onKeyDown = (e) => {
+      if (e.key.toLowerCase() !== 'f') return
+      const tag = e.target?.tagName?.toLowerCase()
+      if (tag === 'input' || tag === 'textarea' || e.target?.isContentEditable) return
+      e.preventDefault()
+      toggleFullscreen()
+    }
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [])
+
+  useEffect(() => {
+    if (slide?.layout === 'report' && reportSectionRef.current) {
+      const t = setTimeout(() => {
+        reportSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }, 120)
+      return () => clearTimeout(t)
+    }
+  }, [currentSlideIndex, reportStep, slide?.layout])
+
+  if (!slide) return null
+
+  return (
+    <div ref={fullscreenRef} className={`fixed inset-0 ${isFullscreen ? 'pt-0 pb-0' : 'pt-2 sm:pt-6 pb-20'} flex flex-col bg-slate-950 overflow-hidden`}>
+      <div className="deck-screen-root flex flex-col flex-1 min-h-0 overflow-hidden relative">
+      {!isFullscreen && (
+        <button
+          type="button"
+          onClick={toggleFullscreen}
+          className="fixed top-4 left-4 sm:top-5 sm:left-6 z-30 pointer-events-auto p-2 rounded-full bg-slate-800/80 hover:bg-slate-700/90 text-white transition-colors border border-slate-600/50"
+          aria-label="Enter fullscreen presentation"
+          title="Enter fullscreen (F)"
+        >
+          <Maximize2 size={18} strokeWidth={2} />
+        </button>
+      )}
+      {isFullscreen && (
+        <button
+          type="button"
+          onClick={toggleFullscreen}
+          className="fixed top-4 left-4 sm:top-5 sm:left-6 z-30 pointer-events-auto p-2 rounded-full bg-slate-800/80 hover:bg-slate-700/90 text-white transition-colors border border-slate-600/50"
+          aria-label="Exit fullscreen presentation"
+          title="Exit fullscreen (Esc)"
+        >
+          <Minimize2 size={18} strokeWidth={2} />
+        </button>
+      )}
+      {!isFullscreen && (
+        <div className="fixed top-4 right-4 sm:top-5 sm:right-6 z-20 pointer-events-none" aria-hidden>
+        <img
+          src="./ate-days-logo-transparent.png"
+          alt="Ate Days"
+          className="h-24 sm:h-28 md:h-30 w-auto object-contain opacity-95"
+        />
+      </div>
+      )}
+      <BackgroundDecor />
+
+      <motion.div
+        ref={parallaxRef}
+        className="pointer-events-none absolute inset-0 overflow-hidden"
+        initial={false}
+        animate={{
+          x: currentSlideIndex * 12,
+          opacity: 0.25 + (currentSlideIndex % 3) * 0.03,
+        }}
+        transition={{ type: 'spring', stiffness: 80, damping: 20 }}
+      >
+        <div
+          className="absolute -top-1/2 -right-1/4 w-[80vw] h-[80vw] rounded-full bg-slate-600/10 blur-3xl"
+          aria-hidden
+        />
+      </motion.div>
+
+      <div
+        className="relative flex-1 flex flex-col w-full px-6 md:px-12 lg:px-16 backdrop-blur-3xl min-h-0 justify-start items-center pt-0 sm:pt-6 md:pt-12 lg:pt-16 overflow-y-auto"
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentSlideIndex}
+            initial={{ opacity: 0, x: 32 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -32 }}
+            transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className={`outline-none max-w-5xl w-full text-left flex-1 flex flex-col min-h-0 ${slide.layout === 'report' ? 'pt-0' : slide.layout === 'topBrands' ? 'justify-start pt-6 md:pt-10' : ['takeaways', 'strategy', 'ecommerce'].includes(slide.layout) ? 'justify-start pt-12 sm:pt-16 md:pt-20 lg:pt-24' : 'justify-center'}`}
+          >
+            <BoardDeckSlideMain
+              slide={slide}
+              variant="interactive"
+              reportStep={reportStep}
+              reportSectionRef={reportSectionRef}
+              top50Expanded={top50Expanded}
+              setTop50Expanded={setTop50Expanded}
+            />
           </motion.div>
         </AnimatePresence>
       </div>
@@ -1120,6 +1170,16 @@ export function BoardDeckContent() {
           >
             Jump to slide
           </button>
+          <button
+            type="button"
+            onClick={exportToPdf}
+            className="text-xs text-emerald-400 hover:text-emerald-300 underline focus:outline-none focus:ring-2 focus:ring-emerald-500/50 rounded px-1 inline-flex items-center gap-1"
+            aria-label="Export deck to PDF"
+            title="Opens the print dialog — choose Save as PDF (use background graphics for dark slides)"
+          >
+            <FileDown size={12} strokeWidth={2} className="flex-shrink-0 opacity-90" aria-hidden />
+            Export PDF
+          </button>
           {jumpOpen && (
             <ul
               role="listbox"
@@ -1141,6 +1201,27 @@ export function BoardDeckContent() {
           )}
         </div>
       </div>
+      )}
+      </div>
+
+      {isPrintExport && (
+        <div className="deck-print-root">
+          {visibleSlides.map((s) => (
+            <div
+              key={s.id}
+              className={`deck-print-page outline-none max-w-5xl mx-auto w-full text-left flex flex-col min-h-0 ${s.layout === 'report' ? 'pt-0' : s.layout === 'topBrands' ? 'justify-start pt-4' : ['takeaways', 'strategy', 'ecommerce'].includes(s.layout) ? 'justify-start pt-8' : 'justify-center'}`}
+            >
+              <BoardDeckSlideMain
+                slide={s}
+                variant="print"
+                reportStep={0}
+                reportSectionRef={reportSectionRef}
+                top50Expanded
+                setTop50Expanded={() => {}}
+              />
+            </div>
+          ))}
+        </div>
       )}
     </div>
   )
