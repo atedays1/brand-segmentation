@@ -99,6 +99,16 @@
     max-height: none !important;
     overflow: visible !important;
   }
+
+  /*
+   * Catch-all: any remaining scroll/max-height regions inside a printed slide
+   * (e.g. after class refactors) must not clip expandable/truncated content.
+   */
+  .deck-print-page .overflow-y-auto,
+  .deck-print-page .overflow-x-auto {
+    max-height: none !important;
+    overflow: visible !important;
+  }
 }
 
 @media screen {

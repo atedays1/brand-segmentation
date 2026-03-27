@@ -220,8 +220,14 @@ function BoardDeckSlideMain({
                 return `M ${cx} ${cy} L ${x1.toFixed(2)} ${y1.toFixed(2)} A ${r} ${r} 0 ${large} ${sweep} ${x2.toFixed(2)} ${y2.toFixed(2)} Z`
               }
               return (
-                <div className="mt-4 flex-1 min-h-0 flex flex-col">
-                  <div className={`overflow-y-auto pr-2 -mr-2 space-y-4 pb-4 max-h-[55vh] md:max-h-[60vh] scroll-smooth ${isPrint ? "report-print-expand" : ""}`}>
+                <div className={isPrint ? 'mt-4 flex flex-col' : 'mt-4 flex-1 min-h-0 flex flex-col'}>
+                  <div
+                    className={
+                      isPrint
+                        ? 'report-print-expand space-y-4 pb-4 pr-2 -mr-2'
+                        : 'overflow-y-auto pr-2 -mr-2 space-y-4 pb-4 max-h-[55vh] md:max-h-[60vh] scroll-smooth'
+                    }
+                  >
                     {(() => {
                       const reportNodes = []
                       for (let itemIdx = 0; itemIdx < visibleItems.length; itemIdx++) {
@@ -684,8 +690,15 @@ function BoardDeckSlideMain({
               )
             })()}
             {slide.layout === 'topBrands' && (slide.topBrandsEstablished || slide.topBrandsEmerging || (slide.top50List && slide.top50List.length > 0)) && (
-              <div className="mt-6 flex flex-col min-h-0 flex-1">
-                <div className={`overflow-y-auto overflow-x-hidden pr-2 scroll-smooth flex-1 min-h-0 ${isPrint ? "topbrands-print-expand" : ""}`} style={isPrint ? undefined : { maxHeight: 'calc(100vh - 14rem)' }}>
+              <div className={isPrint ? 'mt-6 flex flex-col' : 'mt-6 flex flex-col min-h-0 flex-1'}>
+                <div
+                  className={
+                    isPrint
+                      ? 'topbrands-print-expand pr-2 scroll-smooth'
+                      : 'overflow-y-auto overflow-x-hidden pr-2 scroll-smooth flex-1 min-h-0'
+                  }
+                  style={isPrint ? undefined : { maxHeight: 'calc(100vh - 14rem)' }}
+                >
                   <div className="space-y-6 pb-4">
                     {/* Two summary cards */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl">
@@ -733,7 +746,8 @@ function BoardDeckSlideMain({
                     {/* Truncated full top 50 table below */}
                     {slide.top50List && slide.top50List.length > 0 && (() => {
                       const INITIAL_ROWS = 15
-                      const visible = (isPrint || top50Expanded) ? slide.top50List : slide.top50List.slice(0, INITIAL_ROWS)
+                      /* Print/PDF: always include full list (same as expanded UI). */
+                      const visible = isPrint || top50Expanded ? slide.top50List : slide.top50List.slice(0, INITIAL_ROWS)
                       const hasMore = slide.top50List.length > INITIAL_ROWS
                       const formatSales = (n) => n >= 1000 ? `${(n / 1000).toFixed(1)}B` : String(n)
                       return (
@@ -1219,7 +1233,7 @@ export function BoardDeckContent() {
                 variant="print"
                 reportStep={0}
                 reportSectionRef={reportSectionRef}
-                top50Expanded
+                top50Expanded={true}
                 setTop50Expanded={() => {}}
               />
             </div>
