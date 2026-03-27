@@ -37,6 +37,23 @@
     color: #e2e8f0;
   }
 
+  /*
+   * Framer Motion keeps initial opacity/transform/filter on elements when the document
+   * is printed — animations never run, so headlines and accent text can disappear.
+   * !important overrides Motion's inline styles so print/PDF match the live deck.
+   */
+  .deck-print-page,
+  .deck-print-page * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .deck-print-page * {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
   .deck-print-page:last-child {
     break-after: auto;
     page-break-after: auto;
