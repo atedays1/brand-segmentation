@@ -63,6 +63,8 @@ Alternatively you can use `GEMINI_API_KEY` (Google AI Studio), but the free tier
 
 Scripts live in `scripts/`: `analyze-docs.mjs`, `extract-xlsx.mjs`, `extract-pptx.mjs`, `merge-analysis.mjs`.
 
+**Long PDFs (e.g. 52+ pages):** If you use Cursor (or another chat) with a "knowledge base" or @-attached PDF, the tool may only index or send the first ~20 pages to the model. This repo does not impose that limit. For a full-document summary or analysis, put the PDF (or PPTX/XLSX) in `docs/` and run `npm run analyze-docs`; the pipeline sends the full extracted content (and full PDF to Gemini when used) with no page cap.
+
 ## Companion visuals
 
 - **Charts (Recharts):** Segment pie (intro), top goals bar (Marketplace), purchase channels bar (Omni-Channel). Data from `src/data/chartData.js`.

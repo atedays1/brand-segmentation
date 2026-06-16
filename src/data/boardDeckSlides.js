@@ -712,6 +712,27 @@ export const boardDeckSlides = [
     ],
   },
   {
+    id: 23,
+    title: 'Website build & maintenance budget',
+    headerIcon: 'Wallet',
+    subtitle: 'One-page view: one-time build vs fixed monthly spend vs variable fees that scale with sales.',
+    layout: 'budget',
+  },
+  {
+    id: 24,
+    title: 'Combined brand & website costs',
+    headerIcon: 'Layers',
+    subtitle: 'Website build sheet + Brand Development Costs: overlaps, unique lines, and one master ledger.',
+    layout: 'unifiedCosts',
+  },
+  {
+    id: 25,
+    title: 'Brand pre & post launch (marketing)',
+    headerIcon: 'Megaphone',
+    subtitle: 'CapEx + monthly OpEx from Brand Pre and Post Launch Budget ESTIMATE — marketing scope.',
+    layout: 'brandLaunchBudget',
+  },
+  {
     id: 22,
     title: "What's next?",
     headerIcon: 'Goal',

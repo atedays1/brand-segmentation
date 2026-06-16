@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      padding: 12px;
+      min-width: 200px;
+    }
+    button {
+      width: 100%;
+      padding: 10px 16px;
+      font-size: 14px;
+      font-weight: 600;
+      background: #0d99ff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0b85e0;
+    }
+    button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+    #message {
+      margin-top: 8px;
+      font-size: 12px;
+      color: #666;
+      min-height: 1.2em;
+    }
+    #message.error { color: #e03; }
+    #message.success { color: #0a0; }
+  </style>
+</head>
+<body>
+  <button id="exportBtn">Export to Slide Deck</button>
+  <div id="message"></div>
+  <script>
+    const btn = document.getElementById('exportBtn');
+    const msg = document.getElementById('message');
+    function setMessage(text, type) {
+      msg.textContent = text;
+      msg.className = type || '';
+    }
+    btn.onclick = () => {
+      btn.disabled = true;
+      setMessage('Exporting...');
+      parent.postMessage({ pluginMessage: { type: 'export' } }, '*');
+    };
+    window.onmessage = (event) => {
+      const data = event.data.pluginMessage;
+      if (!data) return;
+      btn.disabled = false;
+      if (data.type === 'success') {
+        setMessage('Success! ' + (data.count != null ? data.count + ' items.' : ''), 'success');
+      } else if (data.type === 'error') {
+        setMessage('Error: ' + (data.message || 'Unknown'), 'error');
+      }
+    };
+  </script>
+</body>
+</html>

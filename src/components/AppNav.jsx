@@ -38,6 +38,36 @@ export function AppNav() {
         Board Deck
       </NavLink>
       <NavLink
+        to="/agency-needs"
+        className={({ isActive }) =>
+          `text-sm font-medium px-4 py-2 rounded-lg transition-colors ${
+            isActive ? 'bg-emerald-600 text-white' : 'text-slate-300 hover:text-white hover:bg-slate-700'
+          }`
+        }
+      >
+        Agency Brief
+      </NavLink>
+      <NavLink
+        to="/sleep-landscape"
+        className={({ isActive }) =>
+          `text-sm font-medium px-4 py-2 rounded-lg transition-colors ${
+            isActive ? 'bg-emerald-600 text-white' : 'text-slate-300 hover:text-white hover:bg-slate-700'
+          }`
+        }
+      >
+        Sleep Landscape
+      </NavLink>
+      <NavLink
+        to="/consumer-illumination"
+        className={({ isActive }) =>
+          `text-sm font-medium px-4 py-2 rounded-lg transition-colors ${
+            isActive ? 'bg-emerald-600 text-white' : 'text-slate-300 hover:text-white hover:bg-slate-700'
+          }`
+        }
+      >
+        Consumer Illumination
+      </NavLink>
+      <NavLink
         to="/gallery"
         className={({ isActive }) =>
           `text-sm font-medium px-4 py-2 rounded-lg transition-colors ${

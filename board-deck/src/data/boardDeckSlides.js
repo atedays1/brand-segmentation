@@ -1,5 +1,5 @@
 /**
- * Board Deck: 27 slides — simple, compelling copy for arrow-key presentation.
+ * Board Deck — simple, compelling copy for arrow-key presentation.
  */
 
 export const boardDeckSlides = [
@@ -710,6 +710,13 @@ export const boardDeckSlides = [
         winning: 'Waterless powder solves "pill fatigue" and fits a busy life. Sleep packet: fast-acting, no prep. Instant oral absorption delivers the rapid impact he demands.',
       },
     ],
+  },
+  {
+    id: 23,
+    title: 'Website build & maintenance budget',
+    headerIcon: 'Wallet',
+    subtitle: 'One-page view: one-time build vs fixed monthly spend vs variable fees that scale with sales.',
+    layout: 'budget',
   },
   {
     id: 22,

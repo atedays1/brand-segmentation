@@ -37,9 +37,11 @@ import {
   Gauge,
   Store,
   FileDown,
+  Wallet,
 } from 'lucide-react'
-import { useBoardDeck, getReportMaxStep } from './context/BoardDeckContext'
+import { useBoardDeck } from './context/BoardDeckContext'
 import { BackgroundDecor } from './components/BackgroundDecor'
+import { BudgetOnePage } from './components/BudgetOnePage'
 
 const EMERALD_ACCENT = '#10b981'
 
@@ -56,6 +58,7 @@ const HEADER_ICONS = {
   ShieldCheck,
   HelpCircle,
   FileText,
+  Wallet,
 }
 
 const PILLAR_ICONS = {
@@ -114,19 +117,13 @@ const SWIPE_THRESHOLD_PX = 50
 
 function BoardDeckSlideMain({
   slide,
-  variant,
   reportStep,
   reportSectionRef,
   top50Expanded,
   setTop50Expanded,
 }) {
-  const isPrint = variant === 'print'
-  const reportMaxFull = slide.layout === 'report' ? getReportMaxStep(slide) : 0
-  const stepForReport = isPrint ? reportMaxFull : reportStep
-
   return (
     <>
-            <div className={isPrint ? 'deck-print-slide-header' : 'contents'}>
             {(slide.title || slide.headerIcon) ? (
               <motion.h1
                 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight mb-4 flex items-center gap-3"
@@ -187,7 +184,6 @@ function BoardDeckSlideMain({
                 {slide.quote}
               </blockquote>
             )}
-            </div>
             {slide.layout === 'report' && (slide.intro || slide.introParts) && slide.sections && slide.sections.length > 0 && (() => {
               const chartItems = []
               if (slide.marketShareChart && slide.marketShareChartByChannel) {
@@ -206,7 +202,7 @@ function BoardDeckSlideMain({
                   ...(section.lines || []).map((line, lineIdx) => ({ type: 'line', sectionIdx, lineIdx, line })),
                 ]),
               ]
-              const visibleItems = items.slice(0, stepForReport + 1)
+              const visibleItems = items.slice(0, reportStep + 1)
               const CHART_COLORS = ['#38bdf8', '#10b981', '#f59e0b', '#f97316', '#a855f7', '#ec4899', '#06b6d4', '#84cc16', '#eab308', '#6366f1']
               const getArcPath = (startPct, endPct, cx, cy, r) => {
                 const startAngle = (startPct / 100) * 360 - 90
@@ -222,19 +218,13 @@ function BoardDeckSlideMain({
                 return `M ${cx} ${cy} L ${x1.toFixed(2)} ${y1.toFixed(2)} A ${r} ${r} 0 ${large} ${sweep} ${x2.toFixed(2)} ${y2.toFixed(2)} Z`
               }
               return (
-                <div className={isPrint ? 'mt-4 flex flex-col' : 'mt-4 flex-1 min-h-0 flex flex-col'}>
-                  <div
-                    className={
-                      isPrint
-                        ? 'report-print-expand space-y-4 pb-4 pr-2 -mr-2'
-                        : 'overflow-y-auto pr-2 -mr-2 space-y-4 pb-4 max-h-[55vh] md:max-h-[60vh] scroll-smooth'
-                    }
-                  >
+                <div className="mt-4 flex-1 min-h-0 flex flex-col">
+                  <div className="overflow-y-auto pr-2 -mr-2 space-y-4 pb-4 max-h-[55vh] md:max-h-[60vh] scroll-smooth">
                     {(() => {
                       const reportNodes = []
                       for (let itemIdx = 0; itemIdx < visibleItems.length; itemIdx++) {
                         const item = visibleItems[itemIdx]
-                        const isNew = !isPrint && itemIdx === reportStep
+                        const isNew = itemIdx === reportStep
                         const isLastItem = itemIdx === visibleItems.length - 1
                         const itemRef = isLastItem ? reportSectionRef : undefined
 
@@ -338,7 +328,7 @@ function BoardDeckSlideMain({
                             </div>
                           )
                         }
-                        const showSecondChart = isPrint || reportStep >= 2
+                        const showSecondChart = reportStep >= 2
                         reportNodes.push(
                           <div
                             key="marketChartsRow"
@@ -692,14 +682,10 @@ function BoardDeckSlideMain({
               )
             })()}
             {slide.layout === 'topBrands' && (slide.topBrandsEstablished || slide.topBrandsEmerging || (slide.top50List && slide.top50List.length > 0)) && (
-              <div className={isPrint ? 'mt-6 flex flex-col' : 'mt-6 flex flex-col min-h-0 flex-1'}>
+              <div className="mt-6 flex flex-col min-h-0 flex-1">
                 <div
-                  className={
-                    isPrint
-                      ? 'topbrands-print-expand pr-2 scroll-smooth'
-                      : 'overflow-y-auto overflow-x-hidden pr-2 scroll-smooth flex-1 min-h-0'
-                  }
-                  style={isPrint ? undefined : { maxHeight: 'calc(100vh - 14rem)' }}
+                  className="overflow-y-auto overflow-x-hidden pr-2 scroll-smooth flex-1 min-h-0"
+                  style={{ maxHeight: 'calc(100vh - 14rem)' }}
                 >
                   <div className="space-y-6 pb-4">
                     {/* Two summary cards */}
@@ -749,7 +735,7 @@ function BoardDeckSlideMain({
                     {slide.top50List && slide.top50List.length > 0 && (() => {
                       const INITIAL_ROWS = 15
                       /* Print/PDF: always include full list (same as expanded UI). */
-                      const visible = isPrint || top50Expanded ? slide.top50List : slide.top50List.slice(0, INITIAL_ROWS)
+                      const visible = top50Expanded ? slide.top50List : slide.top50List.slice(0, INITIAL_ROWS)
                       const hasMore = slide.top50List.length > INITIAL_ROWS
                       const formatSales = (n) => n >= 1000 ? `${(n / 1000).toFixed(1)}B` : String(n)
                       return (
@@ -786,7 +772,7 @@ function BoardDeckSlideMain({
                                 </tbody>
                               </table>
                             </div>
-                            {!isPrint && hasMore && (
+                            {hasMore && (
                               <button
                                 type="button"
                                 onClick={() => setTop50Expanded((e) => !e)}
@@ -815,6 +801,9 @@ function BoardDeckSlideMain({
                   </div>
                 </div>
               </div>
+            )}
+            {slide.layout === 'budget' && (
+              <BudgetOnePage />
             )}
             {slide.layout === 'strategy' && (slide.strategyPillars || slide.strategyD2c) && (
               <div className="mt-6 space-y-6">
@@ -979,13 +968,7 @@ export function BoardDeckContent() {
   const reportSectionRef = useRef(null)
   const touchStartRef = useRef(null)
   const [top50Expanded, setTop50Expanded] = useState(false)
-  const [isPrintExport, setIsPrintExport] = useState(false)
-
-  useEffect(() => {
-    const onAfterPrint = () => setIsPrintExport(false)
-    window.addEventListener('afterprint', onAfterPrint)
-    return () => window.removeEventListener('afterprint', onAfterPrint)
-  }, [])
+  const [pdfExporting, setPdfExporting] = useState(false)
 
   const exportToPdf = async () => {
     try {
@@ -993,12 +976,25 @@ export function BoardDeckContent() {
     } catch {
       // ignore
     }
-    setIsPrintExport(true)
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        window.print()
-      })
-    })
+    setPdfExporting(true)
+    try {
+      const { pdf } = await import('@react-pdf/renderer')
+      const { DeckPdfDocument } = await import('./pdf/DeckPdfDocument.jsx')
+      const blob = await pdf(<DeckPdfDocument slides={visibleSlides} />).toBlob()
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = 'ate-days-board-deck.pdf'
+      a.rel = 'noopener'
+      document.body.appendChild(a)
+      a.click()
+      a.remove()
+      URL.revokeObjectURL(url)
+    } catch (e) {
+      console.error(e)
+    } finally {
+      setPdfExporting(false)
+    }
   }
 
   const handleTouchStart = (e) => {
@@ -1136,11 +1132,10 @@ export function BoardDeckContent() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -32 }}
             transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className={`outline-none max-w-5xl w-full text-left flex-1 flex flex-col min-h-0 ${slide.layout === 'report' ? 'pt-0' : slide.layout === 'topBrands' ? 'justify-start pt-6 md:pt-10' : ['takeaways', 'strategy', 'ecommerce'].includes(slide.layout) ? 'justify-start pt-12 sm:pt-16 md:pt-20 lg:pt-24' : 'justify-center'}`}
+            className={`outline-none max-w-5xl w-full text-left flex-1 flex flex-col min-h-0 ${slide.layout === 'report' ? 'pt-0' : slide.layout === 'topBrands' ? 'justify-start pt-6 md:pt-10' : ['takeaways', 'strategy', 'ecommerce', 'budget'].includes(slide.layout) ? 'justify-start pt-12 sm:pt-16 md:pt-20 lg:pt-24' : 'justify-center'}`}
           >
             <BoardDeckSlideMain
               slide={slide}
-              variant="interactive"
               reportStep={reportStep}
               reportSectionRef={reportSectionRef}
               top50Expanded={top50Expanded}
@@ -1192,12 +1187,14 @@ export function BoardDeckContent() {
           <button
             type="button"
             onClick={exportToPdf}
-            className="text-xs text-emerald-400 hover:text-emerald-300 underline focus:outline-none focus:ring-2 focus:ring-emerald-500/50 rounded px-1 inline-flex items-center gap-1"
+            disabled={pdfExporting}
+            className="text-xs text-emerald-400 hover:text-emerald-300 underline focus:outline-none focus:ring-2 focus:ring-emerald-500/50 rounded px-1 inline-flex items-center gap-1 disabled:opacity-50 disabled:pointer-events-none disabled:no-underline"
             aria-label="Export deck to PDF"
-            title="Opens print — Save as PDF, enable background graphics. Pages use landscape letter; title stays at top of each slide."
+            aria-busy={pdfExporting}
+            title="Downloads a native PDF (landscape letter) built from deck content — no print dialog."
           >
             <FileDown size={12} strokeWidth={2} className="flex-shrink-0 opacity-90" aria-hidden />
-            Export PDF
+            {pdfExporting ? 'Building PDF…' : 'Export PDF'}
           </button>
           {jumpOpen && (
             <ul
@@ -1222,26 +1219,6 @@ export function BoardDeckContent() {
       </div>
       )}
       </div>
-
-      {isPrintExport && (
-        <div className="deck-print-root">
-          {visibleSlides.map((s) => (
-            <div
-              key={s.id}
-              className="deck-print-page outline-none w-full max-w-none text-left flex flex-col min-h-0 justify-start items-stretch"
-            >
-              <BoardDeckSlideMain
-                slide={s}
-                variant="print"
-                reportStep={0}
-                reportSectionRef={reportSectionRef}
-                top50Expanded={true}
-                setTop50Expanded={() => {}}
-              />
-            </div>
-          ))}
-        </div>
-      )}
     </div>
   )
 }

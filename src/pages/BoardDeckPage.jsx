@@ -34,9 +34,15 @@ import {
   ChevronUp,
   Gauge,
   Store,
+  Wallet,
+  ImageDown,
+  Megaphone,
 } from 'lucide-react'
 import { BoardDeckProvider, useBoardDeck } from '../context/BoardDeckContext'
 import { BackgroundDecor } from '../components/BackgroundDecor'
+import { BudgetOnePage } from '../components/BudgetOnePage'
+import { UnifiedCostsPage } from '../components/UnifiedCostsPage'
+import { BrandLaunchMarketingBudgetPage } from '../components/BrandLaunchMarketingBudgetPage'
 
 const EMERALD_ACCENT = '#10b981'
 
@@ -53,6 +59,8 @@ const HEADER_ICONS = {
   ShieldCheck,
   HelpCircle,
   FileText,
+  Wallet,
+  Megaphone,
 }
 
 const PILLAR_ICONS = {
@@ -125,6 +133,45 @@ function BoardDeckContent() {
   const reportSectionRef = useRef(null)
   const touchStartRef = useRef(null)
   const [top50Expanded, setTop50Expanded] = useState(false)
+  const budgetExportRef = useRef(null)
+  const unifiedExportRef = useRef(null)
+  const brandLaunchExportRef = useRef(null)
+  const [pngExporting, setPngExporting] = useState(false)
+
+  const exportDeckSlidePng = async () => {
+    const el =
+      slide.layout === 'budget'
+        ? budgetExportRef.current
+        : slide.layout === 'unifiedCosts'
+          ? unifiedExportRef.current
+          : slide.layout === 'brandLaunchBudget'
+            ? brandLaunchExportRef.current
+            : null
+    if (!el) return
+    const filename =
+      slide.layout === 'budget'
+        ? 'website-build-maintenance-budget.png'
+        : slide.layout === 'unifiedCosts'
+          ? 'combined-brand-website-costs.png'
+          : 'brand-pre-post-launch-marketing-budget.png'
+    setPngExporting(true)
+    try {
+      const { toPng } = await import('html-to-image')
+      const dataUrl = await toPng(el, {
+        pixelRatio: 2,
+        backgroundColor: '#020617',
+        cacheBust: true,
+      })
+      const a = document.createElement('a')
+      a.href = dataUrl
+      a.download = filename
+      a.click()
+    } catch (err) {
+      console.error('PNG export failed', err)
+    } finally {
+      setPngExporting(false)
+    }
+  }
 
   const handleTouchStart = (e) => {
     if (e.touches.length !== 1) return
@@ -199,8 +246,71 @@ function BoardDeckContent() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -32 }}
             transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className={`outline-none max-w-5xl w-full text-left flex-1 flex flex-col min-h-0 ${slide.layout === 'report' ? 'pt-0' : slide.layout === 'topBrands' ? 'justify-start pt-6 md:pt-10' : ['takeaways', 'strategy', 'ecommerce'].includes(slide.layout) ? 'justify-start pt-12 sm:pt-16 md:pt-20 lg:pt-24' : 'justify-center'}`}
+            className={`outline-none max-w-5xl w-full text-left flex-1 flex flex-col min-h-0 ${slide.layout === 'report' ? 'pt-0' : slide.layout === 'topBrands' ? 'justify-start pt-6 md:pt-10' : ['takeaways', 'strategy', 'ecommerce', 'budget', 'unifiedCosts', 'brandLaunchBudget'].includes(slide.layout) ? 'justify-start pt-12 sm:pt-16 md:pt-20 lg:pt-24' : 'justify-center'}`}
           >
+            {slide.layout === 'budget' || slide.layout === 'unifiedCosts' || slide.layout === 'brandLaunchBudget' ? (
+              <div
+                ref={
+                  slide.layout === 'budget'
+                    ? budgetExportRef
+                    : slide.layout === 'unifiedCosts'
+                      ? unifiedExportRef
+                      : brandLaunchExportRef
+                }
+                className="rounded-2xl border border-white/10 bg-slate-950 p-5 md:p-8 ring-1 ring-white/5 shadow-2xl"
+              >
+                {(slide.title || slide.headerIcon) ? (
+                  <motion.h1
+                    className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight mb-4 flex items-center gap-3"
+                    initial={{ opacity: 0, x: -28, filter: 'blur(8px)' }}
+                    animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
+                    transition={{ duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  >
+                    {slide.headerIcon && HEADER_ICONS[slide.headerIcon] && (() => {
+                      const IconComponent = HEADER_ICONS[slide.headerIcon]
+                      const iconProps = { size: 36, strokeWidth: 1.5, style: { color: EMERALD_ACCENT }, className: 'flex-shrink-0 md:w-10 md:h-10 w-9 h-9' }
+                      return (slide.headerIcon === 'Target' || slide.headerIcon === 'Compass') ? (
+                        <motion.span
+                          animate={{ rotate: [0, 5, -5, 0] }}
+                          transition={{ duration: 3, repeat: Infinity, repeatDelay: 2 }}
+                          className="flex-shrink-0"
+                        >
+                          <IconComponent {...iconProps} />
+                        </motion.span>
+                      ) : (
+                        <span className="flex-shrink-0">
+                          <IconComponent {...iconProps} />
+                        </span>
+                      )
+                    })()}
+                    {slide.title ? (
+                      slide.titleHighlight ? (
+                        <>
+                          {slide.title.split(slide.titleHighlight)[0]}
+                          <span style={{ color: EMERALD_ACCENT }}>{slide.titleHighlight}</span>
+                          {slide.title.split(slide.titleHighlight)[1]}
+                        </>
+                      ) : (
+                        slide.title
+                      )
+                    ) : null}
+                  </motion.h1>
+                ) : null}
+                {slide.subtitle && (
+                  <p className="text-lg md:text-xl text-slate-400 max-w-3xl mb-6 leading-relaxed">
+                    {slide.subtitle}
+                  </p>
+                )}
+                {slide.layout === 'budget' ? (
+                  <BudgetOnePage />
+                ) : slide.layout === 'unifiedCosts' ? (
+                  <UnifiedCostsPage />
+                ) : (
+                  <BrandLaunchMarketingBudgetPage />
+                )}
+              </div>
+            ) : (
+              <>
             {(slide.title || slide.headerIcon) ? (
               <motion.h1
                 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight mb-4 flex items-center gap-3"
@@ -255,6 +365,8 @@ function BoardDeckContent() {
               <p className="text-lg md:text-xl text-slate-400 max-w-3xl mb-6 leading-relaxed">
                 {slide.subtitle}
               </p>
+            )}
+              </>
             )}
             {slide.quote && (
               <blockquote className="text-lg md:text-xl text-slate-300 italic border-l-4 border-emerald-500/60 pl-6 my-6 max-w-3xl">
@@ -1002,6 +1114,19 @@ function BoardDeckContent() {
           >
             Jump to slide
           </button>
+          {(slide?.layout === 'budget' || slide?.layout === 'unifiedCosts' || slide?.layout === 'brandLaunchBudget') && (
+            <button
+              type="button"
+              onClick={exportDeckSlidePng}
+              disabled={pngExporting}
+              className="text-xs text-emerald-400 hover:text-emerald-300 underline focus:outline-none focus:ring-2 focus:ring-emerald-500/50 rounded px-1 inline-flex items-center gap-1 disabled:opacity-50 disabled:pointer-events-none disabled:no-underline"
+              aria-label="Export budget slide as PNG"
+              aria-busy={pngExporting}
+            >
+              <ImageDown size={12} strokeWidth={2} className="flex-shrink-0 opacity-90" aria-hidden />
+              {pngExporting ? 'Exporting PNG…' : 'Export PNG'}
+            </button>
+          )}
           {jumpOpen && (
             <ul
               role="listbox"

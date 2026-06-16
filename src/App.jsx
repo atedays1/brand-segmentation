@@ -11,6 +11,9 @@ import { MarketRealityPage } from './pages/MarketRealityPage'
 import { MarketExplorationPage } from './pages/MarketExplorationPage'
 import { GalleryPage } from './pages/GalleryPage'
 import { BoardDeckPage } from './pages/BoardDeckPage'
+import { AgencyNeedsDeckPage } from './pages/AgencyNeedsDeckPage'
+import { SleepLandscapeDeckPage } from './pages/SleepLandscapeDeckPage'
+import { ConsumerIlluminationDeckPage } from './pages/ConsumerIlluminationDeckPage'
 
 function SidebarToggle() {
   const { sidebarOpen, toggleSidebar } = useSidebarLibrary()
@@ -57,6 +60,9 @@ function App() {
           <Route path="/market-reality" element={<MarketRealityPage />} />
           <Route path="/market-exploration" element={<MarketExplorationPage />} />
           <Route path="/board-deck" element={<BoardDeckPage />} />
+          <Route path="/agency-needs" element={<AgencyNeedsDeckPage />} />
+          <Route path="/sleep-landscape" element={<SleepLandscapeDeckPage />} />
+          <Route path="/consumer-illumination" element={<ConsumerIlluminationDeckPage />} />
         </Routes>
         <InjectedOverlay />
         <CenterGuide containerRef={containerRef} />

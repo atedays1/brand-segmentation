@@ -1,0 +1,764 @@
+{
+  "Gruns": [
+    {
+      "id": "1:4",
+      "type": "RECTANGLE",
+      "name": "Screenshot 2026-02-24 at 12.51.36 PM 2",
+      "frameName": "Gruns",
+      "imagePath": "/extracted-images/1-4.png"
+    },
+    {
+      "id": "1:5",
+      "type": "RECTANGLE",
+      "name": "Screenshot 2026-02-24 at 12.51.23 PM 1",
+      "frameName": "Gruns",
+      "imagePath": "/extracted-images/1-5.png"
+    },
+    {
+      "id": "1:6",
+      "type": "RECTANGLE",
+      "name": "Screenshot 2026-02-24 at 12.51.11 PM 1",
+      "frameName": "Gruns",
+      "imagePath": "/extracted-images/1-6.png"
+    },
+    {
+      "id": "1:7",
+      "type": "RECTANGLE",
+      "name": "Screenshot 2026-02-24 at 12.51.29 PM 1",
+      "frameName": "Gruns",
+      "imagePath": "/extracted-images/1-7.png"
+    },
+    {
+      "id": "1:8",
+      "type": "RECTANGLE",
+      "name": "Screenshot 2026-02-24 at 12.51.14 PM 1",
+      "frameName": "Gruns",
+      "imagePath": "/extracted-images/1-8.png"
+    },
+    {
+      "id": "1:9",
+      "type": "RECTANGLE",
+      "name": "Pop Up",
+      "frameName": "Gruns",
+      "imagePath": "/extracted-images/1-9.png"
+    },
+    {
+      "id": "1:11",
+      "type": "RECTANGLE",
+      "name": "gruns.co_ 3",
+      "frameName": "Gruns",
+      "imagePath": "/extracted-images/1-11.png"
+    },
+    {
+      "id": "1:12",
+      "type": "RECTANGLE",
+      "name": "Screenshot 2026-02-25 at 5.53.04 PM 1",
+      "frameName": "Gruns",
+      "imagePath": "/extracted-images/1-12.png"
+    },
+    {
+      "id": "1:13",
+      "type": "RECTANGLE",
+      "name": "Screenshot 2026-02-25 at 5.53.16 PM 1",
+      "frameName": "Gruns",
+      "imagePath": "/extracted-images/1-13.png"
+    },
+    {
+      "id": "1:14",
+      "type": "RECTANGLE",
+      "name": "Screenshot 2026-02-25 at 5.53.24 PM 1",
+      "frameName": "Gruns",
+      "imagePath": "/extracted-images/1-14.png"
+    },
+    {
+      "id": "1:15",
+      "type": "RECTANGLE",
+      "name": "Screenshot 2026-02-25 at 5.54.02 PM 1",
+      "frameName": "Gruns",
+      "imagePath": "/extracted-images/1-15.png"
+    },
+    {
+      "id": "1:16",
+      "type": "RECTANGLE",
+      "name": "Screenshot 2026-02-25 at 5.53.57 PM 1",
+      "frameName": "Gruns",
+      "imagePath": "/extracted-images/1-16.png"
+    },
+    {
+      "id": "1:17",
+      "type": "RECTANGLE",
+      "name": "Screenshot 2026-02-25 at 5.53.48 PM 1",
+      "frameName": "Gruns",
+      "imagePath": "/extracted-images/1-17.png"
+    },
+    {
+      "id": "1:18",
+      "type": "RECTANGLE",
+      "name": "Screenshot 2026-02-25 at 5.53.31 PM 1",
+      "frameName": "Gruns",
+      "imagePath": "/extracted-images/1-18.png"
+    },
+    {
+      "id": "1:20",
+      "type": "RECTANGLE",
+      "name": "Checkout",
+      "frameName": "Gruns",
+      "imagePath": "/extracted-images/1-20.png"
+    },
+    {
+      "id": "1:22",
+      "type": "RECTANGLE",
+      "name": "Screenshot 2026-02-26 at 12.10.36 PM 1",
+      "frameName": "Gruns",
+      "imagePath": "/extracted-images/1-22.png"
+    },
+    {
+      "id": "1:23",
+      "type": "RECTANGLE",
+      "name": "Screenshot 2026-02-26 at 12.10.48 PM 1",
+      "frameName": "Gruns",
+      "imagePath": "/extracted-images/1-23.png"
+    },
+    {
+      "id": "1:25",
+      "type": "RECTANGLE",
+      "name": "gal-what-to-expect 1",
+      "frameName": "Gruns",
+      "imagePath": "/extracted-images/1-25.png"
+    },
+    {
+      "id": "1:26",
+      "type": "RECTANGLE",
+      "name": "gal-clinical 1",
+      "frameName": "Gruns",
+      "imagePath": "/extracted-images/1-26.png"
+    },
+    {
+      "id": "1:27",
+      "type": "RECTANGLE",
+      "name": "Nutrition_Label_LS_-_Adults_B_-_Desktop 1",
+      "frameName": "Gruns",
+      "imagePath": "/extracted-images/1-27.png"
+    },
+    {
+      "id": "1:28",
+      "type": "RECTANGLE",
+      "name": "gal-benefits-lifestyle 1",
+      "frameName": "Gruns",
+      "imagePath": "/extracted-images/1-28.png"
+    },
+    {
+      "id": "1:29",
+      "type": "RECTANGLE",
+      "name": "gal-ugc-reviews 1",
+      "frameName": "Gruns",
+      "imagePath": "/extracted-images/1-29.png"
+    },
+    {
+      "id": "1:30",
+      "type": "RECTANGLE",
+      "name": "Offers",
+      "frameName": "Gruns",
+      "imagePath": "/extracted-images/1-30.png"
+    },
+    {
+      "id": "1:31",
+      "type": "RECTANGLE",
+      "name": "Info",
+      "frameName": "Gruns",
+      "imagePath": "/extracted-images/1-31.png"
+    },
+    {
+      "id": "1:33",
+      "type": "RECTANGLE",
+      "name": "Screenshot 2026-02-25 at 1.22.21 PM 1",
+      "frameName": "Gruns",
+      "imagePath": "/extracted-images/1-33.png"
+    },
+    {
+      "id": "1:34",
+      "type": "RECTANGLE",
+      "name": "Screenshot 2026-02-25 at 1.20.54 PM 1",
+      "frameName": "Gruns",
+      "imagePath": "/extracted-images/1-34.png"
+    },
+    {
+      "id": "1:42",
+      "type": "RECTANGLE",
+      "name": "Screenshot 2026-02-27 at 5.59.02 PM 1",
+      "frameName": "Gruns",
+      "imagePath": "/extracted-images/1-42.png"
+    },
+    {
+      "id": "1:43",
+      "type": "RECTANGLE",
+      "name": "Screenshot 2026-02-27 at 5.59.26 PM 1",
+      "frameName": "Gruns",
+      "imagePath": "/extracted-images/1-43.png"
+    },
+    {
+      "id": "1:51",
+      "type": "RECTANGLE",
+      "name": "www.instagram.com_grunsdaily__hl=en 1",
+      "frameName": "Gruns",
+      "imagePath": "/extracted-images/1-51.png"
+    },
+    {
+      "id": "1:53",
+      "type": "RECTANGLE",
+      "name": "newmodernmom.com_blog_hiya-bloom-gruns_ 2",
+      "frameName": "Gruns",
+      "imagePath": "/extracted-images/1-53.png"
+    },
+    {
+      "id": "1:55",
+      "type": "RECTANGLE",
+      "name": "milled.com_gruns.co 1",
+      "frameName": "Gruns",
+      "imagePath": "/extracted-images/1-55.png"
+    },
+    {
+      "id": "1:56",
+      "type": "RECTANGLE",
+      "name": "milled.com_gruns.co_a-pocketful-of-sunshine-1jyVnCCPMwDZWXjO (1) 1",
+      "frameName": "Gruns",
+      "imagePath": "/extracted-images/1-56.png"
+    },
+    {
+      "id": "1:57",
+      "type": "RECTANGLE",
+      "name": "milled.com_gruns.co_a-pocketful-of-sunshine-1jyVnCCPMwDZWXjO 1",
+      "frameName": "Gruns",
+      "imagePath": "/extracted-images/1-57.png"
+    },
+    {
+      "id": "1:58",
+      "type": "RECTANGLE",
+      "name": "milled.com_gruns.co (1) 1",
+      "frameName": "Gruns",
+      "imagePath": "/extracted-images/1-58.png"
+    },
+    {
+      "id": "1:60",
+      "type": "RECTANGLE",
+      "name": "brandsearch.co_brands_gruns.co 1",
+      "frameName": "Gruns",
+      "imagePath": "/extracted-images/1-60.png"
+    },
+    {
+      "id": "1:61",
+      "type": "RECTANGLE",
+      "name": "Screenshot 2026-02-27 at 5.56.49 PM 1",
+      "frameName": "Gruns",
+      "imagePath": "/extracted-images/1-61.png"
+    },
+    {
+      "id": "1:3",
+      "type": "FRAME",
+      "name": "Traffic",
+      "frameName": "Gruns",
+      "imagePath": "/extracted-images/1-3.png"
+    },
+    {
+      "id": "1:10",
+      "type": "GROUP",
+      "name": "Landing Page",
+      "frameName": "Gruns",
+      "imagePath": "/extracted-images/1-10.png"
+    },
+    {
+      "id": "1:19",
+      "type": "GROUP",
+      "name": "PDP",
+      "frameName": "Gruns",
+      "imagePath": "/extracted-images/1-19.png"
+    },
+    {
+      "id": "1:21",
+      "type": "GROUP",
+      "name": "Cart",
+      "frameName": "Gruns",
+      "imagePath": "/extracted-images/1-21.png"
+    },
+    {
+      "id": "1:24",
+      "type": "GROUP",
+      "name": "Product Carousel",
+      "frameName": "Gruns",
+      "imagePath": "/extracted-images/1-24.png"
+    },
+    {
+      "id": "1:32",
+      "type": "GROUP",
+      "name": "Main",
+      "frameName": "Gruns",
+      "imagePath": "/extracted-images/1-32.png"
+    },
+    {
+      "id": "1:44",
+      "type": "RECTANGLE",
+      "name": "Rectangle 1",
+      "frameName": "Gruns",
+      "imagePath": "/extracted-images/1-44.png"
+    },
+    {
+      "id": "1:59",
+      "type": "FRAME",
+      "name": "Info",
+      "frameName": "Gruns",
+      "imagePath": "/extracted-images/1-59.png"
+    }
+  ],
+  "Seed": [
+    {
+      "id": "1:65",
+      "type": "RECTANGLE",
+      "name": "milled.com_seed_benefits-that-build-and-build-Mz0FWHLC4ln_mUmD 1",
+      "frameName": "Seed",
+      "imagePath": "/extracted-images/1-65.png"
+    },
+    {
+      "id": "1:66",
+      "type": "RECTANGLE",
+      "name": "milled.com_seed_resilience-is-built-daily-jPQ-N9VYc3foJDK2 1",
+      "frameName": "Seed",
+      "imagePath": "/extracted-images/1-66.png"
+    },
+    {
+      "id": "1:67",
+      "type": "RECTANGLE",
+      "name": "milled.com_seed_sale-closes-tomorrow-7mYiRmXs5cKRvnJB 1",
+      "frameName": "Seed",
+      "imagePath": "/extracted-images/1-67.png"
+    },
+    {
+      "id": "1:68",
+      "type": "RECTANGLE",
+      "name": "milled.com_seed_ds-01-is-1-t7WMJmX59G8oOWlm (1) 1",
+      "frameName": "Seed",
+      "imagePath": "/extracted-images/1-68.png"
+    },
+    {
+      "id": "1:69",
+      "type": "RECTANGLE",
+      "name": "milled.com_seed_see-what-happens-in-just-1-week-rgIuKdV946ERXvKk 1",
+      "frameName": "Seed",
+      "imagePath": "/extracted-images/1-69.png"
+    },
+    {
+      "id": "1:70",
+      "type": "RECTANGLE",
+      "name": "Screenshot 2026-03-03 at 11.06.45 AM 1",
+      "frameName": "Seed",
+      "imagePath": "/extracted-images/1-70.png"
+    },
+    {
+      "id": "1:72",
+      "type": "RECTANGLE",
+      "name": "your-code-enclosed 1",
+      "frameName": "Seed",
+      "imagePath": "/extracted-images/1-72.png"
+    },
+    {
+      "id": "1:73",
+      "type": "RECTANGLE",
+      "name": "wait-what-s-a-synbiotic 1",
+      "frameName": "Seed",
+      "imagePath": "/extracted-images/1-73.png"
+    },
+    {
+      "id": "1:74",
+      "type": "RECTANGLE",
+      "name": "hows-your-poop 1",
+      "frameName": "Seed",
+      "imagePath": "/extracted-images/1-74.png"
+    },
+    {
+      "id": "1:75",
+      "type": "RECTANGLE",
+      "name": "hello-superorganism 1",
+      "frameName": "Seed",
+      "imagePath": "/extracted-images/1-75.png"
+    },
+    {
+      "id": "1:76",
+      "type": "RECTANGLE",
+      "name": "and-now-a-for-your-microbiome 1",
+      "frameName": "Seed",
+      "imagePath": "/extracted-images/1-76.png"
+    },
+    {
+      "id": "1:77",
+      "type": "RECTANGLE",
+      "name": "milled.com_seed_way-beyond-your-daily-gummy-XLi-ZYhlrupRZs9T 1",
+      "frameName": "Seed",
+      "imagePath": "/extracted-images/1-77.png"
+    },
+    {
+      "id": "1:78",
+      "type": "RECTANGLE",
+      "name": "seed.com_ 1",
+      "frameName": "Seed",
+      "imagePath": "/extracted-images/1-78.png"
+    },
+    {
+      "id": "1:79",
+      "type": "RECTANGLE",
+      "name": "Screenshot 2026-03-03 at 11.53.44 AM 1",
+      "frameName": "Seed",
+      "imagePath": "/extracted-images/1-79.png"
+    },
+    {
+      "id": "1:81",
+      "type": "RECTANGLE",
+      "name": "seed.com_cultured_seed-vs-other-probiotics-for-gut-health_ 1",
+      "frameName": "Seed",
+      "imagePath": "/extracted-images/1-81.png"
+    },
+    {
+      "id": "1:82",
+      "type": "RECTANGLE",
+      "name": "www.instagram.com_seed (1) 1",
+      "frameName": "Seed",
+      "imagePath": "/extracted-images/1-82.png"
+    },
+    {
+      "id": "1:84",
+      "type": "RECTANGLE",
+      "name": "Screenshot 2026-03-03 at 11.52.37 AM 1",
+      "frameName": "Seed",
+      "imagePath": "/extracted-images/1-84.png"
+    },
+    {
+      "id": "1:85",
+      "type": "RECTANGLE",
+      "name": "seed.com_daily-synbiotic 1",
+      "frameName": "Seed",
+      "imagePath": "/extracted-images/1-85.png"
+    },
+    {
+      "id": "1:87",
+      "type": "RECTANGLE",
+      "name": "Screenshot 2026-03-03 at 11.59.11 AM 1",
+      "frameName": "Seed",
+      "imagePath": "/extracted-images/1-87.png"
+    },
+    {
+      "id": "1:88",
+      "type": "RECTANGLE",
+      "name": "Screenshot 2026-03-03 at 11.59.28 AM 1",
+      "frameName": "Seed",
+      "imagePath": "/extracted-images/1-88.png"
+    },
+    {
+      "id": "1:63",
+      "type": "FRAME",
+      "name": "Traffic",
+      "frameName": "Seed",
+      "imagePath": "/extracted-images/1-63.png"
+    },
+    {
+      "id": "1:64",
+      "type": "RECTANGLE",
+      "name": "Rectangle 1",
+      "frameName": "Seed",
+      "imagePath": "/extracted-images/1-64.png"
+    },
+    {
+      "id": "1:91",
+      "type": "FRAME",
+      "name": "Info",
+      "frameName": "Seed",
+      "imagePath": "/extracted-images/1-91.png"
+    }
+  ],
+  "Frame 1": [
+    {
+      "id": "1:93",
+      "type": "TEXT",
+      "name": "Health & Wellness",
+      "frameName": "Frame 1",
+      "text": "Health & Wellness"
+    },
+    {
+      "id": "1:94",
+      "type": "TEXT",
+      "name": "Consumers use supplements for:",
+      "frameName": "Frame 1",
+      "text": "Consumers use supplements for:"
+    },
+    {
+      "id": "1:95",
+      "type": "TEXT",
+      "name": "Examining the cultural elevation of health and wellness via use & interest.",
+      "frameName": "Frame 1",
+      "text": "Examining the cultural elevation of health and wellness via use & interest."
+    },
+    {
+      "id": "1:96",
+      "type": "TEXT",
+      "name": "$69B market +5.2% growth in 2024 with pockets of more robust growth.",
+      "frameName": "Frame 1",
+      "text": "$69B market +5.2% growth in 2024 with pockets of more robust growth."
+    },
+    {
+      "id": "1:97",
+      "type": "TEXT",
+      "name": "Within this space is a growing younger consumer base driving focus on: mood/mental health, energy & sleep.",
+      "frameName": "Frame 1",
+      "text": "Within this space is a growing younger consumer base driving focus on:\nmood/mental health, energy & sleep.\n"
+    },
+    {
+      "id": "1:98",
+      "type": "TEXT",
+      "name": "I Look for: Fast-acting tangible results proven options clean products quality ingredients transparency science-backed claims third-party certifications clear impact",
+      "frameName": "Frame 1",
+      "text": "I Look for:\n\nFast-acting\ntangible results\nproven options\nclean products\nquality ingredients\ntransparency\nscience-backed claims\nthird-party certifications\nclear impact\n\n"
+    },
+    {
+      "id": "1:99",
+      "type": "TEXT",
+      "name": "Growing these trust anchors propels breakout and condenses Customer Journey.",
+      "frameName": "Frame 1",
+      "text": "Growing these trust anchors propels breakout and condenses Customer Journey.\n"
+    },
+    {
+      "id": "1:100",
+      "type": "TEXT",
+      "name": "When I want to perform at my best, I need solutions that help me maximize my effectiveness so I can achieve my goals",
+      "frameName": "Frame 1",
+      "text": "When I want to perform at my best, I need solutions that help me maximize my effectiveness so I can achieve my goals\n"
+    },
+    {
+      "id": "1:101",
+      "type": "TEXT",
+      "name": "I recognize a solution when I feel functional dimensions that:",
+      "frameName": "Frame 1",
+      "text": "I recognize a solution when I feel functional dimensions that:\n"
+    },
+    {
+      "id": "1:102",
+      "type": "TEXT",
+      "name": "Boost energy/stamina Support performance & recovery Elevate focus",
+      "frameName": "Frame 1",
+      "text": "Boost energy/stamina\nSupport performance & recovery\nElevate focus\n"
+    },
+    {
+      "id": "1:103",
+      "type": "TEXT",
+      "name": "The ‘jobs’ consumers want supplements to perform:",
+      "frameName": "Frame 1",
+      "text": "The ‘jobs’ consumers want supplements to perform:\n"
+    },
+    {
+      "id": "1:104",
+      "type": "TEXT",
+      "name": "Look and Feel Better",
+      "frameName": "Frame 1",
+      "text": "Look and Feel Better"
+    },
+    {
+      "id": "1:105",
+      "type": "TEXT",
+      "name": "Enhance Physical or Mental Performance",
+      "frameName": "Frame 1",
+      "text": "Enhance Physical or Mental Performance"
+    },
+    {
+      "id": "1:106",
+      "type": "TEXT",
+      "name": "Address a Specific Condition (Biologica)",
+      "frameName": "Frame 1",
+      "text": "Address a Specific Condition (Biologica)"
+    },
+    {
+      "id": "1:107",
+      "type": "TEXT",
+      "name": "Fill Perceived Nutritional Gaps (Gruns)",
+      "frameName": "Frame 1",
+      "text": "Fill Perceived Nutritional Gaps (Gruns)"
+    },
+    {
+      "id": "1:108",
+      "type": "TEXT",
+      "name": "Support Overall Health and Wellness",
+      "frameName": "Frame 1",
+      "text": "Support Overall Health and Wellness"
+    },
+    {
+      "id": "1:109",
+      "type": "TEXT",
+      "name": "Driving Purchase Intent / Satisfying Expectations",
+      "frameName": "Frame 1",
+      "text": "Driving Purchase Intent / Satisfying Expectations"
+    },
+    {
+      "id": "1:110",
+      "type": "TEXT",
+      "name": "Segmentation & Persona",
+      "frameName": "Frame 1",
+      "text": "Segmentation & Persona "
+    },
+    {
+      "id": "1:111",
+      "type": "TEXT",
+      "name": "Routine-driven and prevention-focused they seek peace of mind for the long term",
+      "frameName": "Frame 1",
+      "text": "Routine-driven and prevention-focused\nthey seek peace of mind for the long term"
+    },
+    {
+      "id": "1:112",
+      "type": "TEXT",
+      "name": "Curious but cautious they are research-heavy and quick to stop if they don’t see results",
+      "frameName": "Frame 1",
+      "text": "Curious but cautious \nthey are research-heavy and quick to stop if they don’t see results"
+    },
+    {
+      "id": "1:113",
+      "type": "TEXT",
+      "name": "Simplicity-focused they want easy solutions but are overwhelmed by options",
+      "frameName": "Frame 1",
+      "text": "Simplicity-focused\nthey want easy solutions but\nare overwhelmed by options"
+    },
+    {
+      "id": "1:114",
+      "type": "TEXT",
+      "name": "Peer-influenced and trend-driven they seek community and social equity",
+      "frameName": "Frame 1",
+      "text": "Peer-influenced and trend-driven\nthey seek community and social equity"
+    },
+    {
+      "id": "1:115",
+      "type": "TEXT",
+      "name": "Goal-oriented and outcome-based, they seek immediate results for the near term",
+      "frameName": "Frame 1",
+      "text": "Goal-oriented and outcome-based, \nthey seek immediate results for the near term"
+    },
+    {
+      "id": "1:116",
+      "type": "TEXT",
+      "name": "Awareness & Discovery",
+      "frameName": "Frame 1",
+      "text": "Awareness & Discovery"
+    },
+    {
+      "id": "1:117",
+      "type": "TEXT",
+      "name": "Fitness and Energy ",
+      "frameName": "Frame 1",
+      "text": "Fitness and Energy \n"
+    },
+    {
+      "id": "1:118",
+      "type": "TEXT",
+      "name": "Category By Market Share:",
+      "frameName": "Frame 1",
+      "text": "Category By Market Share:\n"
+    },
+    {
+      "id": "1:119",
+      "type": "TEXT",
+      "name": "Heathy Aging",
+      "frameName": "Frame 1",
+      "text": "Heathy Aging\n"
+    },
+    {
+      "id": "1:120",
+      "type": "TEXT",
+      "name": "Menopause",
+      "frameName": "Frame 1",
+      "text": "Menopause\n"
+    },
+    {
+      "id": "1:121",
+      "type": "TEXT",
+      "name": "Gut Health",
+      "frameName": "Frame 1",
+      "text": "Gut Health"
+    },
+    {
+      "id": "1:122",
+      "type": "TEXT",
+      "name": "Brain Health- Shift from cognitive health to cognitive performance (driven by younger consumers) and a continued focus on the brain-gut connection",
+      "frameName": "Frame 1",
+      "text": "Brain Health- Shift from cognitive health to cognitive performance (driven by younger consumers) and a continued focus on the brain-gut connection"
+    },
+    {
+      "id": "1:123",
+      "type": "TEXT",
+      "name": "Weight Management",
+      "frameName": "Frame 1",
+      "text": "Weight Management"
+    },
+    {
+      "id": "1:124",
+      "type": "TEXT",
+      "name": "Mood & Mental Health -driven by increasing anxiety across the population and younger consumer interest – despite the significant decline of CBD; it is currently propelled by magnesium, ashwagandha, and combination herbals.",
+      "frameName": "Frame 1",
+      "text": "Mood & Mental Health -driven by increasing anxiety across the population and younger consumer interest – despite the significant decline of CBD; it is currently propelled by magnesium, ashwagandha, and combination herbals."
+    },
+    {
+      "id": "1:125",
+      "type": "TEXT",
+      "name": "Sexual Health",
+      "frameName": "Frame 1",
+      "text": "Sexual Health "
+    },
+    {
+      "id": "1:126",
+      "type": "TEXT",
+      "name": "Healthy Sleep- Important & growing with a trend condition ripe for innovation beyond magnesium.",
+      "frameName": "Frame 1",
+      "text": "Healthy Sleep-  Important & growing with a trend condition ripe for innovation beyond magnesium."
+    },
+    {
+      "id": "1:127",
+      "type": "TEXT",
+      "name": "General Health Largest Segment",
+      "frameName": "Frame 1",
+      "text": "General Health\nLargest Segment"
+    },
+    {
+      "id": "1:128",
+      "type": "TEXT",
+      "name": "They also use supplements for sub-categories:",
+      "frameName": "Frame 1",
+      "text": "They also use supplements for sub-categories:"
+    },
+    {
+      "id": "1:129",
+      "type": "TEXT",
+      "name": "‘In The Moment’ Targeted Wellness Needs",
+      "frameName": "Frame 1",
+      "text": "‘In The Moment’ Targeted Wellness Needs"
+    },
+    {
+      "id": "1:130",
+      "type": "TEXT",
+      "name": "Energy, Focus, Sleep",
+      "frameName": "Frame 1",
+      "text": "Energy, Focus, Sleep"
+    },
+    {
+      "id": "1:131",
+      "type": "TEXT",
+      "name": "Menopause, GLP-1 side effects",
+      "frameName": "Frame 1",
+      "text": "Menopause, GLP-1 side effects"
+    },
+    {
+      "id": "1:132",
+      "type": "TEXT",
+      "name": "Symptom Management",
+      "frameName": "Frame 1",
+      "text": "Symptom Management"
+    },
+    {
+      "id": "1:142",
+      "type": "TEXT",
+      "name": "Pick 2 personas and add them here",
+      "frameName": "Frame 1",
+      "text": "Pick 2 personas and add them here"
+    }
+  ]
+}

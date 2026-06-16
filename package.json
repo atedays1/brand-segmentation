@@ -8,6 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "analyze-docs": "node scripts/analyze-docs.mjs",
+    "analyze-illumination": "node scripts/analyze-illumination-report.mjs",
     "merge-analysis": "node scripts/merge-analysis.mjs",
     "generate-story": "node scripts/generate-story.mjs",
     "generate-market-reality-images": "node scripts/generate-market-reality-images.mjs",
@@ -19,10 +20,14 @@
     "receiver": "node server/receiver.js",
     "api": "next dev -p 3000",
     "api:alt": "next dev -p 3001",
-    "clear-exports": "node scripts/clear-figma-exports.mjs"
+    "clear-exports": "node scripts/clear-figma-exports.mjs",
+    "pdf:sleep-landscape": "echo 'Use Export PDF on /sleep-landscape in the browser for pixel-perfect deck capture.'"
   },
   "dependencies": {
+    "@react-pdf/renderer": "^4.5.1",
     "framer-motion": "^11.11.17",
+    "html-to-image": "^1.11.13",
+    "jspdf": "^4.2.1",
     "lucide-react": "^0.577.0",
     "next": "^14.2.35",
     "react": "^18.3.1",

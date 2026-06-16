@@ -1,0 +1,11 @@
+const fs = require('fs');
+const path = require('path');
+const pluginDir = path.join(__dirname, '..', 'plugin');
+const html = fs.readFileSync(path.join(pluginDir, 'ui.html'), 'utf8');
+const codePath = path.join(pluginDir, 'code.js');
+let code = fs.readFileSync(codePath, 'utf8');
+const placeholder = '__FIGMA_UI_INLINE__';
+const replacement = JSON.stringify(html);
+code = code.replace(`"${placeholder}"`, replacement).replace(`'${placeholder}'`, replacement);
+fs.writeFileSync(codePath, code);
+console.log('Inlined ui.html into plugin/code.js');
