@@ -1,6 +1,6 @@
 # Consumer Illumination — Standalone founder deck
 
-Full-screen 12-slide deck from the SBK Consumer Illumination report. No edit controls, library, or main site navigation.
+Full-screen 12-slide deck only. No site navigation, no other decks.
 
 ## Run locally
 
@@ -10,32 +10,21 @@ npm install
 npm run dev
 ```
 
-## Build
+## Deploy on Vercel (dedicated URL)
+
+**Important:** This must be a **separate Vercel project** with **Root Directory** set to `consumer-illumination-deck`. If Root Directory is blank (repo root), you will deploy the entire main app with all decks.
+
+1. [vercel.com/new](https://vercel.com/new) → import `atedays1/brand-segmentation`
+2. **Root Directory** → Edit → enter `consumer-illumination-deck` → Continue
+3. Build: `npm run build` · Output: `dist`
+4. Deploy
+
+**Fix an existing project:** Settings → General → Root Directory → `consumer-illumination-deck` → Redeploy.
+
+## Sync from main app
+
+Deck source lives in both `src/` (main app route `/consumer-illumination`) and this folder. After editing slides or charts in the main app, copy updates:
 
 ```bash
-npm run build
+npm run sync-from-main
 ```
-
-## Deploy on Vercel
-
-**Dashboard (recommended for a dedicated production URL)**
-
-1. Go to [vercel.com](https://vercel.com) → **Add New** → **Project** → import `atedays1/brand-segmentation`.
-2. Set **Root Directory** to `consumer-illumination-deck`.
-3. Deploy. You get a standalone URL (e.g. `consumer-illumination-deck.vercel.app`).
-4. Optional: add a custom domain in **Project Settings → Domains**.
-
-**CLI**
-
-```bash
-cd consumer-illumination-deck
-npx vercel --prod
-```
-
-Create a **new** Vercel project when prompted (separate from the main site or board-deck).
-
-## Controls
-
-- **← / →** — previous / next slide
-- **N** — toggle speaker notes
-- **Export team PDF** — flowing report PDF (3× capture)
