@@ -1,5 +1,5 @@
 /**
- * Chart data for Consumer Illumination deck , sourced from SBK report (May 2026).
+ * Chart data for Consumer Illumination deck, sourced from SBK report (May 2026).
  */
 
 export const fnSegmentDonut = [
@@ -85,12 +85,12 @@ export const dataToActionFlow = {
     wa: {
       channel: 'Expert content, research hubs, performance communities',
       cadence: 'Consistent system-building touchpoints',
-      message: 'Powerful, purposeful , your daily performance system',
+      message: 'Powerful, purposeful, your daily performance system',
     },
     oe: {
       channel: 'Social, ritual-friendly, low-friction discovery',
       cadence: 'Light-touch reminders; easy re-entry',
-      message: 'Impactful, supportive , your daily support system',
+      message: 'Impactful, supportive, your daily support system',
     },
   },
 }
@@ -99,7 +99,7 @@ export const tierPyramid = [
   {
     tier: 'Tier 3 · Performance systems',
     audience: 'Wellness Architects',
-    detail: 'Advanced, stackable modules , morning energy, recovery, performance',
+    detail: 'Advanced, stackable modules, morning energy, recovery, performance',
     width: '55%',
     accent: 'emerald',
   },

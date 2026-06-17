@@ -25,7 +25,7 @@ export function IlluminationDivergenceSpectrum() {
           </div>
           <div className="relative h-2 rounded-full bg-gradient-to-r from-emerald-600/50 via-slate-600/50 to-amber-600/50" />
           <p className="text-[10px] text-slate-500 mt-2 text-center">
-            Same category engagement , different emotional payoff
+            Same category engagement, different emotional payoff
           </p>
         </div>
       </div>
