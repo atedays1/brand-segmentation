@@ -21,4 +21,10 @@ for (const [from, to] of copies) {
   console.log(`synced ${from}`)
 }
 
+const publicRoot = join(root, '..', 'public')
+const publicDest = join(root, 'public')
+mkdirSync(publicDest, { recursive: true })
+cpSync(join(publicRoot, 'ate-days-logo.jpg'), join(publicDest, 'ate-days-logo.jpg'))
+console.log('synced public/ate-days-logo.jpg')
+
 console.log('Done. exportReportToPdf.js is local to this package — update manually if needed.')

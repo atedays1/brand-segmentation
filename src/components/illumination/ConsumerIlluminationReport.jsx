@@ -88,7 +88,7 @@ export function ConsumerIlluminationReport({ sectionRefs }) {
             </h1>
             <p className="text-slate-400 mt-1">{cover?.subtitle}</p>
           </div>
-          <img src="/ate-days-logo.jpg" alt="" className="h-16 w-auto opacity-95" />
+          <img src={`${import.meta.env.BASE_URL}ate-days-logo.jpg`} alt="" className="h-16 w-auto opacity-95" />
         </div>
         <IlluminationSlideBody slide={cover} />
         <div className="mt-6 pt-4 border-t border-white/10">
