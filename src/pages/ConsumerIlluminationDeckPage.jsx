@@ -13,6 +13,7 @@ import {
   MessageSquare,
   CheckSquare,
   TrendingUp,
+  Mic,
   ChevronLeft,
   ChevronRight,
   FileDown,
@@ -40,6 +41,7 @@ const HEADER_ICONS = {
   MessageSquare,
   CheckSquare,
   TrendingUp,
+  Mic,
 }
 
 export function ConsumerIlluminationDeckPage() {

@@ -6,6 +6,7 @@ import { IlluminationThreePillars } from './IlluminationThreePillars'
 import { IlluminationJtbdHeatChart } from './IlluminationJtbdHeatChart'
 import { IlluminationTierPyramid } from './IlluminationTierPyramid'
 import { IlluminationDataToActionFlow } from './IlluminationDataToActionFlow'
+import { IlluminationQuoteWordCloud } from './IlluminationQuoteWordCloud'
 
 const VISUAL_MAP = {
   segmentDonut: IlluminationSegmentDonut,
@@ -16,6 +17,7 @@ const VISUAL_MAP = {
   jtbdChart: IlluminationJtbdHeatChart,
   tierPyramid: IlluminationTierPyramid,
   dataToAction: IlluminationDataToActionFlow,
+  quoteWordCloud: IlluminationQuoteWordCloud,
 }
 
 export function IlluminationVisuals({ visuals }) {

@@ -12,6 +12,7 @@ const copies = [
   ['components/illumination', 'components/illumination'],
   ['data/consumerIlluminationSlides.js', 'data/consumerIlluminationSlides.js'],
   ['data/illuminationChartData.js', 'data/illuminationChartData.js'],
+  ['data/consumerQuotesData.js', 'data/consumerQuotesData.js'],
 ]
 
 for (const [from, to] of copies) {

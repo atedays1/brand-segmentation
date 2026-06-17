@@ -1,5 +1,5 @@
 /**
- * Consumer Illumination founder deck, 13 slides (~2–3 min each).
+ * Consumer Illumination founder deck, 14 slides (~2–3 min each).
  * Source: SBK Functional Nutrition Consumer Illumination (May 2026).
  */
 
@@ -15,6 +15,7 @@ export const consumerIlluminationSlides = [
       { label: 'Two targets, one market' },
       { label: 'Shared ground & key forks' },
       { label: 'Segment deep dives' },
+      { label: 'Consumer voice & themes' },
       { label: 'Platform + segment strategy' },
       { label: 'Insight → activation' },
       { label: 'Founder decisions' },
@@ -216,6 +217,22 @@ export const consumerIlluminationSlides = [
     ],
     speakerNotes:
       'Overwhelmed Experimenters hire FN to bridge intention and reality, daily staple or band-aid in a rush. Love stories are emotional: easy, guilt-reducing, ritualistic. Poppi and AG1 are exemplars, replacement behavior and morning anchor. Breakups are about hassle, sugar guilt, no results, and complexity. Taste and format aren\'t nice-to-haves; they\'re adoption drivers. Gummies win despite efficacy skepticism because they\'re easy and palatable. Ideal futures: more in one product, enjoyment, and measurable proof (smart bed integration, check-up tie-ins). This segment buys permission, products that feel "good enough" without demanding perfection.',
+  },
+  {
+    id: 'voice-of-consumer',
+    layout: 'quoteThemes',
+    visuals: ['quoteWordCloud'],
+    title: 'Voice of the consumer',
+    titleHighlight: 'consumer',
+    headerIcon: 'Mic',
+    subtitle: '18 quotes from IDIs & ethnography, distilled into recurring language and six strategic themes',
+    bullets: [
+      'Sleep, nutrition, and routine friction surface in nearly every interview, regardless of segment',
+      'WA language skews toward systems, efficacy, and transparency; OE toward ease, ritual, and felt impact',
+      'Ideal products converge on consolidation: more benefit, fewer steps, clearer proof it\'s working',
+    ],
+    speakerNotes:
+      'This slide gives founders the emotional texture behind the segmentation. The word cloud is built from all consumer quotes in the study, including the five featured on earlier slides plus 13 additional IDI excerpts from the SBK report. Six themes organize what consumers said unprompted: sleep as foundation, nutrition as whole-body maintenance, routine fit, proof and transparency, ease and taste, and the system-vs-gap-support fork. Use this to ground agency conversations: these are the words real people use, not marketing abstractions. The cloud should reinforce that both segments share sleep and nutrition language, but WA over-indexes on performance and proof while OE over-indexes on friction and ritual.',
   },
   {
     id: 'jtbd-heat',

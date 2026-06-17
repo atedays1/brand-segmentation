@@ -6,6 +6,7 @@ import {
   ArrowRight,
 } from 'lucide-react'
 import { IlluminationVisuals } from './charts/IlluminationVisuals'
+import { quoteThemes } from '../../data/consumerQuotesData'
 
 const ACCENT = '#10b981'
 
@@ -262,6 +263,41 @@ export function IlluminationImplications({ pillars, positioningSpaces }) {
   )
 }
 
+export function IlluminationQuoteThemes({ bullets, visuals }) {
+  return (
+    <div className="mt-3 space-y-4 max-w-5xl">
+      <IlluminationVisuals visuals={visuals} />
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+        {quoteThemes.map((theme) => (
+          <div
+            key={theme.title}
+            className="rounded-xl border border-white/10 bg-slate-900/40 p-3 flex flex-col"
+          >
+            <div className="flex items-start justify-between gap-2 mb-1.5">
+              <h3 className="text-xs font-bold text-emerald-300 leading-snug">{theme.title}</h3>
+              <span className="text-[9px] font-bold uppercase tracking-wide text-slate-500 whitespace-nowrap">
+                {theme.segments}
+              </span>
+            </div>
+            <p className="text-[11px] text-slate-400 leading-snug flex-1">{theme.learning}</p>
+            <div className="flex flex-wrap gap-1 mt-2 pt-2 border-t border-white/5">
+              {theme.keywords.map((kw) => (
+                <span
+                  key={kw}
+                  className="text-[9px] px-1.5 py-0.5 rounded-full bg-slate-800 text-slate-500"
+                >
+                  {kw}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+      <BulletList items={bullets} />
+    </div>
+  )
+}
+
 export function IlluminationForwardSummary({ lead, bullets, visuals }) {
   return (
     <div className="mt-3 space-y-4 max-w-5xl">
@@ -337,6 +373,8 @@ export function IlluminationSlideBody({ slide }) {
       )
     case 'jtbdHeat':
       return <IlluminationJtbdHeat jtbd={slide.jtbd} bullets={slide.bullets} visuals={slide.visuals} />
+    case 'quoteThemes':
+      return <IlluminationQuoteThemes bullets={slide.bullets} visuals={slide.visuals} />
     case 'implications':
       return (
         <IlluminationImplications pillars={slide.pillars} positioningSpaces={slide.positioningSpaces} />
