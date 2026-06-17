@@ -39,7 +39,7 @@ function QuoteBlock({ quotes }) {
         >
           <Quote size={14} className="text-emerald-500/70 mb-2" aria-hidden />
           <p className="text-sm text-slate-300 italic leading-relaxed">&ldquo;{q.text}&rdquo;</p>
-          <footer className="text-[11px] text-slate-500 mt-2">— {q.attribution}</footer>
+          <footer className="text-[11px] text-slate-500 mt-2">, {q.attribution}</footer>
         </blockquote>
       ))}
     </div>

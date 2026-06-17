@@ -55,7 +55,7 @@ function HeatCell({ level, segment }) {
 export function IlluminationJtbdHeatChart() {
   return (
     <IlluminationChartCard
-      title="Jobs to be done — segment heat"
+      title="Jobs to be done , segment heat"
       subtitle="Filled dots = priority intensity · scan columns to compare segments"
     >
       <div className="overflow-x-auto">
