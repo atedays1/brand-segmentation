@@ -5,6 +5,7 @@ import { IlluminationDivergenceSpectrum } from './IlluminationDivergenceSpectrum
 import { IlluminationThreePillars } from './IlluminationThreePillars'
 import { IlluminationJtbdHeatChart } from './IlluminationJtbdHeatChart'
 import { IlluminationTierPyramid } from './IlluminationTierPyramid'
+import { IlluminationDataToActionFlow } from './IlluminationDataToActionFlow'
 
 const VISUAL_MAP = {
   segmentDonut: IlluminationSegmentDonut,
@@ -14,6 +15,7 @@ const VISUAL_MAP = {
   threePillars: IlluminationThreePillars,
   jtbdChart: IlluminationJtbdHeatChart,
   tierPyramid: IlluminationTierPyramid,
+  dataToAction: IlluminationDataToActionFlow,
 }
 
 export function IlluminationVisuals({ visuals }) {

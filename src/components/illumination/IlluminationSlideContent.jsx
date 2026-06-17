@@ -262,6 +262,20 @@ export function IlluminationImplications({ pillars, positioningSpaces }) {
   )
 }
 
+export function IlluminationForwardSummary({ lead, bullets, visuals }) {
+  return (
+    <div className="mt-3 space-y-4 max-w-5xl">
+      <IlluminationVisuals visuals={visuals} />
+      {lead && (
+        <blockquote className="rounded-xl border border-emerald-500/25 bg-emerald-500/5 px-4 py-4">
+          <p className="text-sm md:text-base text-slate-200 leading-relaxed font-medium">{lead}</p>
+        </blockquote>
+      )}
+      <BulletList items={bullets} />
+    </div>
+  )
+}
+
 export function IlluminationDecisions({ decisions }) {
   if (!decisions?.length) return null
   return (
@@ -326,6 +340,10 @@ export function IlluminationSlideBody({ slide }) {
     case 'implications':
       return (
         <IlluminationImplications pillars={slide.pillars} positioningSpaces={slide.positioningSpaces} />
+      )
+    case 'forwardSummary':
+      return (
+        <IlluminationForwardSummary lead={slide.lead} bullets={slide.bullets} visuals={slide.visuals} />
       )
     case 'decisions':
       return <IlluminationDecisions decisions={slide.decisions} />

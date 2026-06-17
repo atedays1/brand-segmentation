@@ -12,6 +12,7 @@ import {
   Layers,
   MessageSquare,
   CheckSquare,
+  TrendingUp,
   ChevronLeft,
   ChevronRight,
   FileDown,
@@ -38,6 +39,7 @@ const HEADER_ICONS = {
   Layers,
   MessageSquare,
   CheckSquare,
+  TrendingUp,
 }
 
 export function ConsumerIlluminationDeckPage() {

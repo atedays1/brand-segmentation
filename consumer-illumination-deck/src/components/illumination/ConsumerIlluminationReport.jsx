@@ -1,5 +1,5 @@
 import { forwardRef } from 'react'
-import { Target, Users, Sparkles, GitCompare, CheckSquare } from 'lucide-react'
+import { Target, Users, Sparkles, GitCompare, CheckSquare, TrendingUp } from 'lucide-react'
 import { consumerIlluminationSlides } from '../../data/consumerIlluminationSlides'
 import { IlluminationSlideBody } from './IlluminationSlideContent'
 
@@ -53,7 +53,7 @@ const ReportPage = forwardRef(function ReportPage({ children }, ref) {
   )
 })
 
-/** Flowing team PDF — 4 logical pages from 12-slide deck content. */
+/** Flowing team PDF — logical pages from 13-slide deck content. */
 export function ConsumerIlluminationReport({ sectionRefs }) {
   const cover = slideById('why-now')
   const targets = slideById('two-targets')
@@ -66,6 +66,7 @@ export function ConsumerIlluminationReport({ sectionRefs }) {
   const jtbd = slideById('jtbd-heat')
   const platform = slideById('platform-implications')
   const nuance = slideById('segment-nuance')
+  const activation = slideById('insight-to-activation')
   const decisions = slideById('founder-decisions')
 
   const setRef = (index) => (el) => {
@@ -173,6 +174,15 @@ export function ConsumerIlluminationReport({ sectionRefs }) {
             icon={GitCompare}
           />
           <IlluminationSlideBody slide={nuance} />
+        </div>
+        <div className="mt-5">
+          <ReportHeader
+            title={activation.title}
+            titleHighlight={activation.titleHighlight}
+            subtitle={activation.subtitle}
+            icon={TrendingUp}
+          />
+          <IlluminationSlideBody slide={activation} />
         </div>
         <div className="mt-5">
           <ReportHeader

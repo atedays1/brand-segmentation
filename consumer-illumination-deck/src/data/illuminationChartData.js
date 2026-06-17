@@ -58,6 +58,43 @@ export const vennRegions = {
   ],
 }
 
+export const dataToActionFlow = {
+  stages: [
+    {
+      id: 'data',
+      label: 'Consumer data',
+      items: ['Ethnography', 'IDIs', 'Quant segmentation'],
+    },
+    {
+      id: 'insight',
+      label: 'Persona insight',
+      items: ['Mindset & JTBD', 'Tonality fork', 'Proof preferences'],
+    },
+    {
+      id: 'tailor',
+      label: 'Tailored activation',
+      items: ['Channel', 'Cadence', 'Messaging'],
+    },
+    {
+      id: 'engage',
+      label: 'Segment engagement',
+      items: ['WA performance system', 'OE daily support'],
+    },
+  ],
+  outcomes: {
+    wa: {
+      channel: 'Expert content, research hubs, performance communities',
+      cadence: 'Consistent system-building touchpoints',
+      message: 'Powerful, purposeful — your daily performance system',
+    },
+    oe: {
+      channel: 'Social, ritual-friendly, low-friction discovery',
+      cadence: 'Light-touch reminders; easy re-entry',
+      message: 'Impactful, supportive — your daily support system',
+    },
+  },
+}
+
 export const tierPyramid = [
   {
     tier: 'Tier 3 · Performance systems',

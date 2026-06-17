@@ -1,5 +1,5 @@
 /**
- * Consumer Illumination founder deck — 12 slides (~2–3 min each).
+ * Consumer Illumination founder deck — 13 slides (~2–3 min each).
  * Source: SBK Functional Nutrition Consumer Illumination (May 2026).
  */
 
@@ -16,6 +16,7 @@ export const consumerIlluminationSlides = [
       { label: 'Shared ground & key forks' },
       { label: 'Segment deep dives' },
       { label: 'Platform + segment strategy' },
+      { label: 'Insight → activation' },
       { label: 'Founder decisions' },
     ],
     bullets: [
@@ -299,6 +300,23 @@ export const consumerIlluminationSlides = [
     },
     speakerNotes:
       'Slide 11 operationalizes the fork. Architects get "performance system" language — controllable, modular, expandable stacks. Experimenters get "support system" — manageable, essential, ritual-friendly. SBK proposes tiered architecture: essentials at entry, bridge products, performance systems at top. Consumption experience plays different roles: sustainability for WA, ritualization for OE. Founders should debate whether this is sub-brands, SKU naming, or audience-specific creative — but the insight is clear: one message won\'t fit both.',
+  },
+  {
+    id: 'insight-to-activation',
+    layout: 'forwardSummary',
+    visuals: ['dataToAction'],
+    title: 'From insight to activation',
+    titleHighlight: 'activation',
+    headerIcon: 'TrendingUp',
+    subtitle: 'Persona understanding distills into channel, cadence, and message — where agency partners dial in each segment\'s sweet spot',
+    lead: 'Our understanding of personas enables us to engage with each segment on the channels they prefer, at a cadence they prefer, with messaging most relevant and personal to them.',
+    bullets: [
+      'Consumer Illumination + quant segmentation give agencies a shared playbook — WA vs OE specificity, not generic wellness',
+      'Same platform brand; forked channel strategy, touchpoint cadence, and creative tonality per segment',
+      'Forward work with agency partners: test and refine sweet spots before launch across paid, owned, and earned',
+    ],
+    speakerNotes:
+      'This is the forward-looking bridge slide — what we do with the research now. The insight isn\'t academic: it becomes activation inputs. Data from ethnography, IDIs, and quant distills into persona understanding — mindset, JTBD heat, tonality fork. That understanding maps to three execution levers agencies will own: which channels each segment lives in, how often and when we show up, and what message lands as personal and relevant. Wellness Architects need expert, system-building touchpoints; Overwhelmed Experimenters need ritual-friendly, low-friction discovery. We\'re aligning with agencies now to find the sweet spot for each segment — this slide is the brief for that work.',
   },
   {
     id: 'founder-decisions',
