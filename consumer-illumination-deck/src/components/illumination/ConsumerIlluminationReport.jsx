@@ -53,7 +53,7 @@ const ReportPage = forwardRef(function ReportPage({ children }, ref) {
   )
 })
 
-/** Flowing team PDF — logical pages from 13-slide deck content. */
+/** Flowing team PDF, logical pages from 14-slide deck content. */
 export function ConsumerIlluminationReport({ sectionRefs }) {
   const cover = slideById('why-now')
   const targets = slideById('two-targets')

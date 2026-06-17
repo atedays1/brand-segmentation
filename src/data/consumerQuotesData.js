@@ -166,8 +166,15 @@ export const quoteWordCloud = Object.entries(THEME_BOOST)
     text,
     weight: boost + (rawFreq.get(text) || 0),
   }))
+  .concat(
+    [...rawFreq.entries()]
+      .filter(([word]) => !THEME_BOOST[word])
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 12)
+      .map(([text, count]) => ({ text, weight: count + 3 })),
+  )
   .sort((a, b) => b.weight - a.weight)
-  .slice(0, 28)
+  .slice(0, 40)
 
 export const quoteThemes = [
   {

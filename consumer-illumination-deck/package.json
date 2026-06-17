@@ -10,6 +10,7 @@
     "sync-from-main": "node scripts/sync-from-main.mjs"
   },
   "dependencies": {
+    "d3-cloud": "^1.2.9",
     "framer-motion": "^11.11.17",
     "html-to-image": "^1.11.13",
     "jspdf": "^4.2.1",
