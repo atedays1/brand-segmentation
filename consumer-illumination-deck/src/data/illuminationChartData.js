@@ -39,8 +39,11 @@ export const vennRegions = {
     'High FN engagement',
     'Experiment & evaluate',
     'Sleep as foundation',
+    'Holistic health · mind, body, spirit',
     'Clean · felt impact · science',
     'Research → risk management',
+    'Skeptical shoppers · regret avoidance',
+    'Multi-benefit · fewer products doing more',
   ],
   wellnessArchitects: [
     'Identity-driven optimization',
