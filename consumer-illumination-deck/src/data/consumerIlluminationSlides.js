@@ -1,5 +1,5 @@
 /**
- * Consumer Illumination founder deck, 14 slides (~2–3 min each).
+ * Consumer Illumination founder deck, 15 slides (~2–3 min each).
  * Source: SBK Functional Nutrition Consumer Illumination (May 2026).
  */
 
@@ -15,6 +15,7 @@ export const consumerIlluminationSlides = [
       { label: 'Two targets, one market' },
       { label: 'Shared platform & lead benefits' },
       { label: 'Segment deep dives' },
+      { label: 'Mid-deck segment refresh' },
       { label: 'Consumer voice & themes' },
       { label: 'Platform + segment strategy' },
       { label: 'Insight → activation' },
@@ -224,6 +225,54 @@ export const consumerIlluminationSlides = [
     ],
     speakerNotes:
       'Overwhelmed Experimenters hire FN to bridge intention and reality, daily staple or band-aid in a rush. Love stories are emotional: easy, guilt-reducing, ritualistic. Poppi and AG1 are exemplars, replacement behavior and morning anchor. Breakups are about hassle, sugar guilt, no results, and complexity. Taste and format aren\'t nice-to-haves; they\'re adoption drivers. Gummies win despite efficacy skepticism because they\'re easy and palatable. Ideal futures: more in one product, enjoyment, and measurable proof (smart bed integration, check-up tie-ins). This segment buys permission, products that feel "good enough" without demanding perfection.',
+  },
+  {
+    id: 'segment-refresh',
+    layout: 'segmentRefresh',
+    title: 'Segment refresh',
+    titleHighlight: 'refresh',
+    headerIcon: 'RefreshCw',
+    subtitle: 'A quick reset on our two targets before we shift from profiles to consumer voice and launch strategy',
+    segments: {
+      left: {
+        label: 'Wellness Architects',
+        role: 'Primary target',
+        stat: '13% · ~$82/mo supplements',
+        mantra: '"I want to become better… on my terms"',
+        accent: 'emerald',
+        differentiators: [
+          'Identity-driven optimization, wellness is central to who they are',
+          'Self-built, research-driven system with high ingredient standards',
+          'Highest spend and influence, others seek their advice on FN',
+        ],
+        looksFor: [
+          'Proven efficacy and clinically credible claims',
+          'Ingredient transparency and clean, values-aligned formulations',
+          'Stack consolidation, fewer products with clear attribution',
+        ],
+      },
+      right: {
+        label: 'Overwhelmed Experimenters',
+        role: 'Secondary target',
+        stat: '11% · ~$57/mo supplements',
+        mantra: '"I want to feel better… so I try to do better"',
+        accent: 'amber',
+        differentiators: [
+          'Deeply motivated but bandwidth-constrained, wellness adds load',
+          'Routine grounded in gaps and outages, not full system design',
+          'Hopeful experimentation, drops what feels complex or ineffective',
+        ],
+        looksFor: [
+          'Easy integration into existing habits, minimal steps to remember',
+          'Fast, felt impact they can sense, not just read on a label',
+          'Treat-like formats, good taste, and ritual-friendly experiences',
+        ],
+      },
+    },
+    transition:
+      'We\'ve gone deep on each segment. From here, we shift from profiles to proof: first, how consumers actually talk about these needs in their own words, then jobs-to-be-done heat, platform implications, and the decisions that turn insight into launch.',
+    speakerNotes:
+      'This is the halfway grounding slide for founders who haven\'t looked at segmentation in months. Don\'t re-teach everything from slides 5-8, just land the essentials: WA is primary, identity-driven, system-building, science-first; OE is secondary, bandwidth-limited, ritual-seeking, felt-impact-first. Both are already category believers. The transition sets up the second half: consumer voice (word cloud), JTBD, platform, messaging fork, activation, decisions. Pause here and ask if anything feels off before moving on.',
   },
   {
     id: 'voice-of-consumer',

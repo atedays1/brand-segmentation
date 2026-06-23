@@ -1,5 +1,5 @@
 import { forwardRef } from 'react'
-import { Target, Users, Sparkles, GitCompare, CheckSquare, TrendingUp, Mic } from 'lucide-react'
+import { Target, Users, Sparkles, GitCompare, CheckSquare, TrendingUp, Mic, RefreshCw } from 'lucide-react'
 import { consumerIlluminationSlides } from '../../data/consumerIlluminationSlides'
 import { IlluminationSlideBody } from './IlluminationSlideContent'
 
@@ -53,7 +53,7 @@ const ReportPage = forwardRef(function ReportPage({ children }, ref) {
   )
 })
 
-/** Flowing team PDF, logical pages from 14-slide deck content. */
+/** Flowing team PDF, logical pages from 15-slide deck content. */
 export function ConsumerIlluminationReport({ sectionRefs }) {
   const cover = slideById('why-now')
   const targets = slideById('two-targets')
@@ -63,6 +63,7 @@ export function ConsumerIlluminationReport({ sectionRefs }) {
   const waWins = slideById('wa-wins-loses')
   const oeMind = slideById('oe-mindset')
   const oeWins = slideById('oe-wins-loses')
+  const segmentRefresh = slideById('segment-refresh')
   const voice = slideById('voice-of-consumer')
   const jtbd = slideById('jtbd-heat')
   const platform = slideById('platform-implications')
@@ -147,6 +148,15 @@ export function ConsumerIlluminationReport({ sectionRefs }) {
         <div className="mt-5">
           <ReportHeader title={oeWins.title} subtitle={oeWins.subtitle} icon={Users} />
           <IlluminationSlideBody slide={oeWins} />
+        </div>
+        <div className="mt-6 pt-4 border-t border-white/10">
+          <ReportHeader
+            title={segmentRefresh.title}
+            titleHighlight={segmentRefresh.titleHighlight}
+            subtitle={segmentRefresh.subtitle}
+            icon={RefreshCw}
+          />
+          <IlluminationSlideBody slide={segmentRefresh} />
         </div>
         <div className="mt-6 pt-4 border-t border-white/10">
           <ReportHeader

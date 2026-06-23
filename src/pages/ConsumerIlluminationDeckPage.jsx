@@ -14,6 +14,7 @@ import {
   CheckSquare,
   TrendingUp,
   Mic,
+  RefreshCw,
   ChevronLeft,
   ChevronRight,
   FileDown,
@@ -44,6 +45,7 @@ const HEADER_ICONS = {
   CheckSquare,
   TrendingUp,
   Mic,
+  RefreshCw,
 }
 
 export function ConsumerIlluminationDeckPage() {

@@ -15,6 +15,78 @@ const COMPARE_ACCENT = {
   amber: { border: 'border-amber-500/35', bg: 'bg-amber-500/10', text: 'text-amber-300' },
 }
 
+function SegmentRefreshCard({ segment }) {
+  const a = COMPARE_ACCENT[segment.accent] || COMPARE_ACCENT.emerald
+  return (
+    <div className={`rounded-xl border ${a.border} ${a.bg} p-4 flex flex-col`}>
+      <div className="flex items-start justify-between gap-2 mb-2">
+        <div>
+          <p className={`text-[10px] font-bold uppercase tracking-wider ${a.text}`}>{segment.label}</p>
+          {segment.role && (
+            <p className="text-[10px] text-slate-500 mt-0.5">{segment.role}</p>
+          )}
+        </div>
+        {segment.stat && (
+          <span className="text-[10px] font-semibold text-slate-400 whitespace-nowrap">{segment.stat}</span>
+        )}
+      </div>
+      {segment.mantra && (
+        <p className="text-xs text-slate-300 italic mb-3 leading-snug border-l-2 border-white/10 pl-2">
+          {segment.mantra}
+        </p>
+      )}
+      <div className="space-y-3 flex-1">
+        <div>
+          <p className="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1.5">
+            Top differentiators
+          </p>
+          <ul className="space-y-1">
+            {segment.differentiators?.map((item) => (
+              <li key={item} className="text-xs text-slate-300 leading-snug flex gap-2">
+                <span className={`${a.text} flex-shrink-0`}>·</span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <p className="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1.5">
+            What they look for
+          </p>
+          <ul className="space-y-1">
+            {segment.looksFor?.map((item) => (
+              <li key={item} className="text-xs text-slate-300 leading-snug flex gap-2">
+                <span className={`${a.text} flex-shrink-0`}>·</span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export function IlluminationSegmentRefresh({ segments, transition }) {
+  if (!segments) return null
+  return (
+    <div className="mt-3 space-y-4 max-w-5xl">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <SegmentRefreshCard segment={segments.left} />
+        <SegmentRefreshCard segment={segments.right} />
+      </div>
+      {transition && (
+        <div className="rounded-xl border border-emerald-500/30 bg-gradient-to-r from-emerald-500/10 to-slate-900/80 px-4 py-4">
+          <p className="text-[10px] font-bold uppercase tracking-wider text-emerald-400/90 mb-1.5">
+            What's next
+          </p>
+          <p className="text-sm text-slate-200 leading-relaxed">{transition}</p>
+        </div>
+      )}
+    </div>
+  )
+}
+
 function BulletList({ items }) {
   if (!items?.length) return null
   return (
@@ -369,6 +441,8 @@ export function IlluminationSlideBody({ slide }) {
       return (
         <BulletsWithVisuals bullets={slide.bullets} quotes={slide.quotes} visuals={slide.visuals} />
       )
+    case 'segmentRefresh':
+      return <IlluminationSegmentRefresh segments={slide.segments} transition={slide.transition} />
     case 'compare':
       return (
         <IlluminationCompare
