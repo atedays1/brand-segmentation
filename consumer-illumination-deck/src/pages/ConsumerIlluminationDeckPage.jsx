@@ -18,6 +18,8 @@ import {
   ChevronRight,
   FileDown,
   StickyNote,
+  Maximize2,
+  Minimize2,
 } from 'lucide-react'
 import { consumerIlluminationSlides } from '../data/consumerIlluminationSlides'
 import { BackgroundDecor } from '../components/BackgroundDecor'
@@ -51,7 +53,9 @@ export function ConsumerIlluminationDeckPage() {
   const [jumpOpen, setJumpOpen] = useState(false)
   const [notesOpen, setNotesOpen] = useState(false)
   const [pdfExporting, setPdfExporting] = useState(false)
+  const [isFullscreen, setIsFullscreen] = useState(false)
   const jumpRef = useRef(null)
+  const fullscreenRef = useRef(null)
   const touchStartRef = useRef(null)
   const reportSectionRefs = useRef([])
   const slide = slides[currentSlideIndex]
@@ -72,8 +76,36 @@ export function ConsumerIlluminationDeckPage() {
     }
   }, [])
 
+  const toggleFullscreen = async () => {
+    try {
+      if (!document.fullscreenElement) {
+        await fullscreenRef.current?.requestFullscreen?.()
+      } else {
+        await document.exitFullscreen?.()
+      }
+    } catch {
+      // Browser may block fullscreen outside a user gesture.
+    }
+  }
+
+  useEffect(() => {
+    const onFullscreenChange = () => {
+      const fsElement = document.fullscreenElement
+      setIsFullscreen(Boolean(fsElement && fullscreenRef.current && fullscreenRef.current.contains(fsElement)))
+      if (!fsElement) setJumpOpen(false)
+    }
+    document.addEventListener('fullscreenchange', onFullscreenChange)
+    return () => document.removeEventListener('fullscreenchange', onFullscreenChange)
+  }, [])
+
   useEffect(() => {
     const handleKeyDown = (e) => {
+      if (e.key === 'f' || e.key === 'F') {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return
+        e.preventDefault()
+        toggleFullscreen()
+        return
+      }
       if (e.key === 'n' || e.key === 'N') {
         if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return
         e.preventDefault()
@@ -99,6 +131,11 @@ export function ConsumerIlluminationDeckPage() {
   const exportPdf = async () => {
     setPdfExporting(true)
     try {
+      try {
+        if (document.fullscreenElement) await document.exitFullscreen()
+      } catch {
+        // ignore
+      }
       await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)))
       await exportReportToPdf({
         elements: reportSectionRefs.current,
@@ -131,10 +168,28 @@ export function ConsumerIlluminationDeckPage() {
   const isCover = slide.layout === 'illuminationCover'
 
   return (
-    <div className="fixed inset-0 pt-10 sm:pt-14 pb-20 flex flex-col bg-slate-950 overflow-hidden">
+    <div
+      ref={fullscreenRef}
+      className={`fixed inset-0 ${isFullscreen ? 'pt-0 pb-16' : 'pt-10 sm:pt-14 pb-20'} flex flex-col bg-slate-950 overflow-hidden`}
+    >
+      <button
+        type="button"
+        onClick={toggleFullscreen}
+        className="fixed top-4 left-4 sm:top-5 sm:left-6 z-30 pointer-events-auto p-2 rounded-full bg-slate-800/80 hover:bg-slate-700/90 text-white transition-colors border border-slate-600/50"
+        aria-label={isFullscreen ? 'Exit fullscreen presentation' : 'Enter fullscreen presentation'}
+        title={isFullscreen ? 'Exit fullscreen (Esc)' : 'Enter fullscreen (F)'}
+      >
+        {isFullscreen ? (
+          <Minimize2 size={18} strokeWidth={2} />
+        ) : (
+          <Maximize2 size={18} strokeWidth={2} />
+        )}
+      </button>
+      {!isFullscreen && (
       <div className="fixed top-4 right-4 sm:top-5 sm:right-6 z-20 pointer-events-none" aria-hidden>
         <img src={`${import.meta.env.BASE_URL}ate-days-logo.jpg`} alt="Ate Days" className="h-24 sm:h-28 w-auto object-contain opacity-95" />
       </div>
+      )}
       <BackgroundDecor />
 
       <div
@@ -251,7 +306,7 @@ export function ConsumerIlluminationDeckPage() {
       <div className="absolute bottom-2 left-1/2 -translate-x-1/2 pointer-events-none">
         <div className="pointer-events-auto flex items-center gap-2 flex-wrap justify-center" ref={jumpRef}>
           <span className="text-slate-500 text-xs">
-            {currentSlideIndex + 1} / {totalSlides} · ← → · N notes
+            {currentSlideIndex + 1} / {totalSlides} · ← → · N notes · F fullscreen
           </span>
           <button
             type="button"
