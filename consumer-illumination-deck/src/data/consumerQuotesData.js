@@ -101,12 +101,25 @@ const STOP_WORDS = new Set([
   'your', 'about', 'into', 'just', 'more', 'much', 'very', 'also', 'than', 'then',
   'them', 'their', 'there', 'been', 'being', 'were', 'was', 'are', 'but', 'not',
   'all', 'can', 'will', 'how', 'does', 'don', 'its', 'our', 'out', 'who', 'get',
-  'she', 'him', 'her', 'his', 'you', 'any', 'are', 'had', 'has', 'did', 'would',
+  'she', 'him', 'her', 'his', 'you', 'any', 'had', 'has', 'did', 'would',
   'could', 'should', 'because', 'which', 'other', 'some', 'such', 'only', 'own',
   'same', 'so', 'if', 'or', 'as', 'at', 'by', 'an', 'be', 'to', 'of', 'in', 'on',
   'it', 'is', 'am', 'my', 'me', 'i', 'a', 'do', 'up', 'try', 'like', 'think',
-  'feel', 'things', 'thing', 'really', 'lot', 'way', 'make', 'take', 'get', 'use',
+  'feel', 'things', 'thing', 'really', 'lot', 'way', 'make', 'take', 'use',
+  // Contraction stems left after apostrophe stripping
+  'dont', 'doesnt', 'didnt', 'cant', 'wont', 'isnt', 'wasnt', 'arent', 'im', 'youre',
+  'theyre', 'weve', 'ive', 'thats', 'whats', 'heres', 'theres',
+  // Informal speech — not meaningful as standalone cloud terms
+  'gotta', 'gonna', 'wanna', 'kinda', 'yeah', 'know', 'honestly', 'anything',
+  'something', 'everything', 'nothing', 'always', 'still', 'even', 'maybe', 'sort',
+  'couple', 'actually', 'pretty', 'little', 'going', 'come', 'came', 'say', 'said',
+  'want', 'need', 'keep', 'put', 'day', 'days', 'night', 'nights', 'time', 'times',
 ])
+
+/** Words must carry thematic meaning on their own in a word cloud. */
+function isThematicWord(word) {
+  return word.length > 2 && !STOP_WORDS.has(word)
+}
 
 function tokenizeQuotes(quotes) {
   const freq = new Map()
@@ -116,7 +129,7 @@ function tokenizeQuotes(quotes) {
       .replace(/['']/g, '')
       .replace(/[^a-z0-9\s]/g, ' ')
       .split(/\s+/)
-      .filter((w) => w.length > 2 && !STOP_WORDS.has(w))
+      .filter((w) => isThematicWord(w))
     for (const w of words) {
       freq.set(w, (freq.get(w) || 0) + 1)
     }
@@ -149,6 +162,8 @@ const THEME_BOOST = {
   system: 6,
   simple: 6,
   remember: 6,
+  squeeze: 6,
+  friction: 5,
   impact: 6,
   clarity: 5,
   moral: 5,
@@ -168,7 +183,7 @@ export const quoteWordCloud = Object.entries(THEME_BOOST)
   }))
   .concat(
     [...rawFreq.entries()]
-      .filter(([word]) => !THEME_BOOST[word])
+      .filter(([word]) => isThematicWord(word) && !THEME_BOOST[word])
       .sort((a, b) => b[1] - a[1])
       .slice(0, 12)
       .map(([text, count]) => ({ text, weight: count + 3 })),
