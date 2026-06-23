@@ -19,6 +19,19 @@ function RegionList({ items, className }) {
   )
 }
 
+function SegmentLabel({ x, line1, line2, fill }) {
+  return (
+    <text x={x} y={24} textAnchor="middle" fill={fill} fontSize="11" fontWeight="700">
+      <tspan x={x} dy="0">
+        {line1}
+      </tspan>
+      <tspan x={x} dy="13">
+        {line2}
+      </tspan>
+    </text>
+  )
+}
+
 export function IlluminationOverlapVenn() {
   const { overlap, wellnessArchitects, overwhelmedExperimenters } = vennRegions
   const sharedCx = (LEFT_CX + RIGHT_CX) / 2
@@ -47,12 +60,8 @@ export function IlluminationOverlapVenn() {
             clipPath="url(#venn-left-lobe)"
           />
 
-          <text x={LEFT_CX} y={32} textAnchor="middle" fill="#6ee7b7" fontSize="11" fontWeight="700">
-            Wellness Architects
-          </text>
-          <text x={RIGHT_CX} y={32} textAnchor="middle" fill="#fcd34d" fontSize="11" fontWeight="700">
-            Overwhelmed Experimenters
-          </text>
+          <SegmentLabel x={LEFT_CX - 52} line1="Wellness" line2="Architects" fill="#6ee7b7" />
+          <SegmentLabel x={RIGHT_CX + 52} line1="Overwhelmed" line2="Experimenters" fill="#fcd34d" />
           <text x={sharedCx} y={CY + 4} textAnchor="middle" fill="#c7d2fe" fontSize="11" fontWeight="700">
             SHARED
           </text>
