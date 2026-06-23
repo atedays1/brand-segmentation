@@ -4,6 +4,10 @@ import {
   CheckCircle2,
   XCircle,
   ArrowRight,
+  Brain,
+  Heart,
+  ScanSearch,
+  Fingerprint,
 } from 'lucide-react'
 import { IlluminationVisuals } from './charts/IlluminationVisuals'
 import { quoteThemes } from '../../data/consumerQuotesData'
@@ -11,52 +15,80 @@ import { quoteThemes } from '../../data/consumerQuotesData'
 const ACCENT = '#10b981'
 
 const COMPARE_ACCENT = {
-  emerald: { border: 'border-emerald-500/35', bg: 'bg-emerald-500/10', text: 'text-emerald-300' },
-  amber: { border: 'border-amber-500/35', bg: 'bg-amber-500/10', text: 'text-amber-300' },
+  emerald: {
+    border: 'border-emerald-500/35',
+    bg: 'bg-emerald-500/10',
+    text: 'text-emerald-300',
+    iconBg: 'bg-emerald-500/20',
+    icon: Brain,
+    glow: 'from-emerald-500/25 via-emerald-500/5',
+    ring: 'ring-emerald-500/20',
+  },
+  amber: {
+    border: 'border-amber-500/35',
+    bg: 'bg-amber-500/10',
+    text: 'text-amber-300',
+    iconBg: 'bg-amber-500/20',
+    icon: Heart,
+    glow: 'from-amber-500/25 via-amber-500/5',
+    ring: 'ring-amber-500/20',
+  },
 }
 
 function SegmentRefreshCard({ segment }) {
   const a = COMPARE_ACCENT[segment.accent] || COMPARE_ACCENT.emerald
+  const Icon = a.icon
   return (
-    <div className={`rounded-xl border ${a.border} ${a.bg} p-4 flex flex-col`}>
-      <div className="flex items-start justify-between gap-2 mb-2">
-        <div>
-          <p className={`text-[10px] font-bold uppercase tracking-wider ${a.text}`}>{segment.label}</p>
-          {segment.role && (
-            <p className="text-[10px] text-slate-500 mt-0.5">{segment.role}</p>
+    <div className={`relative overflow-hidden rounded-xl border ${a.border} ${a.bg} p-4 flex flex-col ring-1 ${a.ring}`}>
+      <div className={`pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b ${a.glow} to-transparent`} aria-hidden />
+      <div className="relative flex items-start gap-3 mb-3">
+        <div className={`flex-shrink-0 w-10 h-10 rounded-xl ${a.iconBg} border ${a.border} flex items-center justify-center`}>
+          <Icon size={20} className={a.text} strokeWidth={1.75} />
+        </div>
+        <div className="flex-1 min-w-0">
+          <div className="flex flex-wrap items-center gap-2">
+            <p className={`text-[10px] font-bold uppercase tracking-wider ${a.text}`}>{segment.label}</p>
+            {segment.role && (
+              <span className="text-[9px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full border border-white/10 bg-slate-900/50 text-slate-400">
+                {segment.role}
+              </span>
+            )}
+          </div>
+          {segment.stat && (
+            <p className="text-[10px] font-semibold text-slate-400 mt-1">{segment.stat}</p>
           )}
         </div>
-        {segment.stat && (
-          <span className="text-[10px] font-semibold text-slate-400 whitespace-nowrap">{segment.stat}</span>
-        )}
       </div>
       {segment.mantra && (
-        <p className="text-xs text-slate-300 italic mb-3 leading-snug border-l-2 border-white/10 pl-2">
-          {segment.mantra}
-        </p>
+        <div className="relative flex gap-2 mb-3 rounded-lg border border-white/10 bg-slate-900/40 px-3 py-2.5">
+          <Quote size={14} className={`${a.text} flex-shrink-0 mt-0.5 opacity-80`} aria-hidden />
+          <p className="text-xs text-slate-300 italic leading-snug">{segment.mantra}</p>
+        </div>
       )}
-      <div className="space-y-3 flex-1">
+      <div className="relative space-y-3 flex-1">
         <div>
-          <p className="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1.5">
+          <p className="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1.5 flex items-center gap-1.5">
+            <Fingerprint size={12} className={a.text} aria-hidden />
             Top differentiators
           </p>
-          <ul className="space-y-1">
+          <ul className="space-y-1.5">
             {segment.differentiators?.map((item) => (
               <li key={item} className="text-xs text-slate-300 leading-snug flex gap-2">
-                <span className={`${a.text} flex-shrink-0`}>·</span>
+                <span className={`${a.text} flex-shrink-0 mt-0.5`}>▸</span>
                 {item}
               </li>
             ))}
           </ul>
         </div>
-        <div>
-          <p className="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1.5">
+        <div className="pt-2 border-t border-white/10">
+          <p className="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1.5 flex items-center gap-1.5">
+            <ScanSearch size={12} className={a.text} aria-hidden />
             What they look for
           </p>
-          <ul className="space-y-1">
+          <ul className="space-y-1.5">
             {segment.looksFor?.map((item) => (
               <li key={item} className="text-xs text-slate-300 leading-snug flex gap-2">
-                <span className={`${a.text} flex-shrink-0`}>·</span>
+                <span className={`${a.text} flex-shrink-0 mt-0.5`}>▸</span>
                 {item}
               </li>
             ))}
@@ -67,20 +99,45 @@ function SegmentRefreshCard({ segment }) {
   )
 }
 
-export function IlluminationSegmentRefresh({ segments, transition }) {
+export function IlluminationSegmentRefresh({ segments, transition, nextSteps }) {
   if (!segments) return null
   return (
     <div className="mt-3 space-y-4 max-w-5xl">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+      <div className="relative grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-3 items-stretch">
         <SegmentRefreshCard segment={segments.left} />
+        <div className="hidden md:flex flex-col items-center justify-center px-1 py-4">
+          <div className="w-px flex-1 bg-gradient-to-b from-transparent via-indigo-400/40 to-transparent min-h-[24px]" />
+          <div className="my-2 rounded-full border border-indigo-400/30 bg-indigo-500/10 px-3 py-1.5 text-center">
+            <p className="text-[9px] font-bold uppercase tracking-wider text-indigo-300/90">One brand</p>
+            <p className="text-[8px] text-slate-500 mt-0.5">two lead benefits</p>
+          </div>
+          <div className="w-px flex-1 bg-gradient-to-b from-transparent via-indigo-400/40 to-transparent min-h-[24px]" />
+        </div>
         <SegmentRefreshCard segment={segments.right} />
       </div>
       {transition && (
-        <div className="rounded-xl border border-emerald-500/30 bg-gradient-to-r from-emerald-500/10 to-slate-900/80 px-4 py-4">
-          <p className="text-[10px] font-bold uppercase tracking-wider text-emerald-400/90 mb-1.5">
-            What's next
-          </p>
+        <div className="rounded-xl border border-emerald-500/30 bg-gradient-to-r from-emerald-500/10 via-slate-900/80 to-slate-900/80 px-4 py-4">
+          <div className="flex items-center gap-2 mb-2">
+            <ArrowRight size={14} className="text-emerald-400 flex-shrink-0" aria-hidden />
+            <p className="text-[10px] font-bold uppercase tracking-wider text-emerald-400/90">
+              What's next
+            </p>
+          </div>
           <p className="text-sm text-slate-200 leading-relaxed">{transition}</p>
+          {nextSteps?.length > 0 && (
+            <div className="flex flex-wrap gap-1.5 mt-3 pt-3 border-t border-white/10">
+              {nextSteps.map((step, i) => (
+                <span key={step} className="inline-flex items-center gap-1 text-[10px] text-slate-400">
+                  <span className="px-2 py-0.5 rounded-full border border-emerald-500/25 bg-emerald-500/10 text-emerald-200/90 font-medium">
+                    {step}
+                  </span>
+                  {i < nextSteps.length - 1 && (
+                    <ArrowRight size={10} className="text-slate-600 hidden sm:inline" aria-hidden />
+                  )}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
       )}
     </div>
@@ -442,7 +499,13 @@ export function IlluminationSlideBody({ slide }) {
         <BulletsWithVisuals bullets={slide.bullets} quotes={slide.quotes} visuals={slide.visuals} />
       )
     case 'segmentRefresh':
-      return <IlluminationSegmentRefresh segments={slide.segments} transition={slide.transition} />
+      return (
+        <IlluminationSegmentRefresh
+          segments={slide.segments}
+          transition={slide.transition}
+          nextSteps={slide.nextSteps}
+        />
+      )
     case 'compare':
       return (
         <IlluminationCompare

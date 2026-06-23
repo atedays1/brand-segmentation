@@ -271,6 +271,7 @@ export const consumerIlluminationSlides = [
     },
     transition:
       'We\'ve gone deep on each segment. From here, we shift from profiles to proof: first, how consumers actually talk about these needs in their own words, then jobs-to-be-done heat, platform implications, and the decisions that turn insight into launch.',
+    nextSteps: ['Consumer voice', 'Jobs to be done', 'Platform', 'Decisions'],
     speakerNotes:
       'This is the halfway grounding slide for founders who haven\'t looked at segmentation in months. Don\'t re-teach everything from slides 5-8, just land the essentials: WA is primary, identity-driven, system-building, science-first; OE is secondary, bandwidth-limited, ritual-seeking, felt-impact-first. Both are already category believers. The transition sets up the second half: consumer voice (word cloud), JTBD, platform, messaging fork, activation, decisions. Pause here and ask if anything feels off before moving on.',
   },
