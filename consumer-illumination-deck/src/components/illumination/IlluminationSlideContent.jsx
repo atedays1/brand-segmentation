@@ -90,7 +90,7 @@ export function IlluminationStatsBullets({ stats, bullets, visuals }) {
   )
 }
 
-export function IlluminationCompare({ compare, tiers, visuals }) {
+export function IlluminationCompare({ compare, tiers, visuals, bullets }) {
   if (!compare) return null
   const { left, right } = compare
   const leftA = COMPARE_ACCENT[left.accent] || COMPARE_ACCENT.emerald
@@ -103,9 +103,16 @@ export function IlluminationCompare({ compare, tiers, visuals }) {
           const a = i === 0 ? leftA : rightA
           return (
             <div key={side.label} className={`rounded-xl border ${a.border} ${a.bg} p-4`}>
-              <p className={`text-[10px] font-bold uppercase tracking-wider ${a.text} mb-1`}>
-                {side.label}
-              </p>
+              <div className="flex items-center justify-between gap-2 mb-1">
+                <p className={`text-[10px] font-bold uppercase tracking-wider ${a.text}`}>
+                  {side.label}
+                </p>
+                {side.role && (
+                  <span className="text-[9px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full border border-white/10 bg-slate-900/40 text-slate-400 whitespace-nowrap">
+                    {side.role}
+                  </span>
+                )}
+              </div>
               {side.tagline && (
                 <p className="text-base font-bold text-white mb-3 leading-snug">{side.tagline}</p>
               )}
@@ -121,6 +128,7 @@ export function IlluminationCompare({ compare, tiers, visuals }) {
           )
         })}
       </div>
+      <BulletList items={bullets} />
       {tiers?.length > 0 && (
         <div className="flex flex-col sm:flex-row gap-2 items-stretch">
           {tiers.map((t, i) => (
@@ -363,7 +371,12 @@ export function IlluminationSlideBody({ slide }) {
       )
     case 'compare':
       return (
-        <IlluminationCompare compare={slide.compare} tiers={slide.tiers} visuals={slide.visuals} />
+        <IlluminationCompare
+          compare={slide.compare}
+          tiers={slide.tiers}
+          visuals={slide.visuals}
+          bullets={slide.bullets}
+        />
       )
     case 'segmentProfile':
       return <IlluminationSegmentProfile profile={slide.profile} quotes={slide.quotes} />
