@@ -318,8 +318,8 @@ export const consumerIlluminationSlides = [
   {
     id: 'platform-implications',
     layout: 'implications',
-    title: 'Platform implications',
-    titleHighlight: 'Platform',
+    title: 'Brand positioning implications',
+    titleHighlight: 'Brand positioning',
     headerIcon: 'Layers',
     subtitle: 'What both segments need from Ate Days, the bridge positioning',
     pillars: [
