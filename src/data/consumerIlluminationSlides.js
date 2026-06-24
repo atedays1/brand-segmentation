@@ -408,7 +408,7 @@ export const consumerIlluminationSlides = [
     decisions: [
       {
         question: 'Unified brand with sub-lines',
-        options: ['Unified brand with sub-lines', 'Distinct sub-lines to cater to each segments'],
+        options: ['Single platform with segment-specific creative', 'Distinct sub-lines to cater to each segments'],
         recommendation: 'Single platform; fork messaging and SKU architecture, not master brand',
       },
       {
