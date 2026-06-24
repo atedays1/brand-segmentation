@@ -228,10 +228,11 @@ export function ConsumerIlluminationDeckPage() {
                 })()}
                 {slide.title ? (
                   slide.titleHighlight ? (
-                    <>
+                    <span>
                       {slide.title.split(slide.titleHighlight)[0]}
-                      <span style={{ color: ACCENT }}>{slide.titleHighlight}</span>{slide.title.split(slide.titleHighlight)[1]}
-                    </>
+                      <span style={{ color: ACCENT }}>{slide.titleHighlight}</span>
+                      {slide.title.split(slide.titleHighlight)[1]}
+                    </span>
                   ) : (
                     slide.title
                   )
