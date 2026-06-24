@@ -9,7 +9,7 @@ const ACCENT = {
 
 export function IlluminationTierPyramid() {
   return (
-    <IlluminationChartCard title="Tiered product architecture" subtitle="SBK strategic implications, one platform, scaled depth">
+    <IlluminationChartCard title="Tiered product architecture" subtitle="One brand, scaled depth by segment need, not separate sub-brands">
       <div className="flex flex-col items-center gap-2 py-2 max-w-lg mx-auto">
         {tierPyramid.map((t) => {
           const style = ACCENT[t.accent] || ACCENT.sky

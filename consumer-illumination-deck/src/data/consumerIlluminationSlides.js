@@ -342,13 +342,18 @@ export const consumerIlluminationSlides = [
     id: 'segment-nuance',
     layout: 'compare',
     visuals: ['tierPyramid'],
-    title: 'Fork the message',
-    titleHighlight: 'message',
+    title: 'One brand, tailored messaging',
+    titleHighlight: 'One brand',
     headerIcon: 'MessageSquare',
-    subtitle: 'Same platform, different sub-line positioning, product focus, and tonality',
+    subtitle: 'Same platform and master brand; campaigns, creative, ads, and landing pages adapt by segment through the funnel',
+    bullets: [
+      'Not two brands, one Ate Days with segment-aware expressions where relevance matters',
+      'Shared brand in broad-reach channels; WA- and OE-led copy and LP variants deeper in the funnel',
+    ],
     compare: {
       left: {
         label: 'Wellness Architects',
+        role: 'Primary target',
         tagline: 'Your daily performance system',
         items: [
           'Make wellness feel: more controllable',
@@ -361,6 +366,7 @@ export const consumerIlluminationSlides = [
       },
       right: {
         label: 'Overwhelmed Experimenters',
+        role: 'Secondary target',
         tagline: 'Your daily support system',
         items: [
           'Make wellness feel: more manageable',
@@ -373,7 +379,7 @@ export const consumerIlluminationSlides = [
       },
     },
     speakerNotes:
-      'Slide 11 operationalizes the fork. Architects get "performance system" language, controllable, modular, expandable stacks. Experimenters get "support system", manageable, essential, ritual-friendly. SBK proposes tiered architecture: essentials at entry, bridge products, performance systems at top. Consumption experience plays different roles: sustainability for WA, ritualization for OE. Founders should debate whether this is sub-brands, SKU naming, or audience-specific creative, but the insight is clear: one message won\'t fit both.',
+      'This slide operationalizes segment tailoring, not a brand split. One Ate Days platform; campaigns can reach both segments while creative, ads, and landing pages flex by audience through the funnel. Architects get "performance system" language, controllable, modular, expandable stacks. Experimenters get "support system", manageable, essential, ritual-friendly. SBK tiered architecture (essentials, bridge, performance systems) scales product depth without dividing the master brand. Founders should align on where shared brand voice stays constant vs where segment-led expressions take over in channel and creative.',
   },
   {
     id: 'insight-to-activation',
