@@ -23,8 +23,7 @@ function ReportHeader({ icon: Icon, title, titleHighlight, subtitle }) {
             {titleHighlight ? (
               <>
                 {title.split(titleHighlight)[0]}
-                <span style={{ color: ACCENT }}>{titleHighlight}</span>
-                {title.split(titleHighlight)[1]}
+                <span style={{ color: ACCENT }}>{titleHighlight}</span>{title.split(titleHighlight)[1]}
               </>
             ) : (
               title
