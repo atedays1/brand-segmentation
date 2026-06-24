@@ -401,28 +401,28 @@ export const consumerIlluminationSlides = [
   {
     id: 'founder-decisions',
     layout: 'decisions',
-    title: 'Decisions for Ate Days',
-    titleHighlight: 'Decisions',
+    title: 'Branding Strategy Drivers for Ate Days',
+    titleHighlight: 'Branding Strategy Drivers',
     headerIcon: 'CheckSquare',
-    subtitle: 'Four choices to close before finalizing positioning and launch bundle',
+    subtitle: 'Four drivers shaping positioning and launch bundle',
     decisions: [
       {
-        question: 'Unified brand vs sub-lines?',
-        options: ['Single "impact obvious" platform with segment-specific creative', 'Distinct sub-lines (performance system vs daily support)'],
+        question: 'Unified brand with sub-lines',
+        options: ['Unified brand with sub-lines', 'Distinct sub-lines to cater to each segments'],
         recommendation: 'Single platform; fork messaging and SKU architecture, not master brand',
       },
       {
-        question: 'Which need state leads launch?',
+        question: 'Launch need state',
         options: ['Sleep (universal pillar, high heat both segments)', 'Energy/focus (WA-leaning, differentiation)', 'Stress/wind-down (OE ritual opportunity)'],
         recommendation: 'Sleep or energy/focus, both segments over-index; sleep has strongest shared ethnography',
       },
       {
-        question: 'Proof model per segment?',
+        question: 'Credentialing/validation',
         options: ['WA: clinical evidence + ingredient transparency', 'OE: felt impact + simplified science + certifications', 'Both: same core claims, different emphasis in creative'],
         recommendation: 'Same product proof; WA leads with science, OE leads with felt impact and ease',
       },
       {
-        question: 'Format & ritual strategy?',
+        question: 'Brand and GTM strategy',
         options: ['System integration (stacks, precise dosing), WA', 'Treat-like RTD / gummies / premade, OE', 'One hero format optimized for both'],
         recommendation: 'Hero format that is fast-acting + ritual-friendly; avoid powder-only or pill-only',
       },

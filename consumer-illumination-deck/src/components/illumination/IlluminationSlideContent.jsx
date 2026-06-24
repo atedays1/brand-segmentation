@@ -455,7 +455,7 @@ export function IlluminationDecisions({ decisions }) {
     <div className="mt-3 space-y-3 max-w-5xl">
       {decisions.map((d, i) => (
         <div key={d.question} className="rounded-xl border border-white/10 bg-slate-900/40 p-4">
-          <p className="text-[10px] font-bold uppercase text-emerald-400/80 mb-1">Decision {i + 1}</p>
+          <p className="text-[10px] font-bold uppercase text-emerald-400/80 mb-1">Driver {i + 1}</p>
           <h3 className="text-sm font-bold text-white mb-2">{d.question}</h3>
           <ul className="space-y-1 mb-2">
             {d.options?.map((opt) => (
