@@ -68,6 +68,16 @@ export function AppNav() {
         Consumer Illumination
       </NavLink>
       <NavLink
+        to="/name-exploration"
+        className={({ isActive }) =>
+          `text-sm font-medium px-4 py-2 rounded-lg transition-colors ${
+            isActive ? 'bg-emerald-600 text-white' : 'text-slate-300 hover:text-white hover:bg-slate-700'
+          }`
+        }
+      >
+        Name Exploration
+      </NavLink>
+      <NavLink
         to="/gallery"
         className={({ isActive }) =>
           `text-sm font-medium px-4 py-2 rounded-lg transition-colors ${

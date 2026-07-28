@@ -14,6 +14,7 @@ import { BoardDeckPage } from './pages/BoardDeckPage'
 import { AgencyNeedsDeckPage } from './pages/AgencyNeedsDeckPage'
 import { SleepLandscapeDeckPage } from './pages/SleepLandscapeDeckPage'
 import { ConsumerIlluminationDeckPage } from './pages/ConsumerIlluminationDeckPage'
+import { NameExplorationDeckPage } from './pages/NameExplorationDeckPage'
 
 function SidebarToggle() {
   const { sidebarOpen, toggleSidebar } = useSidebarLibrary()
@@ -63,6 +64,7 @@ function App() {
           <Route path="/agency-needs" element={<AgencyNeedsDeckPage />} />
           <Route path="/sleep-landscape" element={<SleepLandscapeDeckPage />} />
           <Route path="/consumer-illumination" element={<ConsumerIlluminationDeckPage />} />
+          <Route path="/name-exploration" element={<NameExplorationDeckPage />} />
         </Routes>
         <InjectedOverlay />
         <CenterGuide containerRef={containerRef} />
