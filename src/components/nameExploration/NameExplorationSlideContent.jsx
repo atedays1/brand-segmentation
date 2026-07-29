@@ -70,18 +70,28 @@ function NameCover({ slide }) {
 
 function MustsLayout({ slide }) {
   return (
-    <div className="mt-3 space-y-4 max-w-5xl">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+    <div className="mt-2 space-y-3 max-w-6xl">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
         {slide.musts?.map((m, i) => (
-          <div key={m.title} className="rounded-xl border border-teal-200/80 bg-white/80 p-4 shadow-sm">
+          <div key={m.title} className="rounded-xl border border-teal-200/80 bg-white/80 p-3.5 shadow-sm">
             <p className="text-[10px] font-bold uppercase tracking-wider text-teal-700 mb-1">Must {i + 1}</p>
-            <h3 className="text-sm font-bold text-slate-900 mb-1.5">{m.title}</h3>
-            <p className="text-xs text-slate-600 leading-snug">{m.detail}</p>
+            <h3 className="text-sm font-bold text-slate-900 mb-1.5 leading-snug">{m.title}</h3>
+            {m.detail && <p className="text-xs text-slate-600 leading-snug">{m.detail}</p>}
+            {m.points?.length > 0 && (
+              <ul className="mt-2 space-y-1.5">
+                {m.points.map((p) => (
+                  <li key={p} className="text-xs text-slate-600 leading-snug flex gap-1.5">
+                    <span className="text-teal-600 shrink-0">·</span>
+                    <span>{p}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         ))}
       </div>
       {slide.brandabilityQuestions?.length > 0 && (
-        <div className="rounded-xl border border-slate-200 bg-white/70 p-4">
+        <div className="rounded-xl border border-slate-200 bg-white/70 p-3.5">
           <p className="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-2">Brandability checks</p>
           <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
             {slide.brandabilityQuestions.map((q) => (

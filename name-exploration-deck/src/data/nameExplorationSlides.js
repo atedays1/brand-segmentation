@@ -75,8 +75,16 @@ export const nameExplorationSlides = [
     subtitle: 'Non-negotiables before we fall in love with a word',
     musts: [
       {
+        title: 'Appeal to our target consumers (both segments)',
+        detail: 'So we can craft a connection.',
+      },
+      {
         title: 'Category or benefit clarity',
         detail: 'Clear category descriptors, benefit anchors, or sensory words (e.g. ClearSkin, Oatly)',
+        points: [
+          'Helps us build trust based on science and credibility',
+          'Name must help signal fast-acting, felt impact — does it work?',
+        ],
       },
       {
         title: 'Simple spelling',
@@ -85,6 +93,10 @@ export const nameExplorationSlides = [
       {
         title: 'Room to grow',
         detail: 'Allows category expansion beyond a single SKU into an ecosystem',
+      },
+      {
+        title: 'Premium & emotional',
+        detail: 'Must feel premium, luxurious, aspirational and emotional',
       },
     ],
     brandabilityQuestions: [
@@ -95,7 +107,7 @@ export const nameExplorationSlides = [
       'Can it expand into a full product ecosystem?',
     ],
     speakerNotes:
-      'Use this as a filter before aesthetic preference. If a name fails #1 or #2, it inflates CAC no matter how pretty the mockup.',
+      'Use this as a filter before aesthetic preference. Start with segment appeal, then clarity/trust/efficacy signal. If a name fails early musts, it inflates CAC no matter how pretty the mockup.',
   },
   {
     id: 'checkpoints',
