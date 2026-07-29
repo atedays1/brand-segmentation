@@ -75,6 +75,7 @@ const nameCandidatesUnsorted = [
       'English cue: a signal that prompts the next action',
       'Split black/white pack + “Prompted. Signaled. Ready.” literalizes the cue',
       'Brand as the trigger that starts focus, energy, or calm on demand',
+      'Caution: potential for misspellings. E.g., queued, cute…',
     ],
   },
   {
