@@ -167,7 +167,7 @@ export const nameExplorationSlides = [
   {
     id: 'pillars',
     layout: 'pillars',
-    title: 'Brand naming pillars',
+    title: 'Additional naming pillars to keep in mind',
     titleHighlight: 'pillars',
     headerIcon: 'Layers',
     subtitle: 'Four focus questions for stick-pack wellness positioning',
