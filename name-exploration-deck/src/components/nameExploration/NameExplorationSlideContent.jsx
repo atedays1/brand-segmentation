@@ -134,20 +134,37 @@ function MustsLayout({ slide }) {
 
 function CheckpointsLayout({ slide }) {
   return (
-    <div className="mt-3 grid grid-cols-1 md:grid-cols-3 gap-3 max-w-6xl">
-      {slide.checkpoints?.map((c) => (
-        <div key={c.title} className="rounded-xl border border-slate-200 bg-white/85 p-4 shadow-sm flex flex-col">
-          <h3 className="text-sm font-bold text-teal-800 mb-1">{c.title}</h3>
-          <p className="text-xs text-slate-600 leading-snug mb-3">{c.detail}</p>
-          <ul className="space-y-1.5 mt-auto">
-            {c.questions?.map((q) => (
-              <li key={q} className="text-[11px] text-slate-500 pl-2 border-l-2 border-teal-200 leading-snug">
-                {q}
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
+    <div className="mt-2 space-y-3 max-w-6xl">
+      {slide.lead && (
+        <p className="text-sm md:text-base text-slate-800 font-medium italic leading-relaxed border-l-2 border-teal-500 pl-3 max-w-4xl">
+          {slide.lead}
+        </p>
+      )}
+      {slide.bullets?.length > 0 && (
+        <ul className="space-y-1.5 max-w-4xl">
+          {slide.bullets.map((item) => (
+            <li key={item} className="flex gap-2 text-xs text-slate-600 leading-snug">
+              <Sparkles size={12} className="text-teal-600 flex-shrink-0 mt-0.5" />
+              {item}
+            </li>
+          ))}
+        </ul>
+      )}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        {slide.checkpoints?.map((c) => (
+          <div key={c.title} className="rounded-xl border border-slate-200 bg-white/85 p-4 shadow-sm flex flex-col">
+            <h3 className="text-sm font-bold text-teal-800 mb-1">{c.title}</h3>
+            <p className="text-xs text-slate-600 leading-snug mb-3">{c.detail}</p>
+            <ul className="space-y-1.5 mt-auto">
+              {c.questions?.map((q) => (
+                <li key={q} className="text-[11px] text-slate-500 pl-2 border-l-2 border-teal-200 leading-snug">
+                  {q}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }

@@ -56,15 +56,16 @@ export const nameExplorationSlides = [
     title: 'Why naming matters now',
     titleHighlight: 'naming',
     headerIcon: 'Radar',
-    subtitle: 'Meta Andromeda changes how ads are indexed, interpreted, and served',
-    lead: 'Our name tells the algorithm what we do. Our creative tells the audience why they need it.',
+    subtitle: 'Criteria first, then discovery, then the shortlist',
+    lead: 'A strong name has to work for people and platforms — but we start with who we serve and what the brand must signal.',
     bullets: [
-      'Andromeda uses NLP, computer vision, and audio transcription to decode creative and route it to the right buyers',
-      'Brand naming must adapt to an algorithm-first environment, not just human shelf intuition',
-      'Clear category, benefit, or sensory cues in the name lower acquisition friction',
+      'Name musts — non-negotiables for both Wellness Architects and Overwhelmed Experimenters',
+      'Evaluation checkpoints — Google SEO, AI/search distinctiveness, and brandability',
+      'Additional pillars — stick-pack wellness positioning (sourcing, function, ad clarity, aesthetics)',
+      'Then color coding and a name-by-name review toward a shortlist',
     ],
     speakerNotes:
-      'Bridge from consumer illumination: we know who we are talking to. The name has to help the algorithm and the shopper in three seconds.',
+      'Set the agenda: human and brand filters first, discovery lenses second, then the walkthrough. Meta/Andromeda lands on the checkpoints slide — do not lead with ad-platform mechanics.',
   },
   {
     id: 'name-musts',
@@ -77,6 +78,10 @@ export const nameExplorationSlides = [
       {
         title: 'Appeal to our target consumers (both segments)',
         detail: 'So we can craft a connection.',
+        points: [
+          'Validate our consumer research and align with our segments’ traits, brand affinity and purchasing habits',
+          'Set us up for success from our research',
+        ],
       },
       {
         title: 'Category or benefit clarity',
@@ -129,7 +134,12 @@ export const nameExplorationSlides = [
     title: 'Evaluation checkpoints',
     titleHighlight: 'checkpoints',
     headerIcon: 'Target',
-    subtitle: 'Three lenses we will score against in the ranking table',
+    subtitle: 'Discovery lenses for SEO, AI search, and paid — including Meta Andromeda',
+    lead: 'Our name tells the algorithm what we do. Our creative tells the audience why they need it.',
+    bullets: [
+      'Andromeda uses NLP, computer vision, and audio transcription to decode creative and route it to the right buyers',
+      'Clear category, benefit, or sensory cues in the name lower acquisition friction across Meta and search',
+    ],
     checkpoints: [
       {
         title: 'Google SEO',
@@ -162,7 +172,7 @@ export const nameExplorationSlides = [
       },
     ],
     speakerNotes:
-      'AI/search distinctiveness is rising in importance because entity recognition is replacing pure keyword matching.',
+      'Bridge Andromeda here: paid social indexes creative and routes buyers. Pair that with SEO and AI distinctiveness. Entity recognition is replacing pure keyword matching.',
   },
   {
     id: 'pillars',
@@ -185,7 +195,7 @@ export const nameExplorationSlides = [
       {
         pillar: '3. Ad clarity',
         question: 'Easily spellable, pronounceable, and clear with a descriptor?',
-        goal: 'Keeps Meta / Search acquisition costs low',
+        goal: 'Keeps acquisition costs low in paid and search',
       },
       {
         pillar: '4. Aesthetics',
