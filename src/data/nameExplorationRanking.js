@@ -186,6 +186,7 @@ const nameCandidatesUnsorted = [
       'Latin nūdō: to bare, uncover, lay open; Spanish nudo also = knot',
       'Minimal silver stick + amber jar = stripped-back, nothing extra',
       'Brand read: reveal the essential formula; tie the daily ritual tight',
+      'Leaving only what matters…',
     ],
   },
   {
