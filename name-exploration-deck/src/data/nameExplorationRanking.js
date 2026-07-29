@@ -64,6 +64,7 @@ const nameCandidatesUnsorted = [
       'From Guaraní/Tupi roots for the calm “grass-eater” rodent',
       'Mock shows four need-state boxes like a gentle, social herd of routines',
       'Personality: grounded, unflappable wellness rather than high-strung hype',
+      'Caution: similar to Gopher, the rodent association is a big hurdle.',
     ],
   },
   {
