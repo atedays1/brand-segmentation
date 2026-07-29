@@ -98,6 +98,20 @@ export const nameExplorationSlides = [
         title: 'Premium & emotional',
         detail: 'Must feel premium, luxurious, aspirational and emotional',
       },
+      {
+        label: 'Bonus',
+        title: 'Educates or invites curiosity',
+        sections: [
+          {
+            detail: 'The brand name ideally communicates education on its own.',
+            example: 'For example Patagonia, Seed, Headspace…',
+          },
+          {
+            detail: 'Or the name invokes curiosity',
+            example: 'Oura, Whoop, Google, Kodak',
+          },
+        ],
+      },
     ],
     brandabilityQuestions: [
       'Does it feel premium?',

@@ -73,8 +73,19 @@ function MustsLayout({ slide }) {
     <div className="mt-2 space-y-3 max-w-6xl">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
         {slide.musts?.map((m, i) => (
-          <div key={m.title} className="rounded-xl border border-teal-200/80 bg-white/80 p-3.5 shadow-sm">
-            <p className="text-[10px] font-bold uppercase tracking-wider text-teal-700 mb-1">Must {i + 1}</p>
+          <div
+            key={m.title}
+            className={`rounded-xl border bg-white/80 p-3.5 shadow-sm ${
+              m.label === 'Bonus' ? 'border-amber-300/90' : 'border-teal-200/80'
+            }`}
+          >
+            <p
+              className={`text-[10px] font-bold uppercase tracking-wider mb-1 ${
+                m.label === 'Bonus' ? 'text-amber-700' : 'text-teal-700'
+              }`}
+            >
+              {m.label || `Must ${i + 1}`}
+            </p>
             <h3 className="text-sm font-bold text-slate-900 mb-1.5 leading-snug">{m.title}</h3>
             {m.detail && <p className="text-xs text-slate-600 leading-snug">{m.detail}</p>}
             {m.points?.length > 0 && (
@@ -86,6 +97,20 @@ function MustsLayout({ slide }) {
                   </li>
                 ))}
               </ul>
+            )}
+            {m.sections?.length > 0 && (
+              <div className="mt-2 space-y-2.5">
+                {m.sections.map((s) => (
+                  <div key={s.detail}>
+                    <p className="text-xs text-slate-600 leading-snug">{s.detail}</p>
+                    {s.example && (
+                      <p className="text-[11px] text-slate-500 leading-snug mt-0.5 pl-2 border-l-2 border-amber-200">
+                        {s.example}
+                      </p>
+                    )}
+                  </div>
+                ))}
+              </div>
             )}
           </div>
         ))}
