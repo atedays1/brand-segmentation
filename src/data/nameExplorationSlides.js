@@ -241,7 +241,7 @@ export const nameExplorationSlides = [
     bullets: [
       'Images are exploratory packaging directions, not final brand systems',
       'Use AI ranking after gut reaction, not instead of it',
-      'Goal: leave with one to three names for deeper trademark search',
+      'Goal: Leave with a handful of names for deeper trademark search and testing',
     ],
     speakerNotes:
       'One beat for color coding, then into the walkthrough. Pace ~20–30 seconds per name unless founders dig in. Capture reactions on a whiteboard.',
