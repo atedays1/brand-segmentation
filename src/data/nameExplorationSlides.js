@@ -267,7 +267,7 @@ export const nameExplorationSlides = [
     titleHighlight: 'next step',
     headerIcon: 'CheckSquare',
     subtitle: 'Leave with a shortlist for deeper trademark search',
-    lead: 'Pick one to three names to pursue with counsel. Ideal outcome: converge on one primary and one backup.',
+    lead: 'Pick a handful of names to pursue with counsel. Ideal outcome: converge on one primary and several backups. Consider rapid consumer survey temperature test.',
     steps: [
       'Confirm shared criteria (musts + pillars + checkpoints)',
       'Star favorites from Available and Maybe',
