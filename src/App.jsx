@@ -15,6 +15,7 @@ import { AgencyNeedsDeckPage } from './pages/AgencyNeedsDeckPage'
 import { SleepLandscapeDeckPage } from './pages/SleepLandscapeDeckPage'
 import { ConsumerIlluminationDeckPage } from './pages/ConsumerIlluminationDeckPage'
 import { NameExplorationDeckPage } from './pages/NameExplorationDeckPage'
+import { SummsDtcModelPage } from './pages/SummsDtcModelPage'
 
 function SidebarToggle() {
   const { sidebarOpen, toggleSidebar } = useSidebarLibrary()
@@ -44,6 +45,14 @@ function App() {
   const { pathname } = useLocation()
   const { sidebarOpen } = useSidebarLibrary()
   const showStandaloneEditBar = pathname === '/gallery' || pathname === '/segmentation'
+  const isSummsModel =
+    pathname === '/summs-dtc-model' || pathname === '/summs-dtc-model.html'
+
+  // Standalone tool — no deck chrome (Vercel rewrites .html into the SPA)
+  if (isSummsModel) {
+    return <SummsDtcModelPage />
+  }
+
   return (
     <>
       <AppNav />
@@ -65,6 +74,8 @@ function App() {
           <Route path="/sleep-landscape" element={<SleepLandscapeDeckPage />} />
           <Route path="/consumer-illumination" element={<ConsumerIlluminationDeckPage />} />
           <Route path="/name-exploration" element={<NameExplorationDeckPage />} />
+          <Route path="/summs-dtc-model" element={<SummsDtcModelPage />} />
+          <Route path="/summs-dtc-model.html" element={<SummsDtcModelPage />} />
         </Routes>
         <InjectedOverlay />
         <CenterGuide containerRef={containerRef} />
