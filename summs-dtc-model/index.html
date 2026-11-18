@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SUMMS DTC Interactive Model</title>
+  <style>
+    :root {
+      --bg: #f4f7f5;
+      --panel: #ffffff;
+      --ink: #14201b;
+      --muted: #5c6b64;
+      --line: #d8e3dd;
+      --accent: #0f6b5c;
+      --accent-soft: #e6f3ef;
+      --warn: #9a4d1c;
+      --bad: #8f2f2f;
+      --good: #1b6b3a;
+      --cons: #5b6b7a;
+      --base: #0f6b5c;
+      --agg: #7a3e9d;
+      --radius: 12px;
+      --font: "Segoe UI", system-ui, -apple-system, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      color: var(--ink);
+      background:
+        radial-gradient(900px 400px at 10% -10%, #d9efe8 0%, transparent 55%),
+        radial-gradient(700px 360px at 100% 0%, #e8e6f4 0%, transparent 50%),
+        var(--bg);
+      line-height: 1.4;
+    }
+    header {
+      padding: 28px 24px 8px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    header h1 {
+      margin: 0 0 6px;
+      font-size: 1.65rem;
+      letter-spacing: -0.02em;
+    }
+    header p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 62ch;
+      font-size: 0.95rem;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 18px;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 16px 24px 40px;
+    }
+    @media (max-width: 980px) {
+      .layout { grid-template-columns: 1fr; }
+    }
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 14px 14px 10px;
+    }
+    .panel h2 {
+      margin: 0 0 10px;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+    }
+    .scenarios {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .scenario-btn {
+      border: 1px solid var(--line);
+      background: #fafcfb;
+      border-radius: 10px;
+      padding: 10px 8px;
+      cursor: pointer;
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+    .scenario-btn.active[data-s="conservative"] { outline: 2px solid var(--cons); background: #eef2f5; }
+    .scenario-btn.active[data-s="base"] { outline: 2px solid var(--base); background: var(--accent-soft); }
+    .scenario-btn.active[data-s="aggressive"] { outline: 2px solid var(--agg); background: #f4eef8; }
+    details {
+      border-top: 1px solid var(--line);
+      padding: 8px 0 4px;
+    }
+    details:first-of-type { border-top: 0; }
+    summary {
+      cursor: pointer;
+      font-weight: 650;
+      font-size: 0.92rem;
+      padding: 4px 0;
+      list-style: none;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; float: right; color: var(--muted); }
+    details[open] summary::after { content: "–"; }
+    .field {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 6px 10px;
+      align-items: center;
+      margin: 7px 0;
+      font-size: 0.84rem;
+    }
+    .field label { color: var(--ink); }
+    .field .hint { grid-column: 1 / -1; color: var(--muted); font-size: 0.72rem; margin-top: -4px; }
+    .field input[type="number"] {
+      width: 96px;
+      padding: 6px 8px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      font: inherit;
+      text-align: right;
+      background: #fcfdfc;
+    }
+    .field input:focus {
+      outline: 2px solid color-mix(in srgb, var(--accent) 35%, white);
+      border-color: var(--accent);
+    }
+    .controls-scroll {
+      max-height: calc(100vh - 140px);
+      overflow: auto;
+      position: sticky;
+      top: 12px;
+    }
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    @media (max-width: 900px) {
+      .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    .kpi {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 12px 14px;
+    }
+    .kpi .label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+    .kpi .value { font-size: 1.35rem; font-weight: 700; margin-top: 4px; letter-spacing: -0.02em; }
+    .kpi .sub { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+    .kpi.good .value { color: var(--good); }
+    .kpi.warn .value { color: var(--warn); }
+    .kpi.bad .value { color: var(--bad); }
+    .stack { display: grid; gap: 14px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+    }
+    th, td {
+      padding: 7px 8px;
+      border-bottom: 1px solid var(--line);
+      text-align: right;
+      white-space: nowrap;
+    }
+    th:first-child, td:first-child { text-align: left; }
+    th {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      background: #f7faf8;
+      position: sticky;
+      top: 0;
+    }
+    .table-wrap { overflow: auto; max-height: 420px; }
+    .bars {
+      display: grid;
+      grid-template-columns: 90px 1fr 70px;
+      gap: 6px 10px;
+      align-items: center;
+      font-size: 0.8rem;
+    }
+    .bar-track {
+      height: 10px;
+      background: #e8efeb;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #1a8a74, #0f6b5c);
+      border-radius: 999px;
+      width: 0;
+    }
+    .note {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin: 0;
+    }
+    .split {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 14px;
+    }
+    @media (max-width: 900px) {
+      .split { grid-template-columns: 1fr; }
+    }
+    .pill {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.72rem;
+      font-weight: 650;
+    }
+    .actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+    .actions button {
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 8px;
+      padding: 7px 10px;
+      font: inherit;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+    .actions button.primary {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>SUMMS DTC Interactive Model</h1>
+    <p>
+      Play with pricing, volume, CAC, and full landed unit economics (product, stick fill, caddy, 3PL, shipping, fees).
+      Defaults are benchmark-based placeholders — replace with real quotes when you have them.
+      <span class="pill">DTC only · April 2027 launch</span>
+    </p>
+  </header>
+
+  <div class="layout">
+    <aside class="panel controls-scroll" id="controls">
+      <h2>Controls</h2>
+      <div class="scenarios">
+        <button class="scenario-btn active" data-s="base" type="button">Base</button>
+        <button class="scenario-btn" data-s="conservative" type="button">Conservative</button>
+        <button class="scenario-btn" data-s="aggressive" type="button">Aggressive</button>
+      </div>
+      <div class="actions">
+        <button type="button" class="primary" id="resetBtn">Reset scenario defaults</button>
+        <button type="button" id="exportBtn">Copy JSON assumptions</button>
+      </div>
+
+      <details open>
+        <summary>Pricing & mix</summary>
+        <div class="field"><label>10-pack price ($)</label><input type="number" step="0.01" data-k="price10" /></div>
+        <div class="field"><label>30-pack price ($)</label><input type="number" step="0.01" data-k="price30" /></div>
+        <div class="field"><label>Subscribe discount (%)</label><input type="number" step="0.1" data-k="subDiscountPct" /><span class="hint">Applied to 30-pack for subscribers</span></div>
+        <div class="field"><label>Mix: 10-packs (%)</label><input type="number" step="1" data-k="mix10Pct" /></div>
+        <div class="field"><label>Of 30-packs on subscribe (%)</label><input type="number" step="1" data-k="subOf30Pct" /></div>
+        <div class="field"><label>AOV uplift / cart add ($)</label><input type="number" step="0.01" data-k="aovUplift" /><span class="hint">Bundles, shipping threshold bump</span></div>
+        <div class="field"><label>Shipping charged to customer ($)</label><input type="number" step="0.01" data-k="shippingRevenue" /></div>
+      </details>
+
+      <details open>
+        <summary>Volume (packs / month)</summary>
+        <div class="field"><label>Month 1</label><input type="number" data-k="v1" /></div>
+        <div class="field"><label>Month 2</label><input type="number" data-k="v2" /></div>
+        <div class="field"><label>Month 3</label><input type="number" data-k="v3" /></div>
+        <div class="field"><label>Month 6</label><input type="number" data-k="v6" /></div>
+        <div class="field"><label>Month 9</label><input type="number" data-k="v9" /></div>
+        <div class="field"><label>Month 12</label><input type="number" data-k="v12" /></div>
+        <p class="note">Months 4–5, 7–8, 10–11 interpolate linearly.</p>
+      </details>
+
+      <details open>
+        <summary>Acquisition & retention</summary>
+        <div class="field"><label>Blended CAC ($)</label><input type="number" step="1" data-k="cac" /></div>
+        <div class="field"><label>Paid share of acquisition (%)</label><input type="number" step="1" data-k="paidSharePct" /></div>
+        <div class="field"><label>Site CVR (%)</label><input type="number" step="0.1" data-k="cvrPct" /></div>
+        <div class="field"><label>Sub attach of new buyers (%)</label><input type="number" step="1" data-k="subAttachPct" /></div>
+        <div class="field"><label>Monthly sub churn (%)</label><input type="number" step="0.1" data-k="churnPct" /></div>
+        <div class="field"><label>One-time orders / year</label><input type="number" step="0.05" data-k="otOrders" /><span class="hint">Expected orders in 12 mo for non-subscribers</span></div>
+        <div class="field"><label>Multi-SKU LTV uplift ($)</label><input type="number" step="1" data-k="ltvUplift" /><span class="hint">Extra annual value from Focus+Sleep baskets etc.</span></div>
+      </details>
+
+      <details open>
+        <summary>Product & copacker (per stick)</summary>
+        <div class="field"><label>Ingredients / powder ($)</label><input type="number" step="0.01" data-k="costIngredients" /><span class="hint">Placeholder — replace with formula quote</span></div>
+        <div class="field"><label>Stick film / materials ($)</label><input type="number" step="0.01" data-k="costFilm" /></div>
+        <div class="field"><label>Fill / copack fee ($)</label><input type="number" step="0.01" data-k="costFill" /><span class="hint">Benchmark ~$0.06–$0.18 at scale; higher on small runs</span></div>
+        <div class="field"><label>QA / testing amortized ($)</label><input type="number" step="0.01" data-k="costQa" /></div>
+      </details>
+
+      <details open>
+        <summary>Secondary pack (per finished pack)</summary>
+        <div class="field"><label>Caddy / carton 10-pack ($)</label><input type="number" step="0.01" data-k="caddy10" /><span class="hint">Premium / unique packaging can run higher</span></div>
+        <div class="field"><label>Caddy / carton 30-pack ($)</label><input type="number" step="0.01" data-k="caddy30" /></div>
+        <div class="field"><label>Inserts / labels ($)</label><input type="number" step="0.01" data-k="inserts" /></div>
+        <div class="field"><label>Inbound freight amortized ($)</label><input type="number" step="0.01" data-k="inboundFreight" /></div>
+      </details>
+
+      <details open>
+        <summary>3PL fulfillment (per order)</summary>
+        <div class="field"><label>Pick & pack ($)</label><input type="number" step="0.01" data-k="pickPack" /><span class="hint">Benchmark ~$2.50–$4.50 single-item</span></div>
+        <div class="field"><label>Extra pick / multi-SKU ($)</label><input type="number" step="0.01" data-k="extraPick" /></div>
+        <div class="field"><label>Avg extra picks / order</label><input type="number" step="0.1" data-k="avgExtraPicks" /></div>
+        <div class="field"><label>Kitting / sub assembly ($)</label><input type="number" step="0.01" data-k="kitting" /></div>
+        <div class="field"><label>Outbound mailer / void ($)</label><input type="number" step="0.01" data-k="mailer" /></div>
+        <div class="field"><label>Outbound shipping cost ($)</label><input type="number" step="0.01" data-k="outboundShip" /><span class="hint">Carrier label; sticks are light</span></div>
+        <div class="field"><label>Storage amortized / order ($)</label><input type="number" step="0.01" data-k="storage" /></div>
+      </details>
+
+      <details>
+        <summary>Fees & reserves</summary>
+        <div class="field"><label>Payment fee (%)</label><input type="number" step="0.1" data-k="payPct" /></div>
+        <div class="field"><label>Payment fixed ($)</label><input type="number" step="0.01" data-k="payFixed" /></div>
+        <div class="field"><label>Returns reserve (% of AOV)</label><input type="number" step="0.1" data-k="returnsPct" /><span class="hint">Consumables typically low (~1–3%)</span></div>
+        <div class="field"><label>Platform / shop fees (%)</label><input type="number" step="0.1" data-k="platformPct" /></div>
+      </details>
+    </aside>
+
+    <main class="stack">
+      <section class="kpi-grid" id="kpis"></section>
+
+      <section class="split">
+        <div class="panel">
+          <h2>Contribution bridge (avg order)</h2>
+          <div class="bars" id="bridge"></div>
+          <p class="note" id="bridgeNote" style="margin-top:10px"></p>
+        </div>
+        <div class="panel">
+          <h2>Year-1 totals</h2>
+          <div id="yearTotals"></div>
+          <p class="note" style="margin-top:10px">
+            Sources for defaults: stick fill ~$0.06–$0.18 (industry co-pack), 3PL pick/pack ~$2.50–$4.50,
+            packaging materials ~$0.40–$1.20, outbound+fulfillment often ~$8–$15 all-in, payment ~2.9%+$0.30,
+            DTC supplement CAC often ~$80–$130 blended.
+          </p>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>12-month forecast</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Month</th>
+                <th>Packs</th>
+                <th>Revenue</th>
+                <th>COGS + fulfill</th>
+                <th>Contribution</th>
+                <th>CM%</th>
+                <th>New cust</th>
+                <th>Paid ads</th>
+                <th>MER</th>
+                <th>Active subs</th>
+                <th>CM − ads</th>
+              </tr>
+            </thead>
+            <tbody id="monthBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const SCENARIOS = {
+      conservative: {
+        price10: 22, price30: 49, subDiscountPct: 15,
+        mix10Pct: 45, subOf30Pct: 20, aovUplift: 2, shippingRevenue: 0,
+        v1: 250, v2: 500, v3: 750, v6: 1250, v9: 1875, v12: 2500,
+        cac: 110, paidSharePct: 85, cvrPct: 1.8, subAttachPct: 15, churnPct: 8, otOrders: 1.25, ltvUplift: 20,
+        costIngredients: 0.28, costFilm: 0.05, costFill: 0.15, costQa: 0.02,
+        caddy10: 1.80, caddy30: 2.80, inserts: 0.35, inboundFreight: 0.20,
+        pickPack: 3.50, extraPick: 0.50, avgExtraPicks: 0.2, kitting: 0.50, mailer: 0.90, outboundShip: 7.00, storage: 0.25,
+        payPct: 2.9, payFixed: 0.30, returnsPct: 2.0, platformPct: 0,
+      },
+      base: {
+        price10: 22, price30: 49, subDiscountPct: 15,
+        mix10Pct: 40, subOf30Pct: 30, aovUplift: 4, shippingRevenue: 0,
+        v1: 625, v2: 1250, v3: 1875, v6: 3750, v9: 5625, v12: 7500,
+        cac: 85, paidSharePct: 75, cvrPct: 2.3, subAttachPct: 25, churnPct: 6.5, otOrders: 1.4, ltvUplift: 40,
+        costIngredients: 0.25, costFilm: 0.04, costFill: 0.12, costQa: 0.015,
+        caddy10: 1.50, caddy30: 2.40, inserts: 0.30, inboundFreight: 0.15,
+        pickPack: 3.25, extraPick: 0.50, avgExtraPicks: 0.3, kitting: 0.75, mailer: 0.80, outboundShip: 6.50, storage: 0.20,
+        payPct: 2.9, payFixed: 0.30, returnsPct: 2.0, platformPct: 0,
+      },
+      aggressive: {
+        price10: 22, price30: 49, subDiscountPct: 15,
+        mix10Pct: 35, subOf30Pct: 45, aovUplift: 8, shippingRevenue: 0,
+        v1: 1875, v2: 3125, v3: 5000, v6: 10000, v9: 15000, v12: 25000,
+        cac: 65, paidSharePct: 60, cvrPct: 3.0, subAttachPct: 35, churnPct: 5, otOrders: 1.6, ltvUplift: 70,
+        costIngredients: 0.22, costFilm: 0.035, costFill: 0.09, costQa: 0.01,
+        caddy10: 1.25, caddy30: 2.00, inserts: 0.25, inboundFreight: 0.12,
+        pickPack: 2.75, extraPick: 0.40, avgExtraPicks: 0.4, kitting: 1.00, mailer: 0.70, outboundShip: 5.75, storage: 0.15,
+        payPct: 2.9, payFixed: 0.30, returnsPct: 1.5, platformPct: 0,
+      },
+    };
+
+    let state = { ...SCENARIOS.base };
+    let activeScenario = "base";
+
+    const $ = (sel) => document.querySelector(sel);
+    const money = (n) => (n < 0 ? "-" : "") + "$" + Math.abs(n).toLocaleString(undefined, { maximumFractionDigits: 0 });
+    const money2 = (n) => (n < 0 ? "-" : "") + "$" + Math.abs(n).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    const pct = (n) => n.toFixed(1) + "%";
+
+    function bindInputs() {
+      document.querySelectorAll("[data-k]").forEach((el) => {
+        el.value = state[el.dataset.k];
+        el.oninput = () => {
+          const v = parseFloat(el.value);
+          state[el.dataset.k] = Number.isFinite(v) ? v : 0;
+          render();
+        };
+      });
+    }
+
+    function setScenario(name) {
+      activeScenario = name;
+      state = { ...SCENARIOS[name] };
+      document.querySelectorAll(".scenario-btn").forEach((b) => {
+        b.classList.toggle("active", b.dataset.s === name);
+      });
+      bindInputs();
+      render();
+    }
+
+    function interpolateVolumes(s) {
+      const milestones = { 1: s.v1, 2: s.v2, 3: s.v3, 6: s.v6, 9: s.v9, 12: s.v12 };
+      const known = Object.keys(milestones).map(Number).sort((a, b) => a - b);
+      const out = [];
+      for (let m = 1; m <= 12; m++) {
+        if (milestones[m] != null) out.push(milestones[m]);
+        else {
+          const lo = Math.max(...known.filter((k) => k < m));
+          const hi = Math.min(...known.filter((k) => k > m));
+          out.push(Math.round(milestones[lo] + (milestones[hi] - milestones[lo]) * (m - lo) / (hi - lo)));
+        }
+      }
+      return out;
+    }
+
+    function packEconomics(s) {
+      const mix10 = s.mix10Pct / 100;
+      const mix30 = 1 - mix10;
+      const subOf30 = s.subOf30Pct / 100;
+      const subPrice = s.price30 * (1 - s.subDiscountPct / 100);
+
+      const avgSticks = mix10 * 10 + mix30 * 30;
+      const stickCost = s.costIngredients + s.costFilm + s.costFill + s.costQa;
+      const productPerPack = stickCost * avgSticks;
+
+      const caddy = mix10 * s.caddy10 + mix30 * s.caddy30 + s.inserts + s.inboundFreight;
+      const blendedPackPrice =
+        mix10 * s.price10 +
+        mix30 * ((1 - subOf30) * s.price30 + subOf30 * subPrice);
+
+      const aov = blendedPackPrice + s.aovUplift + s.shippingRevenue;
+
+      const fulfill =
+        s.pickPack +
+        s.extraPick * s.avgExtraPicks +
+        s.kitting * (s.subAttachPct / 100) +
+        s.mailer +
+        s.outboundShip +
+        s.storage;
+
+      const payment = aov * (s.payPct / 100) + s.payFixed;
+      const platform = aov * (s.platformPct / 100);
+      const returns = aov * (s.returnsPct / 100);
+      const variableCost = productPerPack + caddy + fulfill + payment + platform + returns - s.shippingRevenue;
+      // shippingRevenue is in AOV; net ship cost is outboundShip already in fulfill. Don't double-count revenue as cost offset twice.
+      // Net: contribution = aov - (product + caddy + fulfill + payment + platform + returns)
+      // shippingRevenue increases aov; outboundShip is in fulfill. Correct.
+      const contribution = aov - (productPerPack + caddy + fulfill + payment + platform + returns);
+      const cmPct = aov > 0 ? (contribution / aov) * 100 : 0;
+
+      const churn = s.churnPct / 100;
+      const retain = 1 - churn;
+      const sub12 = churn === 0 ? subPrice * 12 : subPrice * (1 - Math.pow(retain, 12)) / churn;
+      const ot12 = aov * s.otOrders;
+      const attach = s.subAttachPct / 100;
+      const ltvFloor = attach * sub12 + (1 - attach) * ot12;
+      const ltv = ltvFloor + s.ltvUplift;
+      const ltvCac = s.cac > 0 ? ltv / s.cac : 0;
+
+      return {
+        avgSticks, stickCost, productPerPack, caddy, blendedPackPrice, aov, fulfill,
+        payment, platform, returns, contribution, cmPct, subPrice, ltv, ltvFloor, ltvCac,
+        productPlusCaddy: productPerPack + caddy,
+      };
+    }
+
+    function newShare(m) {
+      return 0.95 - (0.95 - 0.55) * (m - 1) / 11;
+    }
+
+    function render() {
+      const s = state;
+      const eco = packEconomics(s);
+      const vols = interpolateVolumes(s);
+      const packsPerOrder = 1.1;
+
+      let activeSubs = 0;
+      let yPacks = 0, yRev = 0, yVar = 0, yAds = 0, yCm = 0;
+      const rows = [];
+
+      vols.forEach((packs, idx) => {
+        const m = idx + 1;
+        const rev = packs * eco.aov;
+        const varCost = packs * (eco.productPlusCaddy + eco.fulfill + eco.payment + eco.platform + eco.returns);
+        // payment/platform/returns scale with aov already in eco - but eco.payment is per order at aov. packs ≈ orders if 1 pack/order. Use packs as order proxy.
+        const cm = packs * eco.contribution;
+        const orders = packs / packsPerOrder;
+        const newCust = orders * newShare(m);
+        const ads = newCust * s.cac * (s.paidSharePct / 100);
+        const mer = ads > 0 ? rev / ads : 0;
+        const newSubs = newCust * (s.subAttachPct / 100);
+        activeSubs = activeSubs * (1 - s.churnPct / 100) + newSubs;
+        const cmMinusAds = cm - ads;
+
+        yPacks += packs; yRev += rev; yVar += varCost; yCm += cm; yAds += ads;
+        rows.push({ m, packs, rev, varCost, cm, cmPct: rev ? (cm / rev) * 100 : 0, newCust, ads, mer, activeSubs, cmMinusAds });
+      });
+
+      const ltvClass = eco.ltvCac >= 3 ? "good" : eco.ltvCac >= 2 ? "warn" : "bad";
+      const cmClass = eco.cmPct >= 45 ? "good" : eco.cmPct >= 30 ? "warn" : "bad";
+
+      $("#kpis").innerHTML = `
+        <div class="kpi"><div class="label">Blended AOV</div><div class="value">${money2(eco.aov)}</div><div class="sub">${eco.avgSticks.toFixed(1)} sticks / pack avg</div></div>
+        <div class="kpi ${cmClass}"><div class="label">Contribution / order</div><div class="value">${money2(eco.contribution)}</div><div class="sub">${pct(eco.cmPct)} CM</div></div>
+        <div class="kpi"><div class="label">12-mo LTV</div><div class="value">${money(eco.ltv)}</div><div class="sub">Floor ${money(eco.ltvFloor)} before uplift</div></div>
+        <div class="kpi ${ltvClass}"><div class="label">LTV : CAC</div><div class="value">${eco.ltvCac.toFixed(2)}:1</div><div class="sub">CAC ${money(s.cac)}</div></div>
+        <div class="kpi"><div class="label">Y1 revenue</div><div class="value">${money(yRev)}</div><div class="sub">${yPacks.toLocaleString()} packs</div></div>
+        <div class="kpi"><div class="label">Y1 contribution</div><div class="value">${money(yCm)}</div><div class="sub">Before ads & overhead</div></div>
+        <div class="kpi"><div class="label">Y1 paid ads</div><div class="value">${money(yAds)}</div><div class="sub">MER ${(yAds ? yRev / yAds : 0).toFixed(2)}×</div></div>
+        <div class="kpi ${yCm - yAds >= 0 ? "good" : "bad"}"><div class="label">Y1 CM − ads</div><div class="value">${money(yCm - yAds)}</div><div class="sub">Cash after variable + paid</div></div>
+      `;
+
+      const parts = [
+        { label: "AOV", value: eco.aov, max: eco.aov },
+        { label: "Product (sticks)", value: eco.productPerPack, max: eco.aov },
+        { label: "Caddy + inbound", value: eco.caddy, max: eco.aov },
+        { label: "3PL + ship", value: eco.fulfill, max: eco.aov },
+        { label: "Fees + returns", value: eco.payment + eco.platform + eco.returns, max: eco.aov },
+        { label: "Contribution", value: Math.max(eco.contribution, 0), max: eco.aov },
+      ];
+      $("#bridge").innerHTML = parts.map((p) => `
+        <div>${p.label}</div>
+        <div class="bar-track"><div class="bar-fill" style="width:${Math.min(100, (p.value / p.max) * 100)}%"></div></div>
+        <div>${money2(p.value)}</div>
+      `).join("");
+      $("#bridgeNote").textContent =
+        `Landed product ${money2(eco.stickCost)}/stick × ${eco.avgSticks.toFixed(1)} sticks = ${money2(eco.productPerPack)} product. ` +
+        `Sub price ${money2(eco.subPrice)}. Replace ingredient & caddy quotes when available.`;
+
+      $("#yearTotals").innerHTML = `
+        <table>
+          <tr><td>Y1 packs</td><td><strong>${yPacks.toLocaleString()}</strong></td></tr>
+          <tr><td>Y1 revenue</td><td><strong>${money(yRev)}</strong></td></tr>
+          <tr><td>Y1 variable costs</td><td><strong>${money(yVar)}</strong></td></tr>
+          <tr><td>Y1 contribution</td><td><strong>${money(yCm)}</strong></td></tr>
+          <tr><td>Y1 paid ads</td><td><strong>${money(yAds)}</strong></td></tr>
+          <tr><td>Y1 CM − ads</td><td><strong>${money(yCm - yAds)}</strong></td></tr>
+          <tr><td>M12 packs / revenue</td><td><strong>${vols[11].toLocaleString()} · ${money(vols[11] * eco.aov)}</strong></td></tr>
+          <tr><td>Ending active subs</td><td><strong>${Math.round(activeSubs).toLocaleString()}</strong></td></tr>
+          <tr><td>Sessions needed M12*</td><td><strong>${Math.round((vols[11] / packsPerOrder) / (s.cvrPct / 100)).toLocaleString()}</strong></td></tr>
+        </table>
+        <p class="note">*Orders ≈ packs / 1.1; sessions = orders ÷ CVR.</p>
+      `;
+
+      $("#monthBody").innerHTML = rows.map((r) => `
+        <tr>
+          <td>${r.m}</td>
+          <td>${r.packs.toLocaleString()}</td>
+          <td>${money(r.rev)}</td>
+          <td>${money(r.varCost)}</td>
+          <td>${money(r.cm)}</td>
+          <td>${pct(r.cmPct)}</td>
+          <td>${Math.round(r.newCust).toLocaleString()}</td>
+          <td>${money(r.ads)}</td>
+          <td>${r.mer.toFixed(2)}×</td>
+          <td>${Math.round(r.activeSubs).toLocaleString()}</td>
+          <td>${money(r.cmMinusAds)}</td>
+        </tr>
+      `).join("");
+    }
+
+    document.querySelectorAll(".scenario-btn").forEach((b) => {
+      b.onclick = () => setScenario(b.dataset.s);
+    });
+    $("#resetBtn").onclick = () => setScenario(activeScenario);
+    $("#exportBtn").onclick = async () => {
+      const payload = { scenario: activeScenario, assumptions: state, computed: packEconomics(state) };
+      await navigator.clipboard.writeText(JSON.stringify(payload, null, 2));
+      $("#exportBtn").textContent = "Copied!";
+      setTimeout(() => ($("#exportBtn").textContent = "Copy JSON assumptions"), 1200);
+    };
+
+    bindInputs();
+    render();
+  </script>
+</body>
+</html>
