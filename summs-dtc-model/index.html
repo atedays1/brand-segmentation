@@ -65,6 +65,7 @@
     }
     .hero .detail { margin: 0; color: var(--muted); font-size: 0.9rem; }
     .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 14px; }
+    .kpis.path { grid-template-columns: 1fr 1fr; margin-bottom: 0; }
     .kpi {
       background: var(--panel);
       border: 1px solid var(--line);
@@ -196,6 +197,16 @@
     <div class="kpis" id="kpis"></div>
 
     <div class="panel">
+      <h2>Path to contribution profit</h2>
+      <p class="mini" style="margin:0 0 12px">
+        Not full company profit — months until <strong>contribution after paid ads</strong> turns green.
+        Ads ≈ CAC-bearing packs × target CAC; repeat share rises over time so later months need less paid acquisition per pack.
+      </p>
+      <div class="kpis path" id="pathKpis"></div>
+      <p class="mini" id="pathNote" style="margin:10px 0 0"></p>
+    </div>
+
+    <div class="panel">
       <h2>Packaging lever</h2>
       <div class="toggle" id="packToggle">
         <button type="button" class="active" data-pack="stock">
@@ -253,10 +264,17 @@
         <div class="field"><label>Month 6</label><input type="number" data-k="v6" /></div>
         <div class="field"><label>Month 9</label><input type="number" data-k="v9" /></div>
         <div class="field"><label>Month 12</label><input type="number" data-k="v12" /></div>
+        <div class="field"><label>Post-Y1 MoM pack growth (%)</label><input type="number" step="0.1" data-k="postY1Growth" /></div>
+        <div class="field"><label>M1 CAC-bearing packs (%)</label><input type="number" data-k="cacBearingStart" /></div>
+        <div class="field"><label>Floor CAC-bearing packs (%)</label><input type="number" data-k="cacBearingFloor" /></div>
       </div>
-      <p class="mini">Run = next N months demand + lead-time cover at M3 pace + safety %. Fulfillment default folds pick/pack + outbound shipping.</p>
+      <p class="mini">Run = next N months demand + lead-time cover at M3 pace + safety %. Fulfillment default folds pick/pack + outbound shipping. Path extends to 36 months using M12 run-rate × MoM growth after Y1.</p>
       <table>
-        <thead><tr><th>Month</th><th>Packs</th><th>Sticks</th></tr></thead>
+        <thead>
+          <tr>
+            <th>Month</th><th>Packs</th><th>CM</th><th>Ads</th><th>CM − ads</th><th>Cumulative</th>
+          </tr>
+        </thead>
         <tbody id="monthBody"></tbody>
       </table>
     </details>
@@ -282,6 +300,9 @@
       runMonths: 3,
       safetyPct: 25,
       leadWeeks: 8,
+      postY1Growth: 2.5,
+      cacBearingStart: 75,
+      cacBearingFloor: 40,
     };
 
     let state = { ...DEFAULTS };
@@ -323,6 +344,43 @@
       const pay = rev * (state.payPct / 100);
       const contribution = rev - product - caddy - state.fulfill - pay;
       return { sticks, rev, product, contribution, cmPct: rev > 0 ? (contribution / rev) * 100 : 0 };
+    }
+
+    function cacBearingShare(monthIndex) {
+      const start = state.cacBearingStart / 100;
+      const floor = state.cacBearingFloor / 100;
+      // Linear fade from M1 start toward floor by ~M18, then hold
+      const faded = start - monthIndex * ((start - floor) / 17);
+      return Math.max(floor, Math.min(start, faded));
+    }
+
+    function volumeSeries(y1Vols) {
+      const out = y1Vols.slice();
+      let last = y1Vols[11];
+      const g = 1 + state.postY1Growth / 100;
+      for (let i = 12; i < 36; i++) {
+        last = Math.round(last * g);
+        out.push(last);
+      }
+      return out;
+    }
+
+    function profitPath(vols, contributionPerOrder) {
+      const rows = [];
+      let cum = 0;
+      let firstGreen = null;
+      let cumBreakeven = null;
+      for (let i = 0; i < vols.length; i++) {
+        const packs = vols[i];
+        const cm = packs * contributionPerOrder;
+        const ads = packs * cacBearingShare(i) * state.targetCac;
+        const net = cm - ads;
+        cum += net;
+        if (firstGreen == null && net > 0) firstGreen = i + 1;
+        if (cumBreakeven == null && cum >= 0) cumBreakeven = i + 1;
+        rows.push({ month: i + 1, packs, cm, ads, net, cum });
+      }
+      return { rows, firstGreen, cumBreakeven };
     }
 
     function bind() {
@@ -375,12 +433,37 @@
         state.leadWeeks + " wks lead time + " + state.safetyPct + "% safety. Use for stick-fill MOQ and caddy print.";
 
       const pbClass = !Number.isFinite(payback) ? "bad" : payback <= 3 ? "good" : payback <= 5 ? "warn" : "bad";
+      const path = profitPath(volumeSeries(vols), eco.contribution);
+      const m1 = path.rows[0];
+      const m12 = path.rows[11];
+
       document.getElementById("kpis").innerHTML = `
         <div class="kpi"><div class="label">Y1 packs</div><div class="value">${y1Packs.toLocaleString()}</div><div class="note">${scenario} · M12 ${vols[11].toLocaleString()}/mo</div></div>
         <div class="kpi ${eco.cmPct >= 40 ? "good" : eco.cmPct >= 25 ? "warn" : "bad"}"><div class="label">Contribution / order</div><div class="value">${money2(eco.contribution)}</div><div class="note">${eco.cmPct.toFixed(0)}% of ${money2(eco.rev)} AOV</div></div>
         <div class="kpi ${pbClass}"><div class="label">CAC payback</div><div class="value">${Number.isFinite(payback) ? payback.toFixed(1) : "—"}</div><div class="note">orders at ${money(state.targetCac)} CAC</div></div>
         <div class="kpi ${packMode === "premium" ? "warn" : ""}"><div class="label">Packaging on this run</div><div class="value">${money(caddy * runPacks)}</div><div class="note">${packMode} · ${money2(caddy)}/pack</div></div>
       `;
+
+      const firstLabel = path.firstGreen == null ? ">36 mo" : "M" + path.firstGreen;
+      const cumLabel = path.cumBreakeven == null ? ">36 mo" : "M" + path.cumBreakeven;
+      const firstClass = path.firstGreen == null ? "bad" : path.firstGreen <= 12 ? "good" : "warn";
+      const cumClass = path.cumBreakeven == null ? "bad" : path.cumBreakeven <= 18 ? "good" : "warn";
+
+      document.getElementById("pathKpis").innerHTML = `
+        <div class="kpi ${firstClass}"><div class="label">Months to CM − ads &gt; 0</div><div class="value">${eco.contribution <= 0 ? "—" : firstLabel}</div><div class="note">First month contribution beats paid ads</div></div>
+        <div class="kpi ${cumClass}"><div class="label">Months to cumulative break-even</div><div class="value">${eco.contribution <= 0 ? "—" : cumLabel}</div><div class="note">When launch losses are clawed back</div></div>
+      `;
+
+      if (eco.contribution <= 0) {
+        document.getElementById("pathNote").textContent =
+          "Unit contribution is negative — there is no path to CM − ads profit until COGS, packaging, price, or fulfillment improves.";
+      } else {
+        document.getElementById("pathNote").textContent =
+          "M1 CM − ads " + money(m1.net) + " → M12 " + money(m12.net) +
+          " · cumulative after Y1 " + money(m12.cum) +
+          (path.cumBreakeven ? " · cumulative green by M" + path.cumBreakeven : " · still underwater at M36") +
+          ". This is contribution after paid media only — not opex, salaries, or inventory cash.";
+      }
 
       document.getElementById("packCallout").innerHTML =
         packMode === "premium"
@@ -392,8 +475,15 @@
              Switching to premium (+${money2(deltaPack)}/pack) would cost <strong>${money(runExtra)}</strong> on this run
              and cut contribution by ${money2(stock.contribution - prem.contribution)} per order.`;
 
-      document.getElementById("monthBody").innerHTML = vols.map((p, i) =>
-        `<tr><td>${i + 1}</td><td>${p.toLocaleString()}</td><td>${Math.round(p * sticks).toLocaleString()}</td></tr>`
+      document.getElementById("monthBody").innerHTML = path.rows.slice(0, 24).map((r) =>
+        `<tr>
+          <td>${r.month}</td>
+          <td>${r.packs.toLocaleString()}</td>
+          <td>${money(r.cm)}</td>
+          <td>${money(r.ads)}</td>
+          <td style="color:${r.net >= 0 ? "var(--good)" : "var(--bad)"}">${money(r.net)}</td>
+          <td style="color:${r.cum >= 0 ? "var(--good)" : "var(--bad)"}">${money(r.cum)}</td>
+        </tr>`
       ).join("");
     }
 
