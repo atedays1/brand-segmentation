@@ -210,8 +210,9 @@
       <div class="row">
         <div>
           <div class="field">
-            <label>Mix: 10-packs <em id="mixReadout">40%</em></label>
-            <input type="range" min="20" max="70" step="5" data-k="mix10Pct" />
+            <label>Pack mix <em id="mixReadout">40% 10-packs · 60% 30-packs</em></label>
+            <input type="range" min="20" max="70" step="5" data-k="mix10Pct" aria-label="Percent of orders that are 10-packs; remainder are 30-packs" />
+            <p class="mini" style="margin:4px 0 0">Share of orders that are 10-packs vs 30-packs. Drag left = more 30-packs; right = more 10-packs.</p>
           </div>
           <div class="field">
             <label>Product COGS / stick <em>ingredients + film + fill</em></label>
@@ -344,7 +345,8 @@
     }
 
     function render() {
-      document.getElementById("mixReadout").textContent = state.mix10Pct + "%";
+      document.getElementById("mixReadout").textContent =
+        state.mix10Pct + "% 10-packs · " + (100 - state.mix10Pct) + "% 30-packs";
       document.getElementById("stockLabel").textContent = money2(state.caddyStock) + " / pack";
       document.getElementById("premLabel").textContent = money2(state.caddyPremium) + " / pack";
 
