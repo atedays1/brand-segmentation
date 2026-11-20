@@ -437,8 +437,10 @@
       const m1 = path.rows[0];
       const m12 = path.rows[11];
 
+      const y1Ten = Math.round(y1Packs * (state.mix10Pct / 100));
+      const y1Thirty = y1Packs - y1Ten;
       document.getElementById("kpis").innerHTML = `
-        <div class="kpi"><div class="label">Y1 packs</div><div class="value">${y1Packs.toLocaleString()}</div><div class="note">${scenario} · M12 ${vols[11].toLocaleString()}/mo</div></div>
+        <div class="kpi"><div class="label">Y1 packs</div><div class="value">${y1Packs.toLocaleString()}</div><div class="note">${scenario} · M12 ${vols[11].toLocaleString()}/mo</div><div class="note">${y1Ten.toLocaleString()} × 10-packs · ${y1Thirty.toLocaleString()} × 30-packs</div></div>
         <div class="kpi ${eco.cmPct >= 40 ? "good" : eco.cmPct >= 25 ? "warn" : "bad"}"><div class="label">Contribution / order</div><div class="value">${money2(eco.contribution)}</div><div class="note">${eco.cmPct.toFixed(0)}% of ${money2(eco.rev)} AOV</div></div>
         <div class="kpi ${pbClass}"><div class="label">CAC payback</div><div class="value">${Number.isFinite(payback) ? payback.toFixed(1) : "—"}</div><div class="note">orders at ${money(state.targetCac)} CAC</div></div>
         <div class="kpi ${packMode === "premium" ? "warn" : ""}"><div class="label">Packaging on this run</div><div class="value">${money(caddy * runPacks)}</div><div class="note">${packMode} · ${money2(caddy)}/pack</div></div>
